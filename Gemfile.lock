@@ -1,5 +1,7 @@
-PATH
-  remote: ../spree
+GIT
+  remote: git://github.com/spree/spree.git
+  revision: 91fdc3d7e9b4b4eae6e525cc692fb82d55d01f1b
+  branch: 0-60-stable
   specs:
     spree (0.60.1)
       spree_api (= 0.60.1)

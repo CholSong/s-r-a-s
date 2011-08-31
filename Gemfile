@@ -31,5 +31,5 @@ gem 'aws-s3'
 #   gem 'webrat'
 # end
 
-#gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
-gem 'spree', :path => '../spree' 
+gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
+# gem 'spree', :path => '../spree' 
