@@ -1,0 +1,14 @@
+development:
+  bucket: bemtevi_ecomm_dev_imac
+  access_key_id: AKIAJL3DMW2P2KS4IWFA
+  secret_access_key: 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
+
+test:
+  bucket: bemtevi_ecomm_test_imac
+  access_key_id: AKIAJL3DMW2P2KS4IWFA
+  secret_access_key: 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
+
+production:
+  bucket: bemtevi-m0b1l3-684
+  access_key_id: AKIAJL3DMW2P2KS4IWFA
+  secret_access_key: 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

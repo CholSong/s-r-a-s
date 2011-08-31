@@ -15,13 +15,14 @@ gem 'pg'
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'ruby-debug19'
+gem 'ruby-debug-ide19'
 
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
+gem 'aws-s3'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
@@ -30,4 +31,5 @@ gem 'pg'
 #   gem 'webrat'
 # end
 
-gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable' 
+#gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
+gem 'spree', :path => '../spree' 
