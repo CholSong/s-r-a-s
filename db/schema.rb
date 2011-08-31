@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110314192118) do
+ActiveRecord::Schema.define(:version => 20110816232504) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(:version => 20110314192118) do
     t.datetime "updated_at"
     t.string   "state_name"
     t.string   "alternative_phone"
+    t.integer  "user_id"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
   end
 
   add_index "addresses", ["firstname"], :name => "index_addresses_on_firstname"
@@ -116,6 +119,18 @@ ActiveRecord::Schema.define(:version => 20110314192118) do
     t.boolean  "test_mode",   :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "image_overlays", :force => true do |t|
+    t.integer  "image_id"
+    t.string   "type"
+    t.text     "text"
+    t.string   "attachment_content_type"
+    t.string   "attachment_file_name"
+    t.integer  "attachment_size"
+    t.datetime "attachment_updated_at"
+    t.integer  "attachment_width"
+    t.integer  "attachment_height"
   end
 
   create_table "inventory_units", :force => true do |t|
@@ -467,6 +482,7 @@ ActiveRecord::Schema.define(:version => 20110314192118) do
     t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "taxons", :force => true do |t|
@@ -532,6 +548,7 @@ ActiveRecord::Schema.define(:version => 20110314192118) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.datetime "remember_created_at"
+    t.string   "name"
   end
 
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"

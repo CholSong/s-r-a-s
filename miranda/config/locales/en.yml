@@ -1,0 +1,10 @@
+---
+en:
+  add_overlay_of_type: Add overlay of type
+  image_overlay_types:
+    image:
+      name: Image
+      description: Image to be applied to original image
+    text:
+      name: Text 
+      description: Text to be applied to original image

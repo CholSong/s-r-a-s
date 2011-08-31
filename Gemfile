@@ -31,5 +31,11 @@ gem 'aws-s3'
 #   gem 'webrat'
 # end
 
-gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
+# Use spree from local repository when debugging 
 # gem 'spree', :path => '../spree' 
+
+# Use spree from git when deploying to production 
+gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
+
+gem 'miranda', :require => "miranda", :path => "miranda"
+

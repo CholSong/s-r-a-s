@@ -1,0 +1,12 @@
+# This file is used to designate compatibilty with different versions of Spree
+# Please see http://spreecommerce.com/documentation/extensions.html#versionfile for details
+
+# Examples
+#
+# "0.40.x" => { :tag => "v1.0.0", :version => "1.0.0" }
+# 
+# Note that bemtevi is using Mercurial instead of Git. Therefore, anyone using the extension must
+# take that into account. 
+
+"0.70.99" => { :branch => "default" }
+

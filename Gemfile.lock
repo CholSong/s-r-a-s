@@ -40,6 +40,14 @@ GIT
     spree_sample (0.60.1)
       spree_core (= 0.60.1)
 
+PATH
+  remote: miranda
+  specs:
+    miranda (0.10.01)
+      spree_api (>= 0.60.1)
+      spree_auth (>= 0.60.1)
+      spree_promo (>= 0.60.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -161,6 +169,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-s3
+  miranda!
   pg
   rails (= 3.0.9)
   spree!
