@@ -1,3 +1,5 @@
+require 'bemtevi_hooks'
+
 module SpreeSite
   class Engine < Rails::Engine
     
