@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.description = 'Miranda is a set of extensions to Spree to support requirements for the Bemtevi applications.'
   s.required_ruby_version = '>= 1.8.7'
 
-  # s.author            = 'David Heinemeier Hansson'
-  # s.email             = 'david@loudthinking.com'
-  # s.homepage          = 'http://www.rubyonrails.org'
+  s.author            = 'Evandro Carrenho'
+  s.email             = 'evandro@bemtevi-mobile.com'
+  s.homepage          = 'http://bemtevi-mobile.com'
   # s.rubyforge_project = 'actionmailer'
 
   s.files         = `git ls-files`.split("\n")

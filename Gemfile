@@ -38,4 +38,3 @@ gem 'aws-s3'
 gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
 
 gem 'miranda', :require => "miranda", :path => "miranda"
-
