@@ -1,0 +1,33 @@
+<%= render :partial => 'admin/shared/product_sub_menu' %>
+
+<%= render "shared/error_messages", :target => @product %>
+
+<%= form_for(:product,  :url => collection_url, :html => { :multipart => true }) do |f| %>
+<fieldset>
+
+  <%= f.field_container :name do %>
+    <%= f.label :name, t("name") %> <span class="required">*</span><br />
+    <%= f.text_field :name, :class => 'fullwidth title'  %>
+    <%= f.error_message_on :name %>
+  <% end %>
+
+  <div class="yui-gb">
+    <div class="yui-u">
+
+      <input id="product_price" name="product[price]" type="hidden" value="0">
+
+      <p>
+        <%= f.label :available_on, t("available_on") %><br />
+        <%= f.error_message_on :available_on %>
+        <%= f.spree_date_picker :available_on, :style=>"width:150px" %>
+      </p>
+
+
+    </div>
+  </div>
+
+  <%= render :partial => 'admin/shared/new_resource_links' %>
+
+</fieldset>
+<% end %>
+<%= javascript_tag "datePickerController.create();" %>
