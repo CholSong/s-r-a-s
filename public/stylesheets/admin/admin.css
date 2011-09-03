@@ -143,7 +143,7 @@ body {
 
   #header #logo {
   position: absolute;
-  top: 0;
+  top: 20px;
   left: 10px;
 }
   #header h1 {
@@ -157,7 +157,7 @@ body {
 
   }
   #header h1 a {
-  color: #8CB952;
+  color: #FAA61A;
   }
   #admin-menu { clear: both; }
   #admin-menu,
@@ -188,10 +188,10 @@ body {
           outline: none; }
         #admin-menu ul li.selected a,
         #sub-menu ul li.selected a {
-          background-color: #0095da;
+          background-color: #535456;
           }
         #admin-menu ul li.selected {
-          border-bottom:1px solid #0095DA;
+          border-bottom:1px solid #535456;
         }
   #IE7 #admin-menu {
     height: 39px; }
@@ -206,14 +206,14 @@ body {
       #admin-menu ul li:first-child {
         border-left: 1px solid #34599B; }
       #admin-menu ul li.selected {
-        background: #0095da url(../../images/admin/bg/admin_tab_selected_back.png) top left repeat-x;
+        background: #535456 url(../../images/admin/bg/admin_tab_selected_back.png) top left repeat-x;
         border-left: 1px solid #41A6F0;
         border-top: 1px solid #41A6F0;
         border-right: 1px solid #4986BF;
         height: 40px;
         margin-top: -2px; }
   #sub-menu {
-    background: #0095da;
+    background: #535456;
     border-left: 1px solid #41A6F0;
     border-right: 1px solid #4986BF; }
     #IE7 #sub-menu ul {
@@ -221,11 +221,11 @@ body {
     #sub-menu ul li a {
       padding: 3px 7px;
       margin: 10px 5px;
-      color: #154e8c;
+      color: #9BC3FC;
       background: none; }
     #sub-menu ul li.selected a {
-      background: #154e8c;
-      color: #9BC3FC;
+      background: #CDCDCD;
+      color: #154E8C;
       -moz-border-radius: 3px;
       -webkit-border-radius: 3px; }
   #slide-content {
