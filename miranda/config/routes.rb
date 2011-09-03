@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     end
   end
 
-  
+  match '/admin' => 'admin/products#index', :as => :admin
+
 end
