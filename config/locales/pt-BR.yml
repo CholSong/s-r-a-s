@@ -1076,6 +1076,13 @@ pt-BR:
   zone_setting_description: "Coleção de países, estados e outras zonas a serem usados nos cálculos."
   zones: Zonas
 
+# additions to spree_i18n locale
+
+  admin: administrador
+  user: usuário
+  clone: Copiar
+
+
 
 # encoding: UTF-8
 # pt-BR translations for Ruby on Rails
