@@ -11,7 +11,7 @@ module SpreeSite
 
       Spree::Config.set :site_name => 'Bemtevi Mobile',
       :site_url => 'bemtevi-mobile.com',
-      :default_locale => 'pt',
+      :default_locale => 'pt-BR',
       :allow_locale_switching => false,
       :default_country_id => 28,
       :logo => '/images/bemtevi/bemtevi_logo.png',
