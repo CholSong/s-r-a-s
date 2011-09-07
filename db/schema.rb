@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110816232504) do
+ActiveRecord::Schema.define(:version => 20110907204659) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20110816232504) do
     t.integer  "attachment_width"
     t.integer  "attachment_height"
     t.text     "alt"
+    t.decimal  "attachment_aspect_ratio"
   end
 
   add_index "assets", ["viewable_id"], :name => "index_assets_on_viewable_id"

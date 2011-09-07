@@ -1082,6 +1082,9 @@ pt-BR:
   user: usuário
   clone: Copiar
   cart: Carrinho
+  devise:
+    failure:
+      invalid: Credenciais inválidas
 
 
 
