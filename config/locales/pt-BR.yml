@@ -1085,8 +1085,7 @@ pt-BR:
   devise:
     failure:
       invalid: Credenciais inválidas
-
-
+  new_image_from_template: Nova Imagem Usando Modelo
 
 
 # encoding: UTF-8

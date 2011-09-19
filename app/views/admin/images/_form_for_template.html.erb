@@ -1,0 +1,45 @@
+<%= javascript_include_tag 'bemtevi/image-template.js' %>
+
+<table class="basic-table">
+  <div>  
+    <%= label_tag t('description') %>
+    <%= text_field_tag :description, nil, :id => :description_overlay, :onkeyup => "setOverlayText(this, 20, 220, '#ffffff', 'bold 26px sans-serif')" %>
+  </div>
+    
+  <div>
+    <%= label_tag t('price') %>
+    <%= text_field_tag :price, nil, :id => :price_overlay, :onkeyup => "setOverlayText(this, 315, 90, '#ffffff', 'bold 28px sans-serif')" %>
+  </div>
+    
+  <div>
+    <%= label_tag t('image') %>
+    <%= file_field_tag :image, :id => :image_overlay, :onchange => "setOverlayImage(this, 5, 5, 200, 110)" %>
+  </div>
+
+  <div>
+    <%= image_tag "template.jpg", :id => :template_image, :hidden => :hidden, :onload => "prepare_canvas()" %>
+  </div>
+    
+  <div>
+    <h1><% t('resulting_image') %></h1>
+    <canvas id='image_from_template_canvas'></canvas>
+  </div>
+    
+</table>
+    
+<%= form_for(:image, :url => { :controller => 'images', :action => 'create' }, :html => { :multipart => true }) do |f| %>
+    <% if @product.has_variants? %>
+      <tr>
+        <td><%= Variant.model_name.human %>:</td>
+        <td><%= f.select :viewable_id, @variants %></td>
+      </tr>
+    <% else %>
+      <%= hidden_field_tag :product_id, @product.id %>
+    <% end %>
+    
+  </table>
+  <p class="form-buttons">
+    <%= button t("update") %>
+    <%= t('or') %> <%= link_to t("cancel"), "#", :id => "cancel_link" %>
+  </p>
+<% end %>
