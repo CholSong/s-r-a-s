@@ -1,8 +1,8 @@
-namespace :miranda do
+namespace :bemtevi do
   desc "Copies all migrations and assets (NOTE: This will be obsolete with Rails 3.1)"
   task :install do
-    Rake::Task['miranda:install:migrations'].invoke
-    Rake::Task['miranda:install:assets'].invoke
+    Rake::Task['bemtevi:install:migrations'].invoke
+    Rake::Task['bemtevi:install:assets'].invoke
   end
 
   namespace :install do

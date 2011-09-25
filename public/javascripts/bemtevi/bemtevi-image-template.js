@@ -1,3 +1,27 @@
+function dataURLtoBlob(dataURL) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURL.split(',')[0].indexOf('base64') >= 0) {
+        byteString = atob(dataURL.split(',')[1]);
+    } else {
+        byteString = unescape(dataURL.split(',')[1]);
+    }
+
+    // separate out the mime component
+    var mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0]
+
+    // write the bytes of the string to an ArrayBuffer
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    // write the ArrayBuffer to a blob, and you're done
+    var bb = new window.WebKitBlobBuilder();
+    bb.append(ab);
+    return bb.getBlob(mimeString);
+}
+
 function prepare_canvas () {
     templateOverlayList = new Object();
     drawAndSaveCanvasToAttachment();
@@ -46,7 +70,6 @@ function setOverlayImage(imgElement, posX, posY, width, height) {
 
 function drawAndSaveCanvasToAttachment() {
     drawTemplateAndOverlays();
-    //saveCanvasToAttachment();
 }
 
 function drawTemplateAndOverlays() {
@@ -73,23 +96,25 @@ function drawTemplateAndOverlays() {
     }
 }
 
-function saveCanvasToAttachment() { 
-    var canvas = document.getElementById('image_from_template_canvas');
-    var resultingImage = canvas.toDataURL();
-    var attachment = document.getElementById('image_attachment');
-    attachment.src = resultingImage;
-    attachment.value = "bemtevi-template.jpg";
-    
-    alert('sending form');
-    
+function saveCanvasToAttachment(authToken) { 
     var formdata = new FormData();
-    formdata.append("authenticity_token", "KdTGeGQnTyQ7QySo2UpnnHKfrfuOOhjV9sGgrMXbB/g="); 
+    formdata.append("authenticity_token", authToken); 
     formdata.append("utf-8", "yes");
-    formdata.append("image", resultingImage);
+    var canvas = document.getElementById("image_from_template_canvas");
+    var dataURL = canvas.toDataURL();
+    var blob = dataURLtoBlob(dataURL);
+    formdata.append("image[attachment]", blob);
     
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:3000/admin/products/promocao-de-teste/images");  
+    var form = document.getElementById("image_from_template_form");
+    //xhr.onreadystatechange = handleCanvasSubmitResponse(xhr);
+    xhr.open("POST", form.getAttribute("action"), false);  
     xhr.send(formdata);
-    alert('form sent');
+    alert('request sent');
+}
 
+function handleCanvasSubmitResponse(request) {
+    if (request.readyState == 4) {
+        alert('request completed');
+    }
 }

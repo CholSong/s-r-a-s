@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
-  s.name        = 'miranda'
+  s.name        = 'bemtevi'
   s.version     = '0.10.01'
-  s.summary     = 'Miranda is a set of extensions to Spree to support requirements for the Bemtevi applications.'
-  s.description = 'Miranda is a set of extensions to Spree to support requirements for the Bemtevi applications.'
+  s.summary     = 'Bemtevi is a set of extensions to Spree to support requirements for the Bemtevi applications.'
+  s.description = 'Bemtevi is a set of extensions to Spree to support requirements for the Bemtevi applications.'
   s.required_ruby_version = '>= 1.8.7'
 
   s.author            = 'Evandro Carrenho'

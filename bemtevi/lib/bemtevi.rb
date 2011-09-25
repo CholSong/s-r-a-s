@@ -1,7 +1,7 @@
 require 'spree_core'
-require 'miranda_hooks'
+require 'bemtevi_hooks'
 
-module Miranda
+module Bemtevi
   class Engine < Rails::Engine
     
     def self.activate
