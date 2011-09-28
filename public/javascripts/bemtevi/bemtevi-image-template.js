@@ -100,21 +100,26 @@ function saveCanvasToAttachment(authToken) {
     var formdata = new FormData();
     formdata.append("authenticity_token", authToken); 
     formdata.append("utf-8", "yes");
+    var productId = document.getElementById("product_id_for_image_from_template").value;
+    formdata.append("product_id", productId);
     var canvas = document.getElementById("image_from_template_canvas");
     var dataURL = canvas.toDataURL();
     var blob = dataURLtoBlob(dataURL);
     formdata.append("image[attachment]", blob);
+
+    var formAction = document.getElementById("image_from_template_form").getAttribute("action");
     
     var xhr = new XMLHttpRequest();
-    var form = document.getElementById("image_from_template_form");
-    //xhr.onreadystatechange = handleCanvasSubmitResponse(xhr);
-    xhr.open("POST", form.getAttribute("action"), false);  
+    xhr.onreadystatechange = function () {
+        handleCanvasSubmitResponse(xhr, formAction);
+    }
+    xhr.open("POST", formAction, false);  
+    xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
     xhr.send(formdata);
-    alert('request sent');
 }
 
-function handleCanvasSubmitResponse(request) {
+function handleCanvasSubmitResponse(request, formAction) {
     if (request.readyState == 4) {
-        alert('request completed');
+        window.location = formAction;
     }
 }
