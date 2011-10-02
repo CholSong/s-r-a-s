@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110907204659) do
+ActiveRecord::Schema.define(:version => 20111002165704) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -132,6 +132,9 @@ ActiveRecord::Schema.define(:version => 20110907204659) do
     t.datetime "attachment_updated_at"
     t.integer  "attachment_width"
     t.integer  "attachment_height"
+    t.integer  "position_x"
+    t.integer  "position_y"
+    t.string   "font_family"
   end
 
   create_table "inventory_units", :force => true do |t|
