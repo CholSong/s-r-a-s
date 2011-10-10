@@ -1,21 +1,23 @@
-PATH
-  remote: ../spree
+GIT
+  remote: git://github.com/spree/spree.git
+  revision: fb2b9358514de485bdf8b8a21d9e6db905ce5fd7
+  branch: 0-60-stable
   specs:
-    spree (0.60.1)
-      spree_api (= 0.60.1)
-      spree_auth (= 0.60.1)
-      spree_core (= 0.60.1)
-      spree_dash (= 0.60.1)
-      spree_promo (= 0.60.1)
-      spree_sample (= 0.60.1)
-    spree_api (0.60.1)
-      spree_auth (= 0.60.1)
-      spree_core (= 0.60.1)
-    spree_auth (0.60.1)
+    spree (0.60.2)
+      spree_api (= 0.60.2)
+      spree_auth (= 0.60.2)
+      spree_core (= 0.60.2)
+      spree_dash (= 0.60.2)
+      spree_promo (= 0.60.2)
+      spree_sample (= 0.60.2)
+    spree_api (0.60.2)
+      spree_auth (= 0.60.2)
+      spree_core (= 0.60.2)
+    spree_auth (0.60.2)
       cancan (= 1.6.4)
       devise (= 1.3.3)
-      spree_core (= 0.60.1)
-    spree_core (0.60.1)
+      spree_core (= 0.60.2)
+    spree_core (0.60.2)
       activemerchant (= 1.15.0)
       acts_as_list (= 0.1.2)
       faker (= 0.9.5)
@@ -31,12 +33,12 @@ PATH
       state_machine (= 0.9.4)
       stringex (= 1.0.3)
       will_paginate (= 3.0.pre2)
-    spree_dash (0.60.1)
-      spree_core (= 0.60.1)
-    spree_promo (0.60.1)
-      spree_core (= 0.60.1)
-    spree_sample (0.60.1)
-      spree_core (= 0.60.1)
+    spree_dash (0.60.2)
+      spree_core (= 0.60.2)
+    spree_promo (0.60.2)
+      spree_core (= 0.60.2)
+    spree_sample (0.60.2)
+      spree_core (= 0.60.2)
 
 PATH
   remote: bemtevi
@@ -87,7 +89,7 @@ GEM
       mime-types
       xml-simple
     bcrypt-ruby (2.1.4)
-    braintree (2.11.0)
+    braintree (2.12.0)
       builder (>= 2.0.0)
     builder (2.1.2)
     cancan (1.6.4)
@@ -157,7 +159,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.29)
-    warden (1.0.5)
+    warden (1.0.6)
       rack (>= 1.0)
     will_paginate (3.0.pre2)
     xml-simple (1.1.0)
