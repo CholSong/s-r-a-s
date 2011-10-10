@@ -36,6 +36,10 @@ function getOverlayList(templateId) {
 
 function enableOverlaysAndDrawTemplate(templateId) {
     jQuery("#overlay_fields").show();
+    if (typeof templateOverlayMatrix != 'undefined' && 
+        typeof templateOverlayMatrix[templateId] != 'undefined') {
+        templateOverlayMatrix[templateId] = new Object();
+    }
     drawTemplateAndOverlays(templateId);
 }
 
