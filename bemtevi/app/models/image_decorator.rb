@@ -1,7 +1,5 @@
 Image.class_eval do
 
-  has_many :image_overlays
-  
   after_post_process :find_dimensions_and_ratio
 
   def find_dimensions_and_ratio

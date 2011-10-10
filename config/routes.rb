@@ -55,4 +55,6 @@ BemteviEcomm::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+  
+  match '*bucket/public/assets/image_templates/*s3path' => 's3_proxy#get_image', :via => :get
 end

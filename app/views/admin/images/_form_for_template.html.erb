@@ -1,42 +1,20 @@
-<table class="basic-table">
-  <div>  
-    <%= label_tag t('description') %>
-    <%= text_field_tag :description, nil, :id => :description_overlay, :onkeyup => "setOverlayText(this, 20, 220, '#ffffff', 'bold 26px sans-serif')" %>
-  </div>
-    
-  <div>
-    <%= label_tag t('price') %>
-    <%= text_field_tag :price, nil, :id => :price_overlay, :onkeyup => "setOverlayText(this, 315, 90, '#ffffff', 'bold 28px sans-serif')" %>
-  </div>
-    
-  <div>
-    <%= label_tag t('image') %>
-    <%= file_field_tag :image, :id => :image_overlay, :onchange => "setOverlayImage(this, 5, 5, 200, 110)" %>
-  </div>
-
-  <div>
-    <%= image_tag "template.jpg", :id => :template_image, :hidden => :hidden, :onload => "prepare_canvas()" %>
-  </div>
-
-  <div>
-    <h1><% t('resulting_image') %></h1>
-    <canvas id='image_from_template_canvas'></canvas>
-  </div>
-</table>
-    
-<%= form_for(:image, :url => { :controller => 'images', :action => 'create' }, :html => { :multipart => true, :id => 'image_from_template_form' }) do |f| %>
-    <% if @product.has_variants? %>
-      <tr>
-        <td><%= Variant.model_name.human %>:</td>
-        <td><%= f.select :viewable_id, @variants %></td>
-      </tr>
-    <% else %>
-      <%= hidden_field_tag :product_id, @product.id, :id => 'product_id_for_image_from_template' %>
-    <% end %>
-    
+<div id="overlay_fields" style="display: none;">
+<% template.image_overlays.each do |overlay| %>
+  <% case overlay.type %>
+  <% when "ImageOverlay::Overlays::Text" %>
+    <div>
+      <%= label_tag t(overlay.text) %>
+      <%= text_field_tag overlay.text, nil, :id => "template_#{template.id}_overlay_#{overlay.id}_#{overlay.text}", :onkeyup => "setOverlayText(this, 'template_#{template.id}', #{overlay.position_x}, #{overlay.position_y}, '#ffffff', '#{overlay.font_family}')" %>
+    </div>
+  <% when "ImageOverlay::Overlays::Image" %>
+    <div>
+      <%= label_tag t('image') %>
+      <%= file_field_tag :image, :id => "template_#{template.id}_overlay_#{overlay.id}_#{overlay.text}", :onchange => "setOverlayImage(this, 'template_#{template.id}', #{overlay.position_x}, #{overlay.position_y}, 200, 110)" %>
+    </div>
+  <% end %>
 <% end %>
+</div>
 
-  <p class="form-buttons">
-    <%= button t("update"), nil, nil, :id => 'image_from_template_submit_button', :onclick => 'saveCanvasToAttachment(AUTH_TOKEN)' %>
-    <%= t('or') %> <%= link_to t("cancel"), "#", :id => "cancel_link" %>
-  </p>
+<div>
+  <%= image_tag template.attachment.url(:original).gsub("http://s3.amazonaws.com",""), :id => "template_#{template.id}", :style => "display: none;", :onload => "enableOverlaysAndDrawTemplate('template_#{template.id}')" %>
+</div>

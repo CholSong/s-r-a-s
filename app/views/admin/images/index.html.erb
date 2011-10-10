@@ -32,12 +32,14 @@
 
 <div id="images"></div>
 <br/>
-<p>
-    <%= link_to icon('add') + ' ' + t("new_image"), new_admin_product_image_url(@product), :id => "new_image_link" %>
-</p>
-<p>
-    <%= link_to icon('add') + ' ' + t("new_image_from_template"), new_admin_product_image_url(@product), :id => "new_image_from_template_link" %>
-</p>
+
+<h3 id="new_image_link_header"><%= "#{t("new_image")}" %></h3>
+
+<%= button_link_to t("from_local_file"), new_admin_product_image_url(@product), {:remote => true, :id => 'new_image_link', :'data-update' => ""} %>
+
+<% @image_templates.each do |image_template| %>
+  <%= link_to(image_tag(image_template.attachment.url(:small)), new_admin_product_image_url(@product), :id => "new_image_link_from_template#{image_template.id}", :'data-template-id' => "#{image_template.id}") %>
+<% end %>
 
 <% content_for :head do %>
   <%= javascript_include_tag 'bemtevi/bemtevi-image-template.js' %>
@@ -47,18 +49,16 @@
 
       jQuery('#new_image_link').click(function (event) {
         event.preventDefault();
-        jQuery(this).hide();
-        jQuery('#new_image_from_template_link').hide();
-        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#images').html(r);} });
+        jQuery('#[id*=new_image_link]').hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN, template_id: "none"}), success: function(r){ jQuery('#images').html(r);} });
       });
 
-      jQuery('#new_image_from_template_link').click(function (event) {
+      jQuery('#[id*=new_image_link_from_template]').click(function (event) {
         event.preventDefault();
-        jQuery(this).hide();
-        jQuery('#new_image_link').hide();
-        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN, from_template: true}), success: function(r){ jQuery('#images').html(r);} });
+        jQuery('#[id*=new_image_link]').hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN, template_id: this.dataset.templateId}), success: function(r){ jQuery('#images').html(r);} });
       });
-
+      
     });
   </script>
 <% end %>

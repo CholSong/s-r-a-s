@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111002165704) do
+ActiveRecord::Schema.define(:version => 20111002180700) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -123,8 +123,6 @@ ActiveRecord::Schema.define(:version => 20111002165704) do
   end
 
   create_table "image_overlays", :force => true do |t|
-    t.integer  "image_id"
-    t.string   "type"
     t.text     "text"
     t.string   "attachment_content_type"
     t.string   "attachment_file_name"
@@ -135,6 +133,8 @@ ActiveRecord::Schema.define(:version => 20111002165704) do
     t.integer  "position_x"
     t.integer  "position_y"
     t.string   "font_family"
+    t.string   "type"
+    t.integer  "image_template_id"
   end
 
   create_table "inventory_units", :force => true do |t|

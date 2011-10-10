@@ -1,6 +1,6 @@
-<h4><%= t("new_image") %></h4>
+<h3><%= t("new_image") %></h3>
 
-<% if !params[:from_template] then %>
+<% if params[:template_id] == "none" then %>
   <%= form_for(:image, :url => { :controller => 'images', :action => 'create' }, :html => { :multipart => true }) do |form| %>
     <table class="basic-table">
       <%= render :partial => "form", :locals => { :f => form } %>
@@ -11,13 +11,35 @@
     </p>
   <% end %>
 <% else %>
-  <%= render :partial => "form_for_template" %>
+  <%= render :partial => "form_for_template", :locals => { :template => @image_template} %>
+
+  <div>
+    <h1><% t('resulting_image') %></h1>
+    <canvas id='image_from_template_canvas'></canvas>
+  </div>
+    
+  <%= form_for(:image, :url => { :controller => 'images', :action => 'create' }, :html => { :multipart => true, :id => 'image_from_template_form' }) do |f| %>
+    <% if @product.has_variants? %>
+      <tr>
+        <td><%= Variant.model_name.human %>:</td>
+        <td><%= f.select :viewable_id, @variants %></td>
+      </tr>
+    <% else %>
+      <%= hidden_field_tag :product_id, @product.id, :id => 'product_id_for_image_from_template' %>
+    <% end %>
+       
+  <% end %>
+    
+  <p class="form-buttons">
+    <%= button t("update"), nil, nil, :id => 'image_from_template_submit_button', :onclick => 'saveCanvasToAttachment(AUTH_TOKEN)' %>
+    <%= t('or') %> <%= link_to t("cancel"), "#", :id => "cancel_link" %>
+  </p>
+
 <% end %>
 
 <script type="text/javascript">    
   jQuery('#cancel_link').click(function (event) { 
-    jQuery('#new_image_link').show();
-    jQuery('#new_image_from_template_link').show();
+    jQuery('#[id*=new_image_link]').show();
     jQuery('#images').html('');
   });  
  

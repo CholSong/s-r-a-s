@@ -22,12 +22,24 @@ function dataURLtoBlob(dataURL) {
     return bb.getBlob(mimeString);
 }
 
-function prepare_canvas () {
-    templateOverlayList = new Object();
-    drawAndSaveCanvasToAttachment();
+function getOverlayList(templateId) {
+    if (typeof templateOverlayMatrix == 'undefined') {
+        templateOverlayMatrix = new Object();
+    }
+    var overlayList = templateOverlayMatrix[templateId];
+    if (typeof overlayList == 'undefined') {
+        templateOverlayMatrix[templateId] = new Object();
+        overlayList = templateOverlayMatrix[templateId];
+    }
+    return overlayList;
 }
 
-function setOverlayText(txtElement, posX, posY, fillStyle, font) {
+function enableOverlaysAndDrawTemplate(templateId) {
+    jQuery("#overlay_fields").show();
+    drawTemplateAndOverlays(templateId);
+}
+
+function setOverlayText(txtElement, templateId, posX, posY, fillStyle, font) {
     var newElement = {
         "type": "text",
         "value": txtElement.value,
@@ -36,12 +48,12 @@ function setOverlayText(txtElement, posX, posY, fillStyle, font) {
         "fillStyle": fillStyle,
         "font": font
     }
-    
-    templateOverlayList[txtElement.name] = newElement;
-    drawAndSaveCanvasToAttachment();
+    var overlayList = getOverlayList(templateId);
+    overlayList[txtElement.id] = newElement;
+    drawTemplateAndOverlays(templateId);
 }
 
-function setOverlayImage(imgElement, posX, posY, width, height) {
+function setOverlayImage(imgElement, templateId, posX, posY, width, height) {
     var newElement = {
         "type": "file",
         "image": new Image(),
@@ -51,9 +63,10 @@ function setOverlayImage(imgElement, posX, posY, width, height) {
         "height": height
     };
     
-    templateOverlayList[imgElement.name] = newElement;
+    var overlayList = getOverlayList(templateId);
+    overlayList[imgElement.id] = newElement;
     newElement.image.onload = function() {
-        drawAndSaveCanvasToAttachment();
+        drawTemplateAndOverlays(templateId);
     };
     
     var file = imgElement.files[0];
@@ -68,12 +81,8 @@ function setOverlayImage(imgElement, posX, posY, width, height) {
     reader.readAsDataURL(file);
 }
 
-function drawAndSaveCanvasToAttachment() {
-    drawTemplateAndOverlays();
-}
-
-function drawTemplateAndOverlays() {
-    var template = document.getElementById('template_image');
+function drawTemplateAndOverlays(templateId) {
+    var template = document.getElementById(templateId);
     var canvas = document.getElementById('image_from_template_canvas');
     canvas.width = template.width;
     canvas.height = template.height;
@@ -82,8 +91,9 @@ function drawTemplateAndOverlays() {
     ctx.globalCompositeOperation = "source-over";
     ctx.drawImage(template, 0, 0, template.width, template.height);
     
-    for (var key in templateOverlayList) {
-        var elem = templateOverlayList[key];
+    var overlayList = getOverlayList(templateId);
+    for (var key in overlayList) {
+        var elem = overlayList[key];
         if (elem.type == "text") {
             ctx.font = elem.font;
             ctx.textAlign = "left";
@@ -97,6 +107,7 @@ function drawTemplateAndOverlays() {
 }
 
 function saveCanvasToAttachment(authToken) { 
+    jQuery("#progress").css("display", "block");
     var formdata = new FormData();
     formdata.append("authenticity_token", authToken); 
     formdata.append("utf-8", "yes");
@@ -113,7 +124,7 @@ function saveCanvasToAttachment(authToken) {
     xhr.onreadystatechange = function () {
         handleCanvasSubmitResponse(xhr, formAction);
     }
-    xhr.open("POST", formAction, false);  
+    xhr.open("POST", formAction);  
     xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
     xhr.send(formdata);
 }
