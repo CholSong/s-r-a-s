@@ -148,14 +148,14 @@ function saveCanvasToAttachment() {
     
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        handleCanvasSubmitResponse(xhr);
+        handleCanvasSubmitResponse(xhr, formAction);
     }
     xhr.open("POST", formAction);  
     xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
     xhr.send(formdata);
 }
 
-function handleCanvasSubmitResponse(request) {
+function handleCanvasSubmitResponse(request, formAction) {
     if (request.readyState == 4) {
         window.location = formAction;
     }
