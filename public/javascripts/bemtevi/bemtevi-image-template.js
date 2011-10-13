@@ -58,6 +58,11 @@ function setOverlayText(txtElement, templateId, posX, posY, fillStyle, font) {
 }
 
 function setOverlayImage(imgElement, templateId, posX, posY, width, height) {
+    var file = imgElement.files[0];
+    if (!file.type.match('image.*')) {
+        return;
+    }
+
     var newElement = {
         "type": "file",
         "image": new Image(),
@@ -66,23 +71,37 @@ function setOverlayImage(imgElement, templateId, posX, posY, width, height) {
         "width": width,
         "height": height
     };
-    
-    var overlayList = getOverlayList(templateId);
-    overlayList[imgElement.id] = newElement;
+
     newElement.image.onload = function() {
         drawTemplateAndOverlays(templateId);
     };
     
-    var file = imgElement.files[0];
-    if (!file.type.match('image.*')) {
-        return;
-    }
+    var overlayList = getOverlayList(templateId);
+    overlayList[imgElement.id] = newElement;
       
-    var reader = new FileReader();
-    reader.onload  = function() {
-        newElement.image.src = reader.result;
-    };
-    reader.readAsDataURL(file);
+    uploadImage(file);
+}
+
+function uploadImage(file) { 
+    jQuery("#progress").css("display", "block");
+    
+    var formdata = new FormData();
+    formdata.append("utf-8", "yes");
+    formdata.append("image[attachment]", file);
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        handleImageSubmitResponse(xhr);
+    }
+    xhr.open("POST", "/api2/images");  
+    xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+    xhr.send(formdata);
+}
+
+function handleImageSubmitResponse(request) {
+    if (request.readyState == 4) {
+        alert("Created.");
+    }
 }
 
 function drawTemplateAndOverlays(templateId) {
@@ -110,13 +129,16 @@ function drawTemplateAndOverlays(templateId) {
     }
 }
 
-function saveCanvasToAttachment(authToken) { 
+function saveCanvasToAttachment() { 
     jQuery("#progress").css("display", "block");
+    
     var formdata = new FormData();
-    formdata.append("authenticity_token", authToken); 
+    formdata.append("authenticity_token", AUTH_TOKEN); 
     formdata.append("utf-8", "yes");
+    
     var productId = document.getElementById("product_id_for_image_from_template").value;
     formdata.append("product_id", productId);
+    
     var canvas = document.getElementById("image_from_template_canvas");
     var dataURL = canvas.toDataURL();
     var blob = dataURLtoBlob(dataURL);
@@ -126,14 +148,14 @@ function saveCanvasToAttachment(authToken) {
     
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        handleCanvasSubmitResponse(xhr, formAction);
+        handleCanvasSubmitResponse(xhr);
     }
     xhr.open("POST", formAction);  
     xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
     xhr.send(formdata);
 }
 
-function handleCanvasSubmitResponse(request, formAction) {
+function handleCanvasSubmitResponse(request) {
     if (request.readyState == 4) {
         window.location = formAction;
     }

@@ -1087,6 +1087,7 @@ pt-BR:
       invalid: Credenciais inválidas
   new_image_from_template: Nova Imagem Usando Modelo
   from_local_file: Arquivo Local
+  logo: Logo
 
 
 # encoding: UTF-8

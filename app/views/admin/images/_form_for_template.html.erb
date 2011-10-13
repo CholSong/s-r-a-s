@@ -8,7 +8,7 @@
     </div>
   <% when "ImageOverlay::Overlays::Image" %>
     <div>
-      <%= label_tag t('image') %>
+      <%= label_tag t(overlay.text) %>
       <%= file_field_tag :image, :id => "template_#{template.id}_overlay_#{overlay.id}_#{overlay.text}", :onchange => "setOverlayImage(this, 'template_#{template.id}', #{overlay.position_x}, #{overlay.position_y}, 200, 110)" %>
     </div>
   <% end %>

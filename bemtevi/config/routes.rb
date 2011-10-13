@@ -3,6 +3,7 @@ Rails.application.routes.draw do
       resources :products, :except => [:new,:edit,:delete]
       resources :promotions, :except => [:new,:edit,:delete]
       resources :users, :except => [:delete]
+      resources :images
   end
   
   namespace :admin do
