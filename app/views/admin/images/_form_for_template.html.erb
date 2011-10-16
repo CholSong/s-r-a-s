@@ -9,7 +9,8 @@
   <% when "ImageOverlay::Overlays::Image" %>
     <div>
       <%= label_tag t(overlay.text) %>
-      <%= file_field_tag :image, :id => "template_#{template.id}_overlay_#{overlay.id}_#{overlay.text}", :onchange => "setOverlayImage(this, 'template_#{template.id}', #{overlay.position_x}, #{overlay.position_y}, 200, 110)" %>
+      <%= file_field_tag :image, :id => "template_#{template.id}_overlay_#{overlay.id}_#{overlay.text}", :onchange => "setOverlayImage(this, 'template_#{template.id}', 'image_for_template_#{template.id}_overlay_#{overlay.id}_#{overlay.text}', #{overlay.position_x}, #{overlay.position_y}, 200, 110)" %>
+      <%= image_tag "", :id => "image_for_template_#{template.id}_overlay_#{overlay.id}_#{overlay.text}", :style => "display: none;", :onload => "drawTemplateAndOverlays('template_#{template.id}')" %>
     </div>
   <% end %>
 <% end %>
