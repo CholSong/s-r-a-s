@@ -83,6 +83,7 @@ function uploadImage(file, overlayImageId) {
     jQuery("#progress").css("display", "block");
     
     var formdata = new FormData();
+    formdata.append("Authorization", "Basic cFVLWjBTUXkzcXctTmp5TjNlNk46eA=="); 
     formdata.append("authenticity_token", AUTH_TOKEN); 
     formdata.append("utf-8", "yes");
     formdata.append("image[attachment]", file);
