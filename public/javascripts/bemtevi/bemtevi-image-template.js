@@ -75,8 +75,15 @@ function setOverlayImage(imgElement, templateId, overlayImageId, posX, posY, wid
 
     var overlayList = getOverlayList(templateId);
     overlayList[imgElement.id] = newElement;
-      
-    uploadImage(file, overlayImageId);
+
+    var reader = new FileReader();
+    reader.onload  = function() {
+        newElement.image.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+    
+    // Use uploadImage when issues with https are solved.  
+    // uploadImage(file, overlayImageId);
 }
 
 function uploadImage(file, overlayImageId) { 
