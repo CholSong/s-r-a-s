@@ -83,7 +83,6 @@ function uploadImage(file, overlayImageId) {
     jQuery("#progress").css("display", "block");
     
     var formdata = new FormData();
-    formdata.append("Authorization", "Basic cFVLWjBTUXkzcXctTmp5TjNlNk46eA=="); 
     formdata.append("authenticity_token", AUTH_TOKEN); 
     formdata.append("utf-8", "yes");
     formdata.append("image[attachment]", file);
@@ -92,7 +91,7 @@ function uploadImage(file, overlayImageId) {
     xhr.onreadystatechange = function () {
         handleImageSubmitResponse(xhr, overlayImageId);
     }
-    xhr.open("POST", "http://bemtevi-m0b1l3-684.herokuapp.com/api2/images");  
+    xhr.open("POST", "/api2/images");  
     xhr.setRequestHeader("Accept", "application/json");
     xhr.send(formdata);
 }
