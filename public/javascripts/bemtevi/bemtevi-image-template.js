@@ -91,7 +91,7 @@ function uploadImage(file, overlayImageId) {
     xhr.onreadystatechange = function () {
         handleImageSubmitResponse(xhr, overlayImageId);
     }
-    xhr.open("POST", "/api2/images");  
+    xhr.open("POST", "http://bemtevi-m0b1l3-684.herokuapp.com/api2/images");  
     xhr.setRequestHeader("Accept", "application/json");
     xhr.send(formdata);
 }
