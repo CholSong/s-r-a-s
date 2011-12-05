@@ -9,13 +9,14 @@ class Api2::ProductsController < Api::BaseController
     end
 
     def object_serialization_options
-      { :only => [:name, :id],
+      { :only => [:name, :id, :available_on],
         :include => { 
           :images => {
             :only => [:id],
             :methods => [:type, :url]
           }
-        }
+        },
+        :methods => [:vendor]
       }
     end
     

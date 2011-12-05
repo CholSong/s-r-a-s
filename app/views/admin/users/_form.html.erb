@@ -27,6 +27,7 @@
     <% for role in @roles %>
       <label class="sub">
         <%= check_box_tag "user[role][#{role.name}]", 1, @user.has_role?(role.name) %>
+        <%# Bemtevi - fixed i18n for role.name %>
         <%= t(role.name) %>
       </label> &nbsp;
     <% end %>

@@ -3,13 +3,6 @@ GIT
   revision: fb2b9358514de485bdf8b8a21d9e6db905ce5fd7
   branch: 0-60-stable
   specs:
-    spree (0.60.2)
-      spree_api (= 0.60.2)
-      spree_auth (= 0.60.2)
-      spree_core (= 0.60.2)
-      spree_dash (= 0.60.2)
-      spree_promo (= 0.60.2)
-      spree_sample (= 0.60.2)
     spree_api (0.60.2)
       spree_auth (= 0.60.2)
       spree_core (= 0.60.2)
@@ -36,8 +29,6 @@ GIT
     spree_dash (0.60.2)
       spree_core (= 0.60.2)
     spree_promo (0.60.2)
-      spree_core (= 0.60.2)
-    spree_sample (0.60.2)
       spree_core (= 0.60.2)
 
 PATH
@@ -172,4 +163,7 @@ DEPENDENCIES
   bemtevi!
   pg
   rails (= 3.0.9)
-  spree!
+  spree_api!
+  spree_auth!
+  spree_core!
+  spree_dash!

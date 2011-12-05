@@ -16,9 +16,5 @@ Image.class_eval do
   def url
     attachment.url(:original)
   end
-
-  def apply_overlays
-    put "apply_overlays invoked!"
-  end
   
 end
