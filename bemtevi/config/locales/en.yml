@@ -8,3 +8,9 @@ en:
     text:
       name: Text 
       description: Text to be applied to original image
+  notice_messages:
+    vendor_deleted: "Vendor has been deleted"
+    vendor_not_deleted: "Vendor could not be deleted"
+  vendor: Vendor
+  vendors: Vendors
+  new_vendor: "New Vendor"

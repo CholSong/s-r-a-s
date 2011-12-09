@@ -1076,6 +1076,7 @@ pt-BR:
   zone_setting_description: "Coleção de países, estados e outras zonas a serem usados nos cálculos."
   zones: Zonas
 
+# Bemtevi
 # additions to spree_i18n locale
 
   admin: administrador
@@ -1089,7 +1090,23 @@ pt-BR:
   from_local_file: Arquivo Local
   logo: Logo
 
-
+# Bemtevi
+# translations for prompts contained on bemtevi gem
+  add_overlay_of_type: "Adicionar overlay do tipo"
+  image_overlay_types:
+    image:
+      name: Imagem
+      description: "Imagem a ser aplicada sobre a imagem original"
+    text:
+      name: Texto 
+      description: "Texto a ser aplicado sobre a imagem original"
+  notice_messages:
+    vendor_deleted: "Comerciante foi removido"
+    vendor_not_deleted: "Comerciante não pode ser removido"
+  vendor: Comerciante
+  vendors: Comerciantes
+  new_vendor: "Novo Comerciante"
+    
 # encoding: UTF-8
 # pt-BR translations for Ruby on Rails
   # formatos de data e hora

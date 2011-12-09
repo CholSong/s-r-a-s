@@ -581,6 +581,7 @@ ActiveRecord::Schema.define(:version => 20111208201800) do
     t.string   "name"
     t.text     "description"
     t.integer  "address_id"
+    t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

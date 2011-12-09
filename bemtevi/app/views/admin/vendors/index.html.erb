@@ -1,0 +1,68 @@
+<div class='toolbar'>
+  <ul class='actions'>
+    <li id="new_vendor_link">
+      <%= button_link_to t("new_vendor"), new_object_url, {:remote => true, :icon => 'add', :id => 'admin_new_vendor'} %>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<h1><%= "#{t("actions.listing")} #{t("vendors")}" %></h1>
+
+<div id="new_vendor"></div>
+
+<table class="index" id='listing_vendors'>
+  <tr>
+    <%= hook :admin_vendors_index_headers do %>
+      <th><%= sort_link @search,:name, t("name"), {}, {:title => 'admin_vendors_listing_name_title'} %></th>
+    <% end %>
+    <th>
+      <%= hook :admin_vendors_index_header_actions %>
+    </th>
+  </tr>
+<% @collection.each do |vendor| %>
+  <tr <%= 'style="color:red;"' if vendor.deleted? %> id="<%= dom_id vendor %>">
+    <%- locals = {:vendor => vendor} %>
+    <%= hook :admin_vendors_index_rows, locals do %>
+      <td><%= vendor.name %></td>
+    <% end %>
+    <td class="actions">
+      <%= hook :admin_vendors_index_row_actions, locals do %>
+        <%= link_to_edit vendor, :class => 'edit' unless vendor.deleted?  %>
+        &nbsp;
+        <%= link_to_delete vendor unless vendor.deleted?  %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate(:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
+
+<% content_for :sidebar do %>
+  <%= hook :admin_vendors_sidebar do %>
+    <%= form_for [:admin, @search] do |f| %>
+      <div class="box">
+        <h3><%= t(:search) %></h3>
+
+        <%- locals = {:f => f} %>
+        <%= hook :admin_vendors_index_search, locals do %>
+          <p>
+            <%= f.label :name_contains, t("name") %><br />
+            <%= f.text_field :name_contains, :size => 15 %>
+          </p>
+          <p>
+            <%= f.label :deleted_at_is_null, t("show_deleted") %><br />
+            <%= f.check_box :deleted_at_is_null, {:checked => params[:search][:deleted_at_is_null].blank?}, "", "1" %>
+          </p>
+        <% end %>
+
+        <%= hook :admin_vendors_index_search_buttons, locals do %>
+          <p class="form-buttons">
+            <%= button t("search") %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+

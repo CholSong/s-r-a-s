@@ -5,6 +5,7 @@ class CreateVendors < ActiveRecord::Migration
       t.column :name, :string
       t.column :description, :text
       t.column :address_id, :integer
+      t.column :deleted_at, :datetime
       
       t.timestamps
     end
