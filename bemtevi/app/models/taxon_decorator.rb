@@ -8,4 +8,9 @@ Taxon.class_eval do
     icon.url(:original)
   end
   
+  def vendor
+    { :id => self.id, 
+      :name => self.name }
+  end
+
 end

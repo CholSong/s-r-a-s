@@ -1,4 +1,4 @@
-class Api2::UsersController < Api::BaseController
+class BtvApi::UsersController < Api::BaseController
 
   private
     def object_serialization_options

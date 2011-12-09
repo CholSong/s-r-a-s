@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  namespace :api2 do
-      resources :products, :except => [:new,:edit,:delete]
-      resources :promotions, :except => [:new,:edit,:delete]
-      resources :users, :except => [:delete]
-      resources :images
+
+  namespace :btv_api do
+    resources :products, :except => [:new,:edit,:delete]
+    resources :promotions, :except => [:new,:edit,:delete]
+    resources :users, :except => [:new,:edit,:delete]
+    resources :images, :except => [:new,:edit,:delete]
+    resources :taxonomies, :except => [:new,:edit,:delete]
+    resources :taxons, :except => [:new,:edit,:delete]
+    resources :vendors, :except => [:new,:edit,:delete]
   end
-  
+
   namespace :admin do
     resources :products do
       resources :images do

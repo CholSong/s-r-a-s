@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111002180700) do
+ActiveRecord::Schema.define(:version => 20111208201800) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -36,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20111002180700) do
 
   create_table "adjustments", :force => true do |t|
     t.integer  "order_id"
-    t.decimal  "amount",          :precision => 8, :scale => 2
+    t.decimal  "amount",          :precision => 8, :scale => 2, :default => 0.0
     t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -123,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20111002180700) do
   end
 
   create_table "image_overlays", :force => true do |t|
+    t.string   "type"
     t.text     "text"
     t.string   "attachment_content_type"
     t.string   "attachment_file_name"
@@ -133,7 +135,6 @@ ActiveRecord::Schema.define(:version => 20111002180700) do
     t.integer  "position_x"
     t.integer  "position_y"
     t.string   "font_family"
-    t.string   "type"
     t.integer  "image_template_id"
   end
 
@@ -324,6 +325,7 @@ ActiveRecord::Schema.define(:version => 20111002180700) do
     t.string   "meta_description"
     t.string   "meta_keywords"
     t.integer  "count_on_hand",        :default => 0,  :null => false
+    t.integer  "vendor_id"
   end
 
   add_index "products", ["available_on"], :name => "index_products_on_available_on"
@@ -568,11 +570,20 @@ ActiveRecord::Schema.define(:version => 20111002180700) do
     t.datetime "deleted_at"
     t.boolean  "is_master",                                   :default => false
     t.integer  "count_on_hand",                               :default => 0,     :null => false
-    t.decimal  "cost_price",    :precision => 8, :scale => 2
+    t.decimal  "cost_price",    :precision => 8, :scale => 2, :default => 0.0
     t.integer  "position"
   end
 
   add_index "variants", ["product_id"], :name => "index_variants_on_product_id"
+
+  create_table "vendors", :force => true do |t|
+    t.integer  "vendor_id"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "address_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "zone_members", :force => true do |t|
     t.integer  "zone_id"

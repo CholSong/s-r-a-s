@@ -1,4 +1,4 @@
-class Api2::PromotionsController < Api::BaseController
+class BtvApi::PromotionsController < Api::BaseController
   
   private
     def object_serialization_options

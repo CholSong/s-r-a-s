@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.0.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -35,13 +35,13 @@ gem 'aws-s3'
 # end
 
 # Use spree from local repository when debugging 
-# gem 'spree', :path => '../spree' 
+gem 'spree', :path => '../spree' 
 
 # Use spree from git when deploying to production 
-gem 'spree_core', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
-gem 'spree_auth', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
-gem 'spree_api', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
-gem 'spree_dash', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
+#gem 'spree_core', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
+#gem 'spree_auth', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
+#gem 'spree_api', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
+#gem 'spree_dash', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
 #gem 'spree_promo', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
 
 gem 'bemtevi', :require => "bemtevi", :path => "bemtevi"

@@ -1,22 +1,20 @@
-class Api2::ProductsController < Api::BaseController
+class BtvApi::ProductsController < Api::BaseController
   include Spree::Search
 
   private
     def collection
-      params[:per_page] ||= 100
       @searcher = Spree::Config.searcher_class.new(params)
       @collection = @searcher.retrieve_products
     end
 
     def object_serialization_options
-      { :only => [:name, :id, :available_on],
+      { :only => [:name, :id, :available_on, :vendor_id ],
         :include => { 
           :images => {
             :only => [:id],
             :methods => [:type, :url]
           }
-        },
-        :methods => [:vendor]
+        }
       }
     end
     
