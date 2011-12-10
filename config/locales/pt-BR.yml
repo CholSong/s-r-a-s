@@ -1090,6 +1090,10 @@ pt-BR:
   new_image_from_template: Nova Imagem Usando Modelo
   from_local_file: Arquivo Local
   logo: Logo
+  successfully_created: "%{resource} criado(a) com sucesso!"
+  successfully_removed: "%{resource} removido(a) com sucesso!"
+  successfully_updated: "%{resource} atualizado(a) com sucesso!"
+
 
 # Bemtevi
 # translations for prompts contained on bemtevi gem
