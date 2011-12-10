@@ -11,8 +11,8 @@ module SpreeSite
 
       Spree::Config.set :site_name => 'Bemtevi Mobile',
       :site_url => 'bemtevi-mobile.com',
-      #:default_locale => 'pt-BR',
-      :default_locale => 'en-US',
+      :default_locale => 'pt-BR',
+      #:default_locale => 'en-US',
       :allow_locale_switching => false,
       :default_country_id => 28,
       :logo => '/images/bemtevi/bemtevi_logo.png',
@@ -21,7 +21,7 @@ module SpreeSite
       # :full_admin_ui - This configuration toggles between the full admin UI and the
       # simplified one. The simplified UI is currently used on production, untill we
       # have the merchant UI for creating promotions.
-      :full_admin_ui => true
+      :full_admin_ui => false
 
     end
     

@@ -1,0 +1,42 @@
+<%= render :partial => 'admin/shared/vendor_tabs', :locals => {:current => "Images"} %>
+
+<table class="index sortable">
+  <tr>
+    <th><%= t("thumbnail") %></th>
+    <th><%= t("action") %></th>
+  </tr>
+
+  <% @vendor.vendor_images.each do |image| %>
+    <tr id="<%= dom_id(image) %>">
+      <td>
+        <span class="handle"></span>
+        <%= link_to(image_tag(image.attachment.url(:mini)), image.attachment.url(:medium)) %>
+      </td>
+      <td class="actions">
+        <%= link_to_with_icon('edit', t("edit"), edit_admin_vendor_vendor_image_url(@vendor, image), :class => 'edit') %>
+        &nbsp;
+        <%= link_to_delete image, {:url => admin_vendor_vendor_image_url(@vendor, image) }%>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<div id="images"></div>
+<br/>
+<p>
+    <%= link_to icon('add') + ' ' + t("new_image"), new_admin_vendor_vendor_image_url(@vendor), :id => "new_image_link" %>
+</p>
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    jQuery(document).ready(function(){
+
+      jQuery('#new_image_link').click(function (event) {
+        event.preventDefault();
+        jQuery(this).hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#images').html(r);} });
+      });
+
+    });
+  </script>
+<% end %>

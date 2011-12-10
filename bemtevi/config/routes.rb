@@ -16,7 +16,13 @@ Rails.application.routes.draw do
         resources :image_overlays
       end
     end
-    resources :vendors
+    resources :vendors do
+      resources :vendor_images do
+        collection do
+          post :update_positions
+        end
+      end
+    end
   end
 
   match '/admin' => 'admin/products#index', :as => :admin

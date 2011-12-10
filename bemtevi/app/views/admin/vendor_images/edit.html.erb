@@ -1,0 +1,18 @@
+<%= render :partial => 'admin/shared/vendor_tabs', :locals => {:current => "Images"} %>
+
+<%= render "shared/error_messages", :target => @vendor_image %>
+
+<%= form_for(:vendor_image, :url => admin_vendor_vendor_image_url(@vendor), :html => { :method => :put, :multipart => true }) do |f| %>
+  <div>
+    <%= t("thumbnail") %>:
+    <%= link_to(image_tag(@vendor_image.attachment.url(:mini)), @vendor_image.attachment.url(:medium)) %>
+  </div>
+  <p></p>
+  <div>
+    <%= render :partial => "form", :locals => { :f => f } %>
+  </div>
+  <p class="form-buttons">
+    <%= button t("update") %>
+    <%= t('or') %> <%= link_to t("cancel"), admin_vendor_vendor_images_url(@vendor), :id => "cancel_link" %>
+  </p>
+<% end %>

@@ -1,4 +1,4 @@
-Image.class_eval do
+VendorImage.class_eval do
   
   attachment_definitions[:attachment] = (attachment_definitions[:attachment] || {}).merge({
     :storage => 's3',

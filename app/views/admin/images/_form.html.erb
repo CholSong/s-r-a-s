@@ -1,11 +1,11 @@
-<tr>
-  <td><%= f.file_field :attachment %></td>
-</tr>
+
+<%= f.file_field :attachment %>
+
 <% if @product.has_variants? %>
-  <tr>
-    <td><%= Variant.model_name.human %>:</td>
-    <td><%= f.select :viewable_id, @variants %></td>
-  </tr>
+  <div>
+    <%= Variant.model_name.human %>:
+    <%= f.select :viewable_id, @variants %>
+  </div>
 <% else %>
   <%= hidden_field_tag :product_id, @product.id %>
 <% end %>

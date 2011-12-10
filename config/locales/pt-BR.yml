@@ -1083,6 +1083,7 @@ pt-BR:
   user: usuário
   clone: Copiar
   cart: Carrinho
+  show_deleted: Mostrar os Removidos
   devise:
     failure:
       invalid: Credenciais inválidas
@@ -1106,6 +1107,8 @@ pt-BR:
   vendor: Comerciante
   vendors: Comerciantes
   new_vendor: "Novo Comerciante"
+  editing_vendor: "Editando Comerciante"
+  vendor_details: "Detalhes do Comerciante"
     
 # encoding: UTF-8
 # pt-BR translations for Ruby on Rails

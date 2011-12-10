@@ -31,7 +31,7 @@ class Admin::VendorsController < Admin::ResourceController
   protected
 
   def find_resource
-    Product.find(params[:id])
+    Vendor.find(params[:id])
   end
 
   def location_after_save

@@ -1,6 +1,8 @@
 Image.class_eval do
 
   after_post_process :find_dimensions_and_ratio
+  
+  belongs_to :viewable, :polymorphic => true, :touch => true
 
   def find_dimensions_and_ratio
     find_dimensions

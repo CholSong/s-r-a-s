@@ -1,13 +1,8 @@
-PATH
-  remote: ../spree
+GIT
+  remote: git://github.com/spree/spree.git
+  revision: 79136e417496a924f5b935d89f531c762bf98981
+  branch: 0-60-stable
   specs:
-    spree (0.60.4)
-      spree_api (= 0.60.4)
-      spree_auth (= 0.60.4)
-      spree_core (= 0.60.4)
-      spree_dash (= 0.60.4)
-      spree_promo (= 0.60.4)
-      spree_sample (= 0.60.4)
     spree_api (0.60.4)
       spree_auth (= 0.60.4)
       spree_core (= 0.60.4)
@@ -34,8 +29,6 @@ PATH
     spree_dash (0.60.4)
       spree_core (= 0.60.4)
     spree_promo (0.60.4)
-      spree_core (= 0.60.4)
-    spree_sample (0.60.4)
       spree_core (= 0.60.4)
 
 PATH
@@ -87,7 +80,7 @@ GEM
       mime-types
       xml-simple
     bcrypt-ruby (2.1.4)
-    braintree (2.12.0)
+    braintree (2.13.1)
       builder (>= 2.0.0)
     builder (2.1.2)
     cancan (1.6.4)
@@ -170,4 +163,7 @@ DEPENDENCIES
   bemtevi!
   pg
   rails (= 3.0.10)
-  spree!
+  spree_api!
+  spree_auth!
+  spree_core!
+  spree_dash!

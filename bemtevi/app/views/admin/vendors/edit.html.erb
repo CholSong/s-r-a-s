@@ -1,8 +1,6 @@
-<%= render :partial => 'admin/shared/product_sub_menu' %>
+<%= render :partial => 'admin/shared/vendor_tabs', :locals => {:current => "Vendor Details"} %>
 
-<%= render :partial => 'admin/shared/product_tabs', :locals => {:current => "Product Details"} %>
-
-<%= form_for(@product, :url => object_url, :html => { :method => :put, :multipart => true }) do |f| %>
+<%= form_for(@vendor, :url => object_url, :html => { :method => :put, :multipart => true }) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
   <%= render :partial => 'admin/shared/edit_resource_links' %>
 <% end %>
