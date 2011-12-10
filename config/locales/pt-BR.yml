@@ -1109,6 +1109,7 @@ pt-BR:
     vendor_deleted: "Comerciante foi removido"
     vendor_not_deleted: "Comerciante não pode ser removido"
   vendor: Comerciante
+  vendor_image: Imagem
   vendors: Comerciantes
   new_vendor: "Novo Comerciante"
   editing_vendor: "Editando Comerciante"
