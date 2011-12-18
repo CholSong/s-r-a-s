@@ -26,9 +26,11 @@
         <td><%= promotion.expires_at.to_date.to_s(:short_date) if promotion.expires_at %></td>
         <td>
             <%= link_to_edit promotion %> &nbsp;
-            <%= link_to_delete promotion %>
+            <%= link_to_delete promotion unless promotion.deleted?%>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate(:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>

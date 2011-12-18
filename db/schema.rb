@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111208201800) do
+ActiveRecord::Schema.define(:version => 20111218201100) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -380,6 +380,7 @@ ActiveRecord::Schema.define(:version => 20111208201800) do
     t.datetime "starts_at"
     t.string   "match_policy", :default => "all"
     t.string   "name"
+    t.datetime "deleted_at"
   end
 
   create_table "properties", :force => true do |t|

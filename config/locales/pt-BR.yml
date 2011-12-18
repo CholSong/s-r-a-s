@@ -1111,6 +1111,8 @@ pt-BR:
   notice_messages:
     vendor_deleted: "Comerciante foi removido"
     vendor_not_deleted: "Comerciante não pode ser removido"
+    promotion_deleted: "Promoção foi removida"
+    promotion_not_deleted: "Promoção não pode ser removida"
   vendor: Comerciante
   vendors: Comerciantes
   new_vendor: "Novo Comerciante"
