@@ -8,7 +8,7 @@ class BtvApi::ProductsController < Api::BaseController
     end
 
     def object_serialization_options
-      { :only => [:name, :id, :available_on, :vendor_id ],
+      { :only => [:name, :id, :available_on, :deleted_at, :vendor_id ],
         :include => { 
           :images => {
             :only => [:id],
