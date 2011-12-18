@@ -1,0 +1,22 @@
+<h1><%== t("editing_promotion") + " &ldquo;#{@promotion.name}&rdquo;" %></h1>
+
+<% content_for :sidebar do %>
+
+  <h3><%= @promotion.name %></h3>
+  <br class="clear" />
+
+  <ul class="sidebar product-menu">
+    <%= hook :admin_promotion_tabs, {:current => current} do %>
+
+      <li<%== ' class="active"' if current == "Promotion Details" %>>
+        <%= link_to t("promotion_details"), edit_admin_promotion_url(@promotion) %>
+      </li>
+      <li<%== ' class="active"' if current == "Images" %>>
+        <%= link_to t("images"), admin_promotion_promotion_images_url(@promotion) %>
+      </li>
+      
+    <% end %>
+  </ul>
+  <br class="clear" />
+
+<% end %>

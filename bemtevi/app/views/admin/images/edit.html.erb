@@ -6,8 +6,8 @@
 
 <%= form_for(:image, :url => admin_product_image_url(@product), :html => { :method => :put, :multipart => true }) do |f| %>
   <div>
-    <%= t("thumbnail") %>:</td>
-    <%= link_to(image_tag(@image.attachment.url(:mini)), @image.attachment.url(:product)) %></td>
+      <%= t("thumbnail") %>:
+      <%= link_to(image_tag(@image.attachment.url(:mini)), @image.attachment.url(:product)) %>
   </div>
   <p></p>
   <div>

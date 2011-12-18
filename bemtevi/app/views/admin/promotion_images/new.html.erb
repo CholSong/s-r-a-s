@@ -1,7 +1,7 @@
-<h3><%= t("new_image") %></h3>
+<h4><%= t("new_image") %></h4>
 
 <% if params[:template_id] == "none" then %>
-  <%= form_for(:image, :url => { :controller => 'images', :action => 'create' }, :html => { :multipart => true }) do |form| %>
+  <%= form_for(:promotion_image, :url => { :controller => 'promotion_images', :action => 'create' }, :html => { :multipart => true }) do |form| %>
     <table class="basic-table">
       <%= render :partial => "form", :locals => { :f => form } %>
     </table>
@@ -18,16 +18,8 @@
     <canvas id='image_from_template_canvas'></canvas>
   </div>
     
-  <%= form_for(:image, :url => { :controller => 'images', :action => 'create' }, :html => { :multipart => true, :id => 'image_from_template_form' }) do |f| %>
-    <% if @product.has_variants? %>
-      <tr>
-        <td><%= Variant.model_name.human %>:</td>
-        <td><%= f.select :viewable_id, @variants %></td>
-      </tr>
-    <% else %>
-      <%= hidden_field_tag :product_id, @product.id, :id => 'product_id_for_image_from_template' %>
-    <% end %>
-       
+  <%= form_for(:image, :url => { :controller => 'promotion_images', :action => 'create' }, :html => { :multipart => true, :id => 'image_from_template_form' }) do |f| %>
+    <%= hidden_field_tag :promotion_id, @promotion.id, :id => 'promotion_id_for_image_from_template' %>
   <% end %>
     
   <p class="form-buttons">
@@ -44,6 +36,7 @@
   });  
  
 </script>
+
 
  
  

@@ -142,48 +142,50 @@ function drawTemplateAndOverlays(templateId) {
     }
 }
 
-// function saveCanvasToAttachment() { 
-    // jQuery("#progress").css("display", "block");
-//     
-    // var type='image/png';
-    // var boundary='myboundaryrandom';
-    // var canvas = document.getElementById("image_from_template_canvas");
-    // var productId = document.getElementById("product_id_for_image_from_template").value;
-  //   var arr, data, j, xhr;
-//     data = canvas.toDataURL(type);
-//     data = data.replace('data:' + type + ';base64,', '');
-//     arr = ['--' + boundary, 
-           // 'Content-Disposition: form-data; name="authenticity_token"', 
-           // '',
-           // AUTH_TOKEN,
-           // '--' + boundary, 
-           // 'Content-Disposition: form-data; name="utf-8"', 
-           // '',
-           // 'yes',
-           // '--' + boundary,
-           // 'Content-Disposition: form-data; name="product_id"', 
-           // '',
-           // productId,
-           // '--' + boundary,
-           // 'Content-Disposition: form-data; name="image[attachment]"; filename="myfile"', 
-           // 'Content-Transfer-Encoding: base64',
-           // 'Content-Type: ' + type,
-           // '',
-           // data,
-           // '--' + boundary + '--'];
-//     j = arr.join('\r\n');
-// 
-    // var formAction = document.getElementById("image_from_template_form").getAttribute("action");
-//     
-    // var xhr = new XMLHttpRequest();
-    // xhr.onreadystatechange = function () {
-        // handleCanvasSubmitResponse(xhr, formAction);
-    // }
-    // xhr.open("POST", formAction);  
-//     xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
-    // xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-    // xhr.send(j);
-// }
+function saveCanvasToAttachmentAsBase64() { 
+    // This could help in case we cant create a Blob to post the inmage to the server.
+    // Currently not being used.
+    jQuery("#progress").css("display", "block");
+    
+    var type='image/png';
+    var boundary='myboundaryrandom';
+    var canvas = document.getElementById("image_from_template_canvas");
+    var promotionId = document.getElementById("promotion_id_for_image_from_template").value;
+    var arr, data, j, xhr;
+    data = canvas.toDataURL(type);
+    data = data.replace('data:' + type + ';base64,', '');
+    arr = ['--' + boundary, 
+           'Content-Disposition: form-data; name="authenticity_token"', 
+           '',
+           AUTH_TOKEN,
+           '--' + boundary, 
+           'Content-Disposition: form-data; name="utf-8"', 
+           '',
+           'yes',
+           '--' + boundary,
+           'Content-Disposition: form-data; name="product_id"', 
+           '',
+           promotionId,
+           '--' + boundary,
+           'Content-Disposition: form-data; name="image[attachment]"; filename="myfile"', 
+           'Content-Transfer-Encoding: base64',
+           'Content-Type: ' + type,
+           '',
+           data,
+           '--' + boundary + '--'];
+    j = arr.join('\r\n');
+
+    var formAction = document.getElementById("image_from_template_form").getAttribute("action");
+    
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        handleCanvasSubmitResponse(xhr, formAction);
+    }
+    xhr.open("POST", formAction);  
+    xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
+    xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+    xhr.send(j);
+}
 
 function saveCanvasToAttachment() { 
     jQuery("#progress").css("display", "block");
@@ -192,13 +194,13 @@ function saveCanvasToAttachment() {
     formdata.append("authenticity_token", AUTH_TOKEN); 
     formdata.append("utf-8", "yes");
     
-    var productId = document.getElementById("product_id_for_image_from_template").value;
-    formdata.append("product_id", productId);
+    var promotionId = document.getElementById("promotion_id_for_image_from_template").value;
+    formdata.append("product_id", promotionId);
     
     var canvas = document.getElementById("image_from_template_canvas");
     var dataURL = canvas.toDataURL();
     var blob = dataURLtoBlob(dataURL);
-    formdata.append("image[attachment]", blob);
+    formdata.append("promotion_image[attachment]", blob);
 
     var formAction = document.getElementById("image_from_template_form").getAttribute("action");
     

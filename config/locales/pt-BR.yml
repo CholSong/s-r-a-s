@@ -1116,6 +1116,9 @@ pt-BR:
   new_vendor: "Novo Comerciante"
   editing_vendor: "Editando Comerciante"
   vendor_details: "Detalhes do Comerciante"
+  editing_promotion: "Editando Promoção"
+  promotion_details: "Detalhes da Promoção"
+
     
 # encoding: UTF-8
 # pt-BR translations for Ruby on Rails

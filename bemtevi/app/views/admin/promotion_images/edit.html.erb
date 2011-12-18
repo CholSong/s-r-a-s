@@ -1,0 +1,18 @@
+<%= render :partial => 'admin/shared/promotion_tabs', :locals => {:current => "Images"} %>
+
+<%= render "shared/error_messages", :target => @promotion_image %>
+
+<%= form_for(:promotion_image, :url => admin_promotion_promotion_image_url(@promotion), :html => { :method => :put, :multipart => true }) do |f| %>
+  <div>
+    <%= t("thumbnail") %>:
+    <%= link_to(image_tag(@promotion_image.attachment.url(:mini)), @promotion_image.attachment.url(:medium)) %>
+  </div>
+  <p></p>
+  <div>
+    <%= render :partial => "form", :locals => { :f => f } %>
+  </div>
+  <p class="form-buttons">
+    <%= button t("update") %>
+    <%= t('or') %> <%= link_to t("cancel"), admin_promotion_promotion_images_url(@promotion), :id => "cancel_link" %>
+  </p>
+<% end %>

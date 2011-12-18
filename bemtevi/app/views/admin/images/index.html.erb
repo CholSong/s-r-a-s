@@ -28,37 +28,39 @@
     </tr>
   <% end %>
 
+  <% @product.variants.each do |variant| %>
+    <% variant.images.each do |image| %>
+      <tr id="<%= dom_id(image) %>">
+        <td><span class="handle"></span><%= link_to(image_tag(image.attachment.url(:mini)), image.attachment.url(:product)) %></td>
+        <% if @product.has_variants? %>
+          <td><%= variant.options_text %></td>
+        <% end %>
+        <td class="actions">
+          <%= link_to_with_icon('edit', t("edit"), edit_admin_product_image_url(@product, image)) %>
+          &nbsp;
+          <%= link_to_delete image, {:url => admin_product_image_url(@product, image) }%>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
 </table>
 
 <div id="images"></div>
 <br/>
-
-<h3 id="new_image_link_header"><%= "#{t("new_image")}" %></h3>
-
-<%= button_link_to t("from_local_file"), new_admin_product_image_url(@product), {:remote => true, :id => 'new_image_link', :'data-update' => ""} %>
-
-<% @image_templates.each do |image_template| %>
-  <%= link_to(image_tag(image_template.attachment.url(:small)), new_admin_product_image_url(@product), :id => "new_image_link_from_template#{image_template.id}", :'data-template-id' => "#{image_template.id}") %>
-<% end %>
+<p>
+    <%= link_to icon('add') + ' ' + t("new_image"), new_admin_product_image_url(@product), :id => "new_image_link" %>
+</p>
 
 <% content_for :head do %>
-  <%= javascript_include_tag 'bemtevi/bemtevi-image-template.js' %>
-
   <script type="text/javascript">
     jQuery(document).ready(function(){
 
       jQuery('#new_image_link').click(function (event) {
         event.preventDefault();
-        jQuery('#[id*=new_image_link]').hide();
-        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN, template_id: "none"}), success: function(r){ jQuery('#images').html(r);} });
+        jQuery(this).hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN}), success: function(r){ jQuery('#images').html(r);} });
       });
 
-      jQuery('#[id*=new_image_link_from_template]').click(function (event) {
-        event.preventDefault();
-        jQuery('#[id*=new_image_link]').hide();
-        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN, template_id: this.dataset.templateId}), success: function(r){ jQuery('#images').html(r);} });
-      });
-      
     });
   </script>
 <% end %>

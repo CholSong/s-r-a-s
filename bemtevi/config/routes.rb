@@ -23,6 +23,13 @@ Rails.application.routes.draw do
         end
       end
     end
+    resources :promotions do
+      resources :promotion_images do
+        collection do
+          post :update_positions
+        end
+      end
+    end
   end
 
   match '/admin' => 'admin/products#index', :as => :admin

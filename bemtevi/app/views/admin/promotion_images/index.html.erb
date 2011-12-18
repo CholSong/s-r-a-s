@@ -1,0 +1,55 @@
+<%= render :partial => 'admin/shared/promotion_tabs', :locals => {:current => "Images"} %>
+
+<table class="index sortable">
+  <tr>
+    <th><%= t("thumbnail") %></th>
+    <th><%= t("action") %></th>
+  </tr>
+
+  <% @promotion.promotion_images.each do |image| %>
+    <tr id="<%= dom_id(image) %>">
+      <td>
+        <span class="handle"></span>
+        <%= link_to(image_tag(image.attachment.url(:mini)), image.attachment.url(:medium)) %>
+      </td>
+      <td class="actions">
+        <%= link_to_with_icon('edit', t("edit"), edit_admin_promotion_promotion_image_url(@promotion, image), :class => 'edit') %>
+        &nbsp;
+        <%= link_to_delete image, {:url => admin_promotion_promotion_image_url(@promotion, image) }%>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<div id="images"></div>
+<br/>
+
+<h3 id="new_image_link_header"><%= "#{t("new_image")}" %></h3>
+
+<%= button_link_to t("from_local_file"), new_admin_promotion_promotion_image_url(@promotion), {:remote => true, :id => 'new_image_link', :'data-update' => ""} %>
+
+<% @image_templates.each do |image_template| %>
+  <%= link_to(image_tag(image_template.attachment.url(:small)), new_admin_promotion_promotion_image_url(@promotion), :id => "new_image_link_from_template#{image_template.id}", :'data-template-id' => "#{image_template.id}") %>
+<% end %>
+
+<% content_for :head do %>
+  <%= javascript_include_tag 'bemtevi/bemtevi-image-template.js' %>
+
+  <script type="text/javascript">
+    jQuery(document).ready(function(){
+
+      jQuery('#new_image_link').click(function (event) {
+        event.preventDefault();
+        jQuery('#[id*=new_image_link]').hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN, template_id: "none"}), success: function(r){ jQuery('#images').html(r);} });
+      });
+
+      jQuery('#[id*=new_image_link_from_template]').click(function (event) {
+        event.preventDefault();
+        jQuery('#[id*=new_image_link]').hide();
+        jQuery.ajax({type: 'GET', url: this.href, data: ({authenticity_token: AUTH_TOKEN, template_id: this.dataset.templateId}), success: function(r){ jQuery('#images').html(r);} });
+      });
+      
+    });
+  </script>
+<% end %>
