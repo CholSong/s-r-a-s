@@ -1093,6 +1093,9 @@ pt-BR:
   successfully_created: "%{resource} criado(a) com sucesso!"
   successfully_removed: "%{resource} removido(a) com sucesso!"
   successfully_updated: "%{resource} atualizado(a) com sucesso!"
+  starts_at: "Começa em"
+  expires_at: "Expira em"
+  expiry: Validade
 
 
 # Bemtevi
@@ -1109,7 +1112,6 @@ pt-BR:
     vendor_deleted: "Comerciante foi removido"
     vendor_not_deleted: "Comerciante não pode ser removido"
   vendor: Comerciante
-  vendor_image: Imagem
   vendors: Comerciantes
   new_vendor: "Novo Comerciante"
   editing_vendor: "Editando Comerciante"

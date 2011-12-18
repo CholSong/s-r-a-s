@@ -1,8 +1,15 @@
 GIT
   remote: git://github.com/spree/spree.git
-  revision: 79136e417496a924f5b935d89f531c762bf98981
+  revision: e243894b9871d8515133f0d2fe6510086de68b09
   branch: 0-60-stable
   specs:
+    spree (0.60.4)
+      spree_api (= 0.60.4)
+      spree_auth (= 0.60.4)
+      spree_core (= 0.60.4)
+      spree_dash (= 0.60.4)
+      spree_promo (= 0.60.4)
+      spree_sample (= 0.60.4)
     spree_api (0.60.4)
       spree_auth (= 0.60.4)
       spree_core (= 0.60.4)
@@ -25,10 +32,12 @@ GIT
       rd_unobtrusive_date_picker (= 0.1.0)
       state_machine (= 0.9.4)
       stringex (= 1.0.3)
-      will_paginate (= 3.0.pre2)
+      will_paginate (= 3.0.2)
     spree_dash (0.60.4)
       spree_core (= 0.60.4)
     spree_promo (0.60.4)
+      spree_core (= 0.60.4)
+    spree_sample (0.60.4)
       spree_core (= 0.60.4)
 
 PATH
@@ -152,7 +161,7 @@ GEM
     tzinfo (0.3.29)
     warden (1.0.6)
       rack (>= 1.0)
-    will_paginate (3.0.pre2)
+    will_paginate (3.0.2)
     xml-simple (1.1.0)
 
 PLATFORMS
@@ -163,7 +172,4 @@ DEPENDENCIES
   bemtevi!
   pg
   rails (= 3.0.10)
-  spree_api!
-  spree_auth!
-  spree_core!
-  spree_dash!
+  spree!
