@@ -14,6 +14,9 @@
       <li<%== ' class="active"' if current == "Images" %>>
         <%= link_to t("images"), admin_product_images_url(@product) %>
       </li>
+      <li<%== ' class="active"' if current == "Taxons" %>>
+        <%= link_to t("taxons"), selected_admin_product_taxons_url(@product) %>
+      </li>
       
       <%# Bemtevi - simplified admin UI. %>
       <% if Spree::Config[:full_admin_ui] %>
@@ -25,9 +28,6 @@
         </li>
         <li<%== ' class="active"' if current == "Product Properties" %>>
           <%= link_to t("product_properties"), admin_product_product_properties_url(@product) %>
-        </li>
-        <li<%== ' class="active"' if current == "Taxons" %>>
-          <%= link_to t("taxons"), selected_admin_product_taxons_url(@product) %>
         </li>
       <% end %>
  
