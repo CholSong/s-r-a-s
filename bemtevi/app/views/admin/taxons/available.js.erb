@@ -1,0 +1,37 @@
+<script type="text/javascript">
+  function displayRow(){
+    var row = document.getElementById("captionRow");
+    if (row.style.display == '') row.style.display = 'none';
+    else row.style.display = '';
+  }
+</script>
+<h4><%= t('available_taxons') %></h4>
+<table class="index">
+  <thead>
+    <tr>
+      <th><%= t("name") %></th>
+      <th><%= t("path") %></th>
+      <th><%= t("action") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @taxons.each do |taxon| %>
+      <tr id="<%= dom_id(taxon, :sel) %>">
+        <td><%= taxon.name %></td>
+        <td><%= taxon_path taxon %></td>
+        <td class="actions">
+            <% if !@promotion.nil? %>
+              <%= link_to icon('add') + ' ' + t("select"), select_admin_promotion_taxon_path(@promotion, taxon), :remote => true, :class => 'iconlink' %>
+            <% elsif !@vendor.nil? %>
+              <%= link_to icon('add') + ' ' + t("select"), select_admin_vendor_taxon_path(@vendor, taxon), :remote => true, :class => 'iconlink' %>
+            <% else %>
+              <%= link_to icon('add') + ' ' + t("select"), select_admin_product_taxon_path(@product, taxon), :remote => true, :class => 'iconlink' %>
+            <% end %>
+        </td>        
+      </tr>
+    <% end %>
+    <% if @taxons.empty? %>
+     <tr><td colspan="3"><%= t('no_match_found') %>.</td></tr>
+    <% end %>
+  </tbody>
+</table>

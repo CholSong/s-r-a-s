@@ -22,11 +22,33 @@ Rails.application.routes.draw do
           post :update_positions
         end
       end
+      resources :taxons do
+        member do
+          get :select
+          delete :remove
+        end
+        collection do
+          post :available
+          post :batch_select
+          get  :selected
+        end
+      end
     end
     resources :promotions do
       resources :promotion_images do
         collection do
           post :update_positions
+        end
+      end
+      resources :taxons do
+        member do
+          get :select
+          delete :remove
+        end
+        collection do
+          post :available
+          post :batch_select
+          get  :selected
         end
       end
     end

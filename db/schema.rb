@@ -521,6 +521,14 @@ ActiveRecord::Schema.define(:version => 20111231220030) do
   add_index "taxons", ["permalink"], :name => "index_taxons_on_permalink"
   add_index "taxons", ["taxonomy_id"], :name => "index_taxons_on_taxonomy_id"
 
+  create_table "taxons_vendors", :id => false, :force => true do |t|
+    t.integer "taxon_id"
+    t.integer "vendor_id"
+  end
+
+  add_index "taxons_vendors", ["taxon_id"], :name => "index_taxons_vendors_on_taxon_id"
+  add_index "taxons_vendors", ["vendor_id"], :name => "index_taxons_vendors_on_vendor_id"
+
   create_table "tokenized_permissions", :force => true do |t|
     t.integer  "permissable_id"
     t.string   "permissable_type"
@@ -594,14 +602,6 @@ ActiveRecord::Schema.define(:version => 20111231220030) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "vendors_taxons", :id => false, :force => true do |t|
-    t.integer "vendor_id"
-    t.integer "taxon_id"
-  end
-
-  add_index "vendors_taxons", ["taxon_id"], :name => "index_vendors_taxons_on_taxon_id"
-  add_index "vendors_taxons", ["vendor_id"], :name => "index_vendors_taxons_on_vendor_id"
 
   create_table "zone_members", :force => true do |t|
     t.integer  "zone_id"

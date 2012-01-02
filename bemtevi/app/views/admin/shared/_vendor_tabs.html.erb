@@ -1,4 +1,4 @@
-<h1><%== t("editing_promotion") + " &ldquo;#{@promotion.name}&rdquo;" %></h1>
+<h1><%== t("editing_vendor") + " &ldquo;#{@vendor.name}&rdquo;" %></h1>
 
 <% content_for :sidebar do %>
 
@@ -13,6 +13,9 @@
       </li>
       <li<%== ' class="active"' if current == "Images" %>>
         <%= link_to t("images"), admin_vendor_vendor_images_url(@vendor) %>
+      </li>
+      <li<%== ' class="active"' if current == "Taxons" %>>
+        <%= link_to t("taxons"), selected_admin_vendor_taxons_url(@vendor) %>
       </li>
       
     <% end %>

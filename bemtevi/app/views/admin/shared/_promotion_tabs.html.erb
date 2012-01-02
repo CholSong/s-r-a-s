@@ -14,6 +14,9 @@
       <li<%== ' class="active"' if current == "Images" %>>
         <%= link_to t("images"), admin_promotion_promotion_images_url(@promotion) %>
       </li>
+      <li<%== ' class="active"' if current == "Taxons" %>>
+        <%= link_to t("taxons"), selected_admin_promotion_taxons_url(@promotion) %>
+      </li>
       
     <% end %>
   </ul>
