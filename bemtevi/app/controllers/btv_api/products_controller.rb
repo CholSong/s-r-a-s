@@ -13,7 +13,8 @@ class BtvApi::ProductsController < Api::BaseController
           :images => {
             :only => [:id],
             :methods => [:type, :url]
-          }
+          },
+          :taxons => { :only => [ :id, :name ]}
         }
       }
     end

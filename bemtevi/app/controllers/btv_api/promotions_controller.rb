@@ -7,7 +7,8 @@ class BtvApi::PromotionsController < Api::BaseController
           :promotion_images => {
             :only => [:id],
             :methods => [:type, :url]
-          }
+          },
+          :taxons => { :only => [ :id, :name ]}
         }
       }
     end

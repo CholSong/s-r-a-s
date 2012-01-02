@@ -8,7 +8,8 @@ class BtvApi::VendorsController < Api::BaseController
           :vendor_images => {
             :only => [:id],
             :methods => [:type, :url]
-          }
+          },
+          :taxons => { :only => [ :id, :name ]}
         } 
       }
     end
