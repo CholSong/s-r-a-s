@@ -42,7 +42,12 @@
             <%= f.error_message_on :available_on %>
             <%= f.spree_date_picker :available_on %>
           </p>
-    
+
+          <p>
+            <%= label :vendor, t(:vendor) %><br/>
+            <%= select_tag "product[vendor_id]", options_from_collection_for_select(Vendor.all, :id, :name, @product.vendor_id) %></label>
+          </p>
+
           <p>
             <%= f.label :sku, t("sku") %><br />
             <%= f.text_field :sku, :size => 16 %>
@@ -100,7 +105,6 @@
       </p>
     <% end %>
     
-    
     <%= hook :admin_product_form_additional_fields, locals do %>
       <% Variant.additional_fields.select{|af| af[:only].nil? || af[:only].include?(:product) }.each do |field| %>
         <%= render :partial => "admin/shared/additional_field", :locals => {:field => field, :f => f} %>
@@ -115,10 +119,17 @@
       <div class="yui-u first">
         <%- locals = {:f => f} %>
         <%= hook :admin_product_form_left, locals do %>
+
           <%= f.field_container :name do %>
             <%= f.label :name, t("name") %> <span class="required">*</span><br />
             <%= f.text_field :name, :class => 'fullwidth title'  %>
             <%= f.error_message_on :name %>
+          <% end %>
+    
+          <%= f.field_container :description do %>
+            <%= f.label :description, t("description")%><br />
+            <%= f.text_area :description, {:cols => 60, :rows => 4, :class => 'fullwidth'} %>
+            <%= f.error_message_on :description %>
           <% end %>
     
         <% end %>
@@ -134,6 +145,12 @@
     
         <% end %>
       </div>
+
+      <div class="yui-u">
+        <%= label :vendor, t(:vendor) %><br />
+        <%= select_tag "product[vendor_id]", options_from_collection_for_select(Vendor.all, :id, :name, @product.vendor_id) %></label>
+      </div>
+
     </div>
 
 <% end %>
