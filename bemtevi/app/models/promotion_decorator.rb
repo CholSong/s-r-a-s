@@ -11,4 +11,10 @@ Promotion.class_eval do
     !!deleted_at
   end
 
+  def taxon_ids
+    taxon_ids = []
+    taxons.each { |taxon| taxon_ids << taxon.id }
+    taxon_ids
+  end
+
 end
