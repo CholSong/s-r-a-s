@@ -1110,7 +1110,9 @@ pt-BR:
       description: "Texto a ser aplicado sobre a imagem original"
   notice_messages:
     vendor_deleted: "Comerciante foi removido"
+    vendor_deleted_but_related_assets_not_deleted: "Comerciante foi removido, mas alguns produtos e promoções relacionadas a ele não foram"
     vendor_not_deleted: "Comerciante não pode ser removido"
+    vendor_not_deleted_but_related_assets_deleted: "Comerciante não pode ser removido, mas alguns produtos e promoções relacionadas a ele foram"
     promotion_deleted: "Promoção foi removida"
     promotion_not_deleted: "Promoção não pode ser removida"
   vendor: Comerciante

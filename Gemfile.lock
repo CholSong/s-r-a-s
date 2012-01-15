@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/spree/spree.git
-  revision: 90efd4dfbd63b0c20f10672490300202c4e20e26
+  revision: 810dae8053f52a0878a9895deb96c6ffc2ec575f
   branch: 0-60-stable
   specs:
     spree (0.60.4)
@@ -89,7 +89,7 @@ GEM
       mime-types
       xml-simple
     bcrypt-ruby (2.1.4)
-    braintree (2.13.1)
+    braintree (2.13.2)
       builder (>= 2.0.0)
     builder (2.1.2)
     cancan (1.6.4)
@@ -120,7 +120,7 @@ GEM
     nested_set (1.6.7)
       activerecord (>= 3.0.0)
       railties (>= 3.0.0)
-    orm_adapter (0.0.5)
+    orm_adapter (0.0.6)
     paperclip (2.3.11)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)

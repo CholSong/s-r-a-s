@@ -1,7 +1,7 @@
 class PromotionImage < Asset
   
   validate :no_attachement_errors
-  belongs_to :vendor, :foreign_key => :viewable_id, :touch => true
+  belongs_to :promotion, :foreign_key => :viewable_id, :touch => true
   has_attached_file :attachment,
                     :styles => { :mini => '48x48>', :small => '100x100>', :medium => '240x240>', :large => '600x600>' },
                     :default_style => :product,

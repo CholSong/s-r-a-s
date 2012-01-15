@@ -14,12 +14,36 @@ class Admin::VendorsController < Admin::ResourceController
   # instead of actually deleting the vendor.
   def destroy
     @vendor = Vendor.find(params[:id])
-    @vendor.deleted_at = Time.now()
+
+    current_time = Time.now()
+    deleted_assets = 0
+
+    products = @vendor.products.find(:all, :conditions => ['deleted_at is null'])
+    products.each { |product| 
+      product.deleted_at = current_time
+      deleted_assets += 1 if product.save
+    }
+
+    promotions = @vendor.promotions.find(:all, :conditions => ['deleted_at is null'])
+    promotions.each { |promotion| 
+      promotion.deleted_at = current_time
+      deleted_assets += 1 if promotion.save
+    }
+
+    @vendor.deleted_at = current_time
 
     if @vendor.save
-      flash.notice = I18n.t("notice_messages.vendor_deleted")
+      if deleted_assets == (products.size + promotions.size)
+        flash.notice = I18n.t("notice_messages.vendor_deleted")
+      else
+        flash.notice = I18n.t("notice_messages.vendor_deleted_but_related_assets_not_deleted")
+      end
     else
-      flash.notice = I18n.t("notice_messages.vendor_not_deleted")
+      if deleted_assets == 0
+        flash.notice = I18n.t("notice_messages.vendor_not_deleted")
+      else
+        flash.notice = I18n.t("notice_messages.vendor_not_deleted_but_related_assets_deleted")
+      end
     end
 
     respond_with(@vendor) do |format|

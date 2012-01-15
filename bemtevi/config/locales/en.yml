@@ -10,7 +10,9 @@ en:
       description: Text to be applied to original image
   notice_messages:
     vendor_deleted: "Vendor has been deleted"
+    vendor_deleted_but_related_assets_not_deleted: "Vendor has been deleted, but some related products and promotions haven't"
     vendor_not_deleted: "Vendor could not be deleted"
+    vendor_not_deleted_but_related_assets_deleted: "Vendor could not be deleted, but some related products and promotions have"
   vendor: Vendor
   vendors: Vendors
   new_vendor: "New Vendor"
