@@ -1,9 +1,32 @@
 Admin::TaxonsController.class_eval do
 
+  def remove
+    @product = load_product
+    @taxon = Taxon.find(params[:id])
+    @product.taxons.delete(@taxon)
+    @product.touch
+    @product.save
+    @taxons = @product.taxons
+
+    respond_with(@taxon) { |format| format.js { render_js_for_destroy } }
+  end
+
+  def select
+    @product = load_product
+    @taxon = Taxon.find(params[:id])
+    @product.taxons << @taxon
+    @product.touch
+    @product.save
+    @taxons = @product.taxons
+
+    respond_with(:admin, @taxons)
+  end
+
   def batch_select
     @product = load_product
     @taxons = params[:taxon_ids].map{|id| Taxon.find(id)}.compact
     @product.taxons = @taxons
+    @product.touch
     @product.save
 
     if !@promotion.nil? redirect_to selected_admin_promotion_taxons_url(@promotion)
