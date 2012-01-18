@@ -13,6 +13,9 @@ en:
     vendor_deleted_but_related_assets_not_deleted: "Vendor has been deleted, but some related products and promotions haven't"
     vendor_not_deleted: "Vendor could not be deleted"
     vendor_not_deleted_but_related_assets_deleted: "Vendor could not be deleted, but some related products and promotions have"
+    promotion_deleted: "Promotion has been deleted"
+    promotion_not_deleted: "Promotion could not be deleted"
+    taxon_not_deleted: "Taxon could not be deleted"
   vendor: Vendor
   vendors: Vendors
   new_vendor: "New Vendor"

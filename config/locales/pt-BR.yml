@@ -1115,6 +1115,7 @@ pt-BR:
     vendor_not_deleted_but_related_assets_deleted: "Comerciante não pode ser removido, mas alguns produtos e promoções relacionadas a ele foram"
     promotion_deleted: "Promoção foi removida"
     promotion_not_deleted: "Promoção não pode ser removida"
+    taxon_not_deleted: "Categoria não pode ser removida"
   vendor: Comerciante
   vendors: Comerciantes
   new_vendor: "Novo Comerciante"

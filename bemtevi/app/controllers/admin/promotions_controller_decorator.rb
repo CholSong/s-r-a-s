@@ -15,7 +15,8 @@ Admin::PromotionsController.class_eval do
     respond_with(@promotion) do |format|
       format.html { redirect_to collection_url }
       format.js  { render_js_for_destroy }
-    end  end
+    end  
+  end
 
   protected 
 

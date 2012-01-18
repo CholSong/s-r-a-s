@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120108180725) do
+ActiveRecord::Schema.define(:version => 20120117203907) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -516,6 +516,7 @@ ActiveRecord::Schema.define(:version => 20120108180725) do
     t.integer  "icon_file_size"
     t.datetime "icon_updated_at"
     t.text     "description"
+    t.datetime "deleted_at"
   end
 
   add_index "taxons", ["parent_id"], :name => "index_taxons_on_parent_id"
