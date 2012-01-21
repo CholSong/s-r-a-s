@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   namespace :btv_api do
-    resource :dump, :except => [:new,:edit,:delete]
     resources :products, :except => [:new,:edit,:delete]
     resources :promotions, :except => [:new,:edit,:delete]
     resources :users, :except => [:new,:edit,:delete]
