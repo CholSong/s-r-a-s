@@ -1115,7 +1115,10 @@ pt-BR:
     vendor_not_deleted_but_related_assets_deleted: "Comerciante não pode ser removido, mas alguns produtos e promoções relacionadas a ele foram"
     promotion_deleted: "Promoção foi removida"
     promotion_not_deleted: "Promoção não pode ser removida"
+    taxon_deleted: "Categoria foi removida"
     taxon_not_deleted: "Categoria não pode ser removida"
+    taxonomy_deleted: "Categoria foi removida"
+    taxonomy_not_deleted: "Categoria não pode ser removida"
   vendor: Comerciante
   vendors: Comerciantes
   new_vendor: "Novo Comerciante"
@@ -1123,6 +1126,14 @@ pt-BR:
   vendor_details: "Detalhes do Comerciante"
   editing_promotion: "Editando Promoção"
   promotion_details: "Detalhes da Promoção"
+  activerecord: 
+    models: 
+      taxon: 
+        one: Categoria
+        other: Categorias
+      taxonomy: 
+        one: Categoria
+        other: Categorias
 
     
 # encoding: UTF-8

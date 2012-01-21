@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120117203907) do
+ActiveRecord::Schema.define(:version => 20120121172935) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -499,6 +499,7 @@ ActiveRecord::Schema.define(:version => 20120117203907) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.datetime "deleted_at"
   end
 
   create_table "taxons", :force => true do |t|

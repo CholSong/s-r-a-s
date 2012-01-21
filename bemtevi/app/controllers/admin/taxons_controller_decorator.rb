@@ -1,20 +1,34 @@
 Admin::TaxonsController.class_eval do
 
   def destroy
-    @taxon = Taxon.find(params[:id])
     deletion_timestamp = Time.now()
-    @taxon.deleted_at = deletion_timestamp
+    @taxon = Taxon.find(params[:id])
+
     descendants = Taxon.find_by_id(params[:id]).descendants
+    descendants.delete_if{ |descendant| !descendant.deleted_at.nil? }
+    deleted_descendants = 0
     descendants.each { |taxon| 
+      taxon.products.delete_all unless taxon.products.nil?
+      taxon.promotions.delete_all unless taxon.products.nil?
+      taxon.vendors.delete_all unless taxon.products.nil?
       taxon.deleted_at = deletion_timestamp
-      taxon.save
+      deleted_descendants += 1 if taxon.save
     }
     
-    if @taxon.save
-      respond_with(@taxon) { |format| format.json { render :json => '' } }
-    else
+    if deleted_descendants!= descendants.size
       flash.notice = I18n.t("notice_messages.taxon_not_deleted")
       redirect_to edit_admin_taxonomy_url(@taxon.taxonomy)
+    else
+      @taxon.deleted_at = deletion_timestamp
+      @taxon.products.delete_all unless @taxon.products.nil?
+      @taxon.promotions.delete_all unless @taxon.products.nil?
+      @taxon.vendors.delete_all unless @taxon.products.nil?
+      if @taxon.save
+        respond_with(@taxon) { |format| format.json { render :json => '' } }
+      else
+        flash.notice = I18n.t("notice_messages.taxon_not_deleted")
+        redirect_to edit_admin_taxonomy_url(@taxon.taxonomy)
+      end
     end
   end
 

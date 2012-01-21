@@ -1,7 +1,5 @@
 class Admin::VendorsController < Admin::ResourceController
   before_filter :check_json_authenticity, :only => :index
-  before_filter :load_data, :except => :index
-  update.before :update_before
 
   def index
     respond_with(@collection) do |format|
@@ -73,9 +71,6 @@ class Admin::VendorsController < Admin::ResourceController
     end
   end
 
-  def load_data
-  end
-
   def collection
     return @collection if @collection.present?
 
@@ -102,9 +97,6 @@ class Admin::VendorsController < Admin::ResourceController
       @collection.uniq
     end
 
-  end
-
-  def update_before
   end
 
 end
