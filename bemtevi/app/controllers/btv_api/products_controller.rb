@@ -7,9 +7,6 @@ class BtvApi::ProductsController < Api::BaseController
     if params[:search][:deleted_at_is_null].nil?
       params[:search][:deleted_at_is_null] = "1"
     end
-    if params[:search][:vendor_deleted_at_is_null].nil?
-      params[:search][:vendor_deleted_at_is_null] = "1"
-    end
     super
   end
 
