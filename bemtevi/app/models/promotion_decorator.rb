@@ -14,7 +14,7 @@ Promotion.class_eval do
 
   def taxon_ids
     taxon_ids = []
-    taxons.each { |taxon| taxon_ids << taxon.id }
+    taxons.each { |taxon| taxon_ids << taxon.id if !taxon.deleted? }
     taxon_ids
   end
 

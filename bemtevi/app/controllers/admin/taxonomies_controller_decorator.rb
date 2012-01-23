@@ -1,38 +1,34 @@
 Admin::TaxonomiesController.class_eval do
-
   def get_children
     @taxons = Taxon.find(params[:parent_id]).children
-    @taxons.delete_if { |taxon| !taxon.deleted_at.nil? }
+    @taxons.delete_if { |taxon| taxon.deleted? }
 
     respond_with(@taxons)
   end
-  
+
   def destroy
     deletion_timestamp = Time.now()
     taxonomy = Taxonomy.find(params[:id])
 
     descendants = taxonomy.taxons
-    descendants.delete_if{ |descendant| !descendant.deleted_at.nil? }
+    descendants.delete_if { |descendant| descendant.deleted? }
     deleted_descendants = 0
-    descendants.each { |taxon| 
-      taxon.products.delete_all unless taxon.products.nil?
-      taxon.promotions.delete_all unless taxon.products.nil?
-      taxon.vendors.delete_all unless taxon.products.nil?
-      taxon.deleted_at = deletion_timestamp
-      deleted_descendants += 1 if taxon.save
+    descendants.each { |taxon|
+      if touch_taxon_relations(taxon)
+        taxon.deleted_at = deletion_timestamp
+        deleted_descendants += 1 if taxon.save
+      end
     }
 
-    if deleted_descendants!= descendants.size
-      flash.notice = I18n.t("notice_messages.taxonomy_not_deleted")
-    else
+    success = deleted_descendants == descendants.size
+    if success
       taxonomy.deleted_at = deletion_timestamp
-      if taxonomy.save
-        flash.notice = I18n.t("notice_messages.taxonomy_deleted")
-      else
-        flash.notice = I18n.t("notice_messages.taxonomy_not_deleted")
-      end
+      success &&= taxonomy.save
     end
-    
+
+    flash.notice = success ? I18n.t("notice_messages.taxonomy_deleted") :
+        I18n.t("notice_messages.taxonomy_not_deleted")
+
     respond_with(taxonomy) do |format|
       format.html { redirect_to collection_url }
       format.js  { render_js_for_destroy }
@@ -53,19 +49,49 @@ Admin::TaxonomiesController.class_eval do
       @search = super.metasearch(params[:search])
 
       pagination_options = {:per_page  => Spree::Config[:admin_products_per_page],
-                            :page      => params[:page]}
+        :page      => params[:page]}
 
-      @collection = @search.paginate(pagination_options)
+    @collection = @search.paginate(pagination_options)
     else
       includes = []
 
       @collection = super.where(["name #{LIKE} ?", "%#{params[:q]}%"])
       @collection = @collection.includes(includes).limit(params[:limit] || 10)
 
-      @collection.uniq
+    @collection.uniq
     end
 
   end
 
+  private
+
+  def touch_taxon_relations (taxon)
+    success = true
+    if !taxon.products.nil?
+      taxon.products.each { |product|
+        if !product.deleted?
+          product.touch
+          success &&= product.save
+        end
+      }
+    end
+    if !taxon.promotions.nil?
+      taxon.promotions.each { |promotion|
+        if !promotion.deleted?
+          promotion.touch
+          success &&= promotion.save
+        end
+      }
+    end
+    if !taxon.vendors.nil?
+      taxon.vendors.each { |vendor|
+        if !vendor.deleted?
+          vendor.touch
+          success &&= vendor.save
+        end
+      }
+    end
+    return success
+  end
 
 end

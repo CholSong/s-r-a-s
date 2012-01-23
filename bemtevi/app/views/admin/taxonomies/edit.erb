@@ -29,7 +29,7 @@
 			"data" : "<%= @taxonomy.root.name %>",
 			"state" : "open",
 			"children" : [
-			    <% children = @taxonomy.root.children.delete_if { |taxon| !taxon.deleted_at.nil? } %>
+			    <% children = @taxonomy.root.children.delete_if { |taxon| taxon.deleted? } %>
 				<% children.each_with_index do |taxon,i| %>
 					{
 						"attr" :

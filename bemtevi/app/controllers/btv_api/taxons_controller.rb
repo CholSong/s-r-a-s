@@ -11,7 +11,7 @@ class BtvApi::TaxonsController < Api::BaseController
   end
 
   def object_serialization_options
-    { :only => [:id, :name, :parent_id, :taxonomy_id, :deleted_at] }
+    { :only => [:id, :name, :parent_id, :deleted_at] }
   end
 
   def collection_serialization_options
