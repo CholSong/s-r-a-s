@@ -23,6 +23,9 @@ module SpreeSite
       # have the merchant UI for creating promotions.
       :full_admin_ui => false
 
+      s3_config = YAML.load(File.read(Rails.root + 'config' + 's3.yml'))[Rails.env].with_indifferent_access
+      Spree::Config.set s3_config
+
     end
     
     def load_tasks

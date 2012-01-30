@@ -11,6 +11,18 @@ Rails.application.routes.draw do
     resources :vendors, :except => [:new,:edit,:delete]
   end
 
+  namespace :manager do
+    resources :promotions do
+      member do 
+        post :create
+      end
+      collection do 
+        get :templates
+      end
+    end
+  end
+
+
   namespace :admin do
     resources :products do
       resources :images do
