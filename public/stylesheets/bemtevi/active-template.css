@@ -1,0 +1,111 @@
+/* CSS Document */
+
+.list-panel {
+	background-image: url(/images/bemtevi/backgrounds/lists-panels.png);
+	background-repeat:no-repeat;
+	width:932px;
+	margin:10px auto;
+}
+#promo-panel {
+	height: 290px;
+	background-position:left top;
+}
+#hist-panel {
+	height: 225px;
+	background-position:left bottom;
+}
+
+.list-panel .header {
+	font-family:Arial, Helvetica, sans-serif;
+	padding:5x 10px;
+	position:relative;
+}
+.list-panel .header p {
+  color: #847654;
+  font-size: 18px;
+	text-align: center;
+	margin:0;
+	padding-top:15px;
+}
+#hist-panel .header p {
+	padding-top: 10px;
+}
+.list-panel .header a {
+	position:absolute;
+  color: #847654;
+  font-size: 12px;
+	text-decoration:none;
+}
+.list-panel #new-promo-btn {
+	right:15px;
+	top:20px;
+}
+
+.list-panel .foo {
+	padding: 40px 80px 0 100px;
+	position:relative;
+	outline:none;
+}
+#hist-panel .foo {
+	padding-top:30px;
+}
+.list-panel input.previous, 
+.list-panel input.next 
+{
+  background-color: transparent;
+  background-image: url("/images/bemtevi/btn/sprite-btn.png");
+  background-repeat: no-repeat;
+  border: medium none;
+  height: 70px;
+  outline: medium none;
+  position: absolute;
+  text-indent: -999em;
+  width: 70px;
+	opacity:.7;
+}
+.list-panel input.hover {
+	opacity:1;
+}
+#promo-panel input.previous {
+  left: 20px;
+  top: 100px;
+	background-position:-163px 0px;
+}
+#promo-panel input.next {
+  right: 8px;
+  top: 100px;
+	background-position:-232px 0px;
+}
+#hist-panel input.previous {
+  left: 20px;
+  top: 60px;
+	background-position:-163px -78px;
+}
+#hist-panel input.next {
+  right: 8px;
+  top: 60px;
+	background-position:-232px -78px;
+}
+
+.list-panel ul {
+	margin: 0;
+	padding:0;
+	height:150px;
+}
+.list-panel ul li {
+	background-image:url(/images/bemtevi/backgrounds/lists-templates.png);
+	background-repeat:no-repeat;
+	float:left;
+	margin:0 5px;
+	list-style:none;
+}
+#promo-panel ul li {
+	width: 140px;
+	height:170px;
+	background-position: -10px -10px;
+}
+#hist-panel ul li {
+	width: 100px;
+	height:130px;
+	background-position: -185px -10px;
+}

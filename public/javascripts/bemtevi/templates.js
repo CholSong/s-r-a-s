@@ -573,6 +573,8 @@ function showResult(res) {
 
 $(document).ready(function(){
 	families = null;
+
+    $("div.foo").carousel();
 	
 	// Setando ação do link de logout
 	$("a.logout").click(function(e){
