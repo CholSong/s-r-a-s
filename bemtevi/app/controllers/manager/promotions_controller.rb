@@ -1,7 +1,4 @@
 class Manager::PromotionsController < ActionController::Base
-  def create
-
-  end
 
   def templates
 

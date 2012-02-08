@@ -288,14 +288,6 @@ function create_text_overlay(data, tplType) {
 	$('#regions-container').append(overlay);
 }
 
-
-/**
-* Função que retorna o número do ID do elemento à partir do ID em formato String
-*/
-function getId(str) {
-	return String(str).substring(String(str).indexOf("_")+1);
-}
-
 /**
 * Função que verifica se o elemento que está sendo editado já existe no vetor de dados salvos
 * e cria um novo item caso não exista, retornando a posição do novo item no vetor
@@ -574,8 +566,6 @@ function showResult(res) {
 $(document).ready(function(){
 	families = null;
 
-    $("div.foo").carousel();
-	
 	// Setando ação do link de logout
 	$("a.logout").click(function(e){
 		e.preventDefault();

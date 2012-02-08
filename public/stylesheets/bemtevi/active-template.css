@@ -37,8 +37,11 @@
 	text-decoration:none;
 }
 .list-panel #new-promo-btn {
+	background:url(/images/bemtevi/btn/sprite-btn.png) -263px -161px no-repeat;
 	right:15px;
-	top:20px;
+	top:11px;
+	height:32px;
+	padding: 8px 0 0 40px;
 }
 
 .list-panel .foo {
@@ -62,6 +65,7 @@
   text-indent: -999em;
   width: 70px;
 	opacity:.7;
+	cursor:pointer;
 }
 .list-panel input.hover {
 	opacity:1;
@@ -96,16 +100,41 @@
 	background-image:url(/images/bemtevi/backgrounds/lists-templates.png);
 	background-repeat:no-repeat;
 	float:left;
-	margin:0 5px;
+	padding:0 5px; 
 	list-style:none;
+	position:relative;
 }
+.list-panel ul li img {
+  height: 86%;
+  margin: 12px;
+  width: 82%;
+}
+
 #promo-panel ul li {
 	width: 140px;
 	height:170px;
-	background-position: -10px -10px;
+	background-position: -5px -10px;
+	position: relative;
 }
+#promo-panel ul li img {
+	margin: 12px 0 0 12px;
+}
+#promo-panel ul li div {
+	position:absolute;
+	top:65px;
+	left: 45px;
+}
+
 #hist-panel ul li {
 	width: 100px;
 	height:130px;
-	background-position: -185px -10px;
+	background-position: -180px -10px;
+}
+#hist-panel ul li img {
+	margin: 10px 0 0 9px;
+}
+#hist-panel ul li div {
+	position:absolute;
+	top:52px;
+	left: 25px;
 }
