@@ -1,0 +1,11 @@
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title><%= "Spree #{t('administration')}: " %>
+<%= t(controller.controller_name, :default => controller.controller_name.titleize) %></title>
+
+<%= stylesheet_link_tag "bemtevi/general", "bemtevi/jquery-ui" %>
+<%= javascript_include_tag "bemtevi/jquery-1.7.1.min", "bemtevi/jquery-ui.min", "bemtevi/jquery.carousel.min" %>
+<%= javascript_tag "$ = jQuery;" %>
+<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+<%= javascript_include_tag "bemtevi/general" %>
+
+<%= yield :head %>

@@ -1135,6 +1135,10 @@ pt-BR:
         one: Categoria
         other: Categorias
 
+# Bemtevi
+# translations for prompts contained in the Bemtevi Manager UI
+
+  welcome: "Bem vindo,"
     
 # encoding: UTF-8
 # pt-BR translations for Ruby on Rails

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <%= render :partial => "manager/shared/manager_head" %>
+</head>
+<body>
+<!--[if IE 7]>
+<div id='IE7'>
+<![endif]-->
+<div id='wrapper'>
+
+  <div id="header">
+    <h1><%= link_to t("administration"), admin_path %></h1>
+    <% if  current_user %>
+      <div class="user-data">
+        <label><%= t('welcome') %></label>
+        <span><%= current_user.email %></span>
+        <%= link_to t('logout'), "#", :id => "btn-logout" %>
+      </div>
+      
+      <div id="logout-popup" class="alert-popup">
+        <div class="left-side"></div>
+        <div class="middle">
+          <label>&nbsp;</label>
+          <p>Tem certeza que<br /> deseja sair?</p>
+          <div class="btn-container">
+            <%= link_to t("yes"), destroy_user_session_path, :class => "btn-yes" %>
+            <%= link_to t("no"), "#", :class => "btn-no" %>
+          </div>
+        </div>
+        <div class="right-side"></div>
+      </div>
+
+    <% end %>
+  </div>
+
+  <% if flash[:error] %>
+    <div class="flash error"><%= flash[:error] %></div>
+  <% end %>
+  <% if self.notice %>
+    <div class="flash notice"><%= self.notice %></div>
+  <% end %>
+
+  <%= render :partial => 'admin/shared/alert', :collection => session[:alerts] %>
+
+  <div id="content" >
+    <%= yield %>
+  </div>
+
+</div>
+<!--[if IE]>
+</div>
+<![endif]-->
+</body>
+</html>

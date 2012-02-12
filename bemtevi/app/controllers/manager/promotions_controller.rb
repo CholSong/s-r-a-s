@@ -1,4 +1,4 @@
-class Manager::PromotionsController < ActionController::Base
+class Manager::PromotionsController < Manager::BaseController
 
   def templates
 

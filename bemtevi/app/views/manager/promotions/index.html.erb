@@ -1,93 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>BemTevi Administrador</title>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "bemtevi/active-template" %>
+  <%= javascript_include_tag "bemtevi/active-templates" %>
+<% end %>
 
-	<link href="/stylesheets/bemtevi/general.css" rel="stylesheet" type="text/css" media="screen" />
-	<link href="/stylesheets/bemtevi/active-template.css" rel="stylesheet" type="text/css" media="screen" />
-	<link href="/stylesheets/bemtevi/jquery-ui.css" rel="stylesheet" type="text/css" media="screen" />
-  
-
-	<script src="/javascripts/bemtevi/jquery-1.7.1.min.js" type="text/javascript"></script>
-	<script src="/javascripts/bemtevi/jquery-ui.min.js" type="text/javascript"></script>
-
-	<script src="/javascripts/bemtevi/active-templates.js" type="text/javascript"></script>
-	<script src="/javascripts/bemtevi/jquery.carousel.min.js" type="text/javascript"></script>
-
-	<script src="/javascripts/bemtevi/general.js" type="text/javascript"></script>
-
-</head>
-
-<body>
-	<div id="header" >
-  	<h1>Bemtevi Administrador</h1>
-    <div class="user-data" >
-    	<label>Bem Vindo,</label>
-    	<span>Usuário Bemtevi</span><br />
-      <a href="#" id="btn-logout">Sair</a>
-      <div id="logout-confirm">
-        <p>Deseja realmente encerrar a sessão?</p>
-        <a href="#" class="confirm-green" title="Sim">Sim</a>
-        <a href="#" class="confirm-red" title="Não">Não</a>      
-      </div>
-    </div>
+<div id="promo-panel" class="list-panel" >
+	<div class="header" >
+  	<p>Suas promoções ativas</p>
+    <a href="/manager/promotions/new" id="new-promo-btn" title="criar promoção">criar promoção</a>
   </div>
-  
-  <div id="content" >
-  	<div id="promo-panel" class="list-panel" >
-    	<div class="header" >
-      	<p>Suas promoções ativas</p>
-        <a href="/manager/promotions/new" id="new-promo-btn" title="criar promoção">criar promoção</a>
-      </div>
-    	<div class="foo">
-      	<ul>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg" /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        </ul>
-      </div>
-    </div>
-    
-    
-    <div id="hist-panel" class="list-panel" >
-    	<div class="header" >
-      	<p>Histórico das promoções</p>
-      </div>
-    	<div class="foo">
-      	<ul>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
-        </ul>
-      </div>
-    </div>
+	<div class="foo">
+  	<ul>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg" /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg"  /><div><a href="#" class="deactive-template-btn"  title="Desativar">Desativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    </ul>
   </div>
-  
-  <div id="logout-popup" class="alert-popup">
-  	<div class="left-side"></div>
-    <div class="middle">
-      <label>&nbsp;</label>
-      <p>Tem certeza que<br /> deseja sair?</p>
-      <div class="btn-container">
-        <a href="#" title="SIM" class="btn-yes" >SIM</a>
-        <a href="#" title="NÃO" class="btn-no" >NÃO</a>
-      </div>
-    </div>
-    <div class="right-side"></div>
+</div>
+
+
+<div id="hist-panel" class="list-panel" >
+	<div class="header" >
+  	<p>Histórico das promoções</p>
   </div>
-  
-</body>
-</html>
+	<div class="foo">
+  	<ul>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    	<li><img src="/images/bemtevi/temp/templates/thumbs/f1t2-thumb.jpg"  /><div><a href="#" class="activate-template-btn"  title="Ativar">Ativar</a><a href="#" class="edit-template-btn"  title="Editar">Editar</a></div></li>
+    </ul>
+  </div>
+</div>

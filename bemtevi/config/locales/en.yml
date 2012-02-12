@@ -24,3 +24,6 @@ en:
   new_vendor: "New Vendor"
   editing_vendor: "Editing Vendor"
   vendor_details: "Vendor Details"
+
+  # Bemtevi Manager UI
+  welcome: "Welcome,"
