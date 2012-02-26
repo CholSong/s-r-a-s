@@ -1,0 +1,53 @@
+<div class='toolbar'>
+  <ul class='actions'>
+    <li id="new_template_link">
+      <%= button_link_to t("new_template"), new_object_url, :icon => 'add' %>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<h1><%= "#{t("actions.listing")} #{t("templates")}" %></h1>
+
+<div id="new_template_set"></div>
+
+<table class="index" id='listing_template_sets'>
+  <tr>
+    <th><%= t("vendor")%></th>
+    <th><%= t("template")%></th>
+    <th><%= t("action") %></th>
+  </tr>
+<% @collection.each do |template_set| %>
+  <tr id="<%= dom_id template_set %>">
+    <%- locals = {:template_set => template_set} %>
+    <%= hook :admin_templates_index_rows, locals do %>
+      <td><%= template_set.vendor.name %></td>
+      <td><%= template_set.name %></td>
+    <% end %>
+    <td class="actions">
+      <%= link_to_edit template_set, :class => 'edit' %>&nbsp;
+      <%= link_to_delete template_set %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate(:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
+
+<% content_for :sidebar do %>
+    <%= form_for [:admin, @search] do |f| %>
+      <div class="box">
+        <h3><%= t(:search) %></h3>
+
+        <%- locals = {:f => f} %>
+          <p>
+            <%= f.label :vendor_name_contains, t(:vendor_name) %><br />
+            <%= f.text_field :vendor_name_contains, :size => 15 %>
+          </p>
+
+          <p class="form-buttons">
+            <%= button t("search") %>
+          </p>
+      </div>
+    <% end %>
+<% end %>
+

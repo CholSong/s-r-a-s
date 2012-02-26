@@ -23,7 +23,7 @@
         <div class="left-side"></div>
         <div class="middle">
           <label>&nbsp;</label>
-          <p>Tem certeza que<br /> deseja sair?</p>
+          <p><%= t('confirm_logout')%></p>
           <div class="btn-container">
             <%= link_to t("yes"), destroy_user_session_path, :class => "btn-yes" %>
             <%= link_to t("no"), "#", :class => "btn-no" %>

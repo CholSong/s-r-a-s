@@ -1,0 +1,26 @@
+<div class="yui-u <%= overlay_id == 1 ? :first : "" %> ">
+  <fieldset >
+    <legend><%= "#{t(overlay_type)}#{overlay_id}" %></legend>
+    <%= f.label t(:tag) %>
+    <%= f.text_field :tag %><br />
+    <%= f.label t(:position) %>
+    (
+    <%= f.text_field :position_x, :size => 4 %>
+    ,
+    <%= f.text_field :position_y, :size => 4 %>
+    )<br />
+    <%= f.label t(:dimension) %>
+    (
+    <%= f.text_field :width, :size => 4 %>
+    ,
+    <%= f.text_field :height, :size => 4 %>
+    )<br />
+    <p />
+    <% if overlay_type == :image_overlay %>
+        <%= render :partial => "image_overlay_form", :locals => { :f => f } %>
+    <% else %>
+        <%= render :partial => "text_overlay_form", :locals => { :f => f } %>
+    <% end %>
+  </fieldset>
+</div>
+

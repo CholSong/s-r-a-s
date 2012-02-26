@@ -1124,6 +1124,7 @@ pt-BR:
   new_vendor: "Novo Comerciante"
   editing_vendor: "Editando Comerciante"
   vendor_details: "Detalhes do Comerciante"
+  vendor_name: "Nome do Comerciante"
   editing_promotion: "Editando Promoção"
   promotion_details: "Detalhes da Promoção"
   activerecord: 
@@ -1134,11 +1135,38 @@ pt-BR:
       taxonomy: 
         one: Categoria
         other: Categorias
+  template: Modelo
+  templates: Modelos
+  image_template_sets: Modelos
+  new_template: "Novo Modelo"
+  editing_template: "Editando Modelo"
+  detailed_image_template: "Modelo de Imagem Detalhada"
+  summary_image_template: "Modelo de Imagem Resumida"
+  background_image: "Imagem de Fundo"
+  position: "Posição"
+  dimension: "Dimensão"
+  tag: Rótulo
+  text_overlay: "Texto "
+  image_overlay: "Imagem "
+  font: Fonte
+  text: Texto
+  color: Cor
+  align: Alinhamento
+  left: Esquerda
+  center: Centro
+  right: Direita
+  justify: Justificar
+  normal: Normal
+  bold: Negrito
+  italic: Itálico
+  underline: Sublinhado
+  format: Formato
 
 # Bemtevi
 # translations for prompts contained in the Bemtevi Manager UI
 
   welcome: "Bem vindo,"
+  confirm_logout: "Tem certeza que deseja sair?"
     
 # encoding: UTF-8
 # pt-BR translations for Ruby on Rails

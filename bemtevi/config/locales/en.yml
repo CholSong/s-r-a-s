@@ -24,6 +24,33 @@ en:
   new_vendor: "New Vendor"
   editing_vendor: "Editing Vendor"
   vendor_details: "Vendor Details"
+  vendor_name: "Vendor Name"
+  template: Template
+  templates: Templates
+  image_template_sets: Templates
+  new_template: "New Template"
+  editing_template: "Editing Template"
+  detailed_image_template: "Detailed Image Template"
+  summary_image_template: "Summary Image Template"
+  background_image: "Background Image"
+  position: "Position"
+  dimension: "Dimension"
+  tag: Tag
+  text_overlay: "Text "
+  image_overlay: "Image "
+  font: Font
+  text: Text
+  color: Color
+  align: Align
+  left: Left
+  center: Center
+  right: Right
+  justify: Justify
+  bold: Bold
+  italic: Italic
+  underline: Underline
+  format: Format
 
   # Bemtevi Manager UI
   welcome: "Welcome,"
+  confirm_logout: "Are you sure you want to exit?"

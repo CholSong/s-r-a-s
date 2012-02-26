@@ -1,0 +1,17 @@
+<%= f.fields_for :text_overlay do |f| %>
+  <fieldset >
+    <%= f.label t(:text) %>
+    <%= f.text_field :text %><br />
+    <%= f.label t(:color) %>
+    <%= f.text_field :color %><br />
+    <%= f.label t(:font) %>
+    <%= f.select :font_family, [ :Arial, :Georgia, :"Gill Sans", :Tahoma ] %>
+    <%= f.select :font_size, options_for_select([:"10px", :"12px", :"14px", :"16px", :"18px", :"20px", :"22px", :"24px"], :"18px") %><br />
+    <%= f.label t(:align) %>
+    <%= f.select :text_align, options_for_select({t(:left) => :left, t(:center) => :center, t(:right) => :right, t(:justify) => :justify}) %><br />
+    <%= f.label t(:format) %>
+    <%= f.select :font_weight, options_for_select([["",""], [t(:bold), :bold]]) %>
+    <%= f.select :font_style, options_for_select([["",""], [t(:italic), :italic]]) %>
+    <%= f.select :text_decoration, options_for_select([["",""], [t(:underline), :underline]]) %><br />
+  </fieldset>
+<% end %>

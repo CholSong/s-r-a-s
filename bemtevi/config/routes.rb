@@ -25,9 +25,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :products do
-      resources :images do
-        resources :image_overlays
-      end
+      resources :images
     end
     resources :vendors do
       resources :vendor_images do
@@ -46,6 +44,8 @@ Rails.application.routes.draw do
           get  :selected
         end
       end
+    end
+    resources :image_template_sets do
     end
     resources :promotions do
       resources :promotion_images do

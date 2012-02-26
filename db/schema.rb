@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120121172935) do
+ActiveRecord::Schema.define(:version => 20120215082220) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -124,18 +124,23 @@ ActiveRecord::Schema.define(:version => 20120121172935) do
   end
 
   create_table "image_overlays", :force => true do |t|
-    t.string   "type"
-    t.text     "text"
-    t.string   "attachment_content_type"
-    t.string   "attachment_file_name"
-    t.integer  "attachment_size"
-    t.datetime "attachment_updated_at"
-    t.integer  "attachment_width"
-    t.integer  "attachment_height"
-    t.integer  "position_x"
-    t.integer  "position_y"
-    t.string   "font_family"
-    t.integer  "image_template_id"
+    t.integer "position_x"
+    t.integer "position_y"
+    t.integer "width"
+    t.integer "height"
+    t.integer "overlay_id"
+  end
+
+  create_table "image_template_sets", :force => true do |t|
+    t.string  "name"
+    t.integer "vendor_id"
+    t.integer "promotion_id"
+    t.integer "original_template_set_id"
+  end
+
+  create_table "image_templates", :force => true do |t|
+    t.string  "template_type"
+    t.integer "image_template_set_id"
   end
 
   create_table "inventory_units", :force => true do |t|
@@ -232,6 +237,15 @@ ActiveRecord::Schema.define(:version => 20120121172935) do
   end
 
   add_index "orders", ["number"], :name => "index_orders_on_number"
+
+  create_table "overlays", :force => true do |t|
+    t.integer "position_x"
+    t.integer "position_y"
+    t.integer "width"
+    t.integer "height"
+    t.string  "tag"
+    t.integer "image_template_id"
+  end
 
   create_table "payment_methods", :force => true do |t|
     t.string   "type"
@@ -531,6 +545,18 @@ ActiveRecord::Schema.define(:version => 20120121172935) do
 
   add_index "taxons_vendors", ["taxon_id"], :name => "index_taxons_vendors_on_taxon_id"
   add_index "taxons_vendors", ["vendor_id"], :name => "index_taxons_vendors_on_vendor_id"
+
+  create_table "text_overlays", :force => true do |t|
+    t.string  "font_family"
+    t.string  "font_size"
+    t.string  "font_weight"
+    t.string  "font_style"
+    t.string  "text_align"
+    t.string  "text_decoration"
+    t.string  "color"
+    t.string  "text"
+    t.integer "overlay_id"
+  end
 
   create_table "tokenized_permissions", :force => true do |t|
     t.integer  "permissable_id"

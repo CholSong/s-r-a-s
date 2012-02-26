@@ -23,11 +23,6 @@ class Admin::PromotionImagesController < Admin::ResourceController
 
   def load_data
     @promotion = Promotion.find(params[:promotion_id])
-    if params[:template_id].nil?
-      @image_templates = ImageTemplate.all
-    elsif params[:template_id] != "none"
-      @image_template = ImageTemplate.find(params[:template_id])
-    end
   end
 
   def set_viewable

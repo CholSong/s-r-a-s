@@ -1,0 +1,10 @@
+<%= f.fields_for :image_overlay do |img_overlay_form| %>
+  <%= img_overlay_form.fields_for :overlay_image do |overlay_img_form|%>
+    <%= overlay_img_form.file_field :attachment %><br />
+    <%  overlay = overlay_img_form.object %>
+    <% if !overlay.attachment_file_name.nil? %>
+      <%= link_to(image_tag(overlay.attachment.url(:small)), overlay.attachment.url(:original)) %>
+    <% end %>
+  <% end%>
+<% end %>
+
