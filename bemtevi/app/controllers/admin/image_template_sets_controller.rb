@@ -14,6 +14,9 @@ class Admin::ImageTemplateSetsController < Admin::ResourceController
 
   def edit
     @object.image_templates.each { |template|
+      if template.background_image.nil?
+        template.build_background_image
+      end
       fill_missing_overlays template
     }
     
@@ -33,7 +36,6 @@ class Admin::ImageTemplateSetsController < Admin::ResourceController
                           :page      => params[:page]}
 
     @collection = @search.paginate(pagination_options)
-
   end
 
   private

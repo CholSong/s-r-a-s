@@ -20,6 +20,8 @@ Rails.application.routes.draw do
         get :templates
       end
     end
+    resources :image_template_sets do
+    end
   end
 
 

@@ -2,9 +2,15 @@
 
 <%= f.fields_for :background_image do |bg_image_form| %>
   <%= bg_image_form.label t(:background_image) %><br />
-  <%= bg_image_form.file_field :attachment %>
+  <%= bg_image_form.file_field :attachment %><br />
+  <% bg_image = bg_image_form.object %>
+  <% if !bg_image.attachment_file_name.nil? %>
+    <%= link_to(image_tag(bg_image.attachment.url(:small)), bg_image.attachment.url(:original)) %>
+  <% end %>
 <% end %>
+
 <p/>
+
 <div class="yui-gb">
   <% image_overlay_id = 1 %>
   <%= f.fields_for :overlays do |overlay_form| %>
