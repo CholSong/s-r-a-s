@@ -15,7 +15,7 @@
 <%= f.fields_for :image_templates do |template_form| %>
   <% template_type = template_form.object.template_type %>
   <fieldset id="<%= template_type %>_template_fields">
-    <legend><%= t(template_type == :detail ? :detailed_image_template : :summary_image_template)%></legend>
+    <legend><%= t(template_type == "detail" ? :detailed_image_template : :summary_image_template)%></legend>
     <%= render :partial => "template_form", :locals => { :f => template_form, :template_type => template_type } %>
   </fieldset>
 <% end %>

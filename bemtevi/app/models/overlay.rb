@@ -13,4 +13,10 @@ class Overlay < ActiveRecord::Base
   accepts_nested_attributes_for :text_overlay, :allow_destroy => true
   accepts_nested_attributes_for :image_overlay, :allow_destroy => true
 
+  def overlay_type
+    return :text if !text_overlay.nil?
+    return :image if !image_overlay.nil?
+    return :unknown
+  end
+
 end

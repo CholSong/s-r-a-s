@@ -14,7 +14,7 @@ div#template-container.detail {
 	background:url(/images/bemtevi/backgrounds/template-big.png) 0px 10px no-repeat;
 	height: 576px;
 }
-div#template-container.simple {
+div#template-container.summary {
   background: url(/images/bemtevi/backgrounds/template-small.png) no-repeat scroll 0 17px transparent;
   height: 260px;
   margin-bottom: 50px;
@@ -26,10 +26,11 @@ div#template-container #regions-container {
 	overflow:hidden;
 	border:solid 2px #ccc;
 	height:86.5%;
+	position: relative;
 }
 div#template-container #regions-container div.overlay
 {
-	position:relative;
+	position:absolute;
 	overflow:hidden;
 	float:left;
 }
@@ -192,6 +193,7 @@ div#template-container #regions-container div .format-tools a.size-down-style {
 	position: relative;
 	float:left;
 	margin:0 20px 10px 0;
+    cursor:pointer;
 }
 #template-list .img-container {
 	width: 102px;
@@ -211,16 +213,4 @@ div#template-container #regions-container div .format-tools a.size-down-style {
 	position:absolute;
 	top:0;
 	left:0;
-}
-#template-list span {
-	z-index:2;
-	display:block;
-	width:15px;
-	height:15px;
-	border:solid 2px #fff;
-	border-radius:10px;
-	position:absolute;
-	right:-10px;
-	top:20px;
-	cursor:pointer;
 }

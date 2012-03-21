@@ -1,11 +1,11 @@
 class Admin::ImageTemplateSetsController < Admin::ResourceController
 
   def new
-    summary_template = @object.image_templates.build :template_type => :summary
+    summary_template = @object.image_templates.build :template_type => "summary"
     summary_template.build_background_image
     fill_missing_overlays summary_template
     
-    detail_template = @object.image_templates.build :template_type => :detail
+    detail_template = @object.image_templates.build :template_type => "detail"
     detail_template.build_background_image
     fill_missing_overlays detail_template
 

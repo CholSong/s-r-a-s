@@ -12,10 +12,10 @@ class Manager::ImageTemplateSetsController < Admin::ResourceController
 
   def json_data
     collection.to_json(
-      :only => [:id],
+      :only => [:id, :vendor_id, :name],
       :include => {
         :image_templates => {
-          :only => [:id],
+          :only => [:id, :template_type],
           :include => { 
             :background_image => {
               :only => [:id],
@@ -23,6 +23,7 @@ class Manager::ImageTemplateSetsController < Admin::ResourceController
             },
             :overlays => { 
               :only => [:id, :position_x, :position_y, :width, :height, :tag],
+              :methods => [:overlay_type],
               :include => {
                 :text_overlay => {
                   :only => [:id, :font_family, :font_size, :font_weight, :font_style, :text_align, :text_decoration, :color, :text]
@@ -56,10 +57,11 @@ class Manager::ImageTemplateSetsController < Admin::ResourceController
   
       @collection = @search.paginate(pagination_options)
     else
-      includes = {:image_templates => {:overlays => [:text_overlay,:image_overlay => :overlay_image]}}
-
-      @collection = super.where(["vendor_id = ?", "#{params[:vendor_id]}"])
-      @collection = @collection.includes(includes)
+      if params[:vendor_id].nil?
+        @collection = super.where(["vendor_id is not null"])
+      else
+        @collection = super.where(["vendor_id = ?", "#{params[:vendor_id]}"])
+      end
     end
   end
 
