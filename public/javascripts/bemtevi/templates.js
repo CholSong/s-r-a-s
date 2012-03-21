@@ -65,7 +65,7 @@ function createTemplateList() {
             if(template.template_type == "detail") {
                 imgContainer.append($('<img class="thumb-img_' + t + '" src="' + template.background_image.thumbnail_url + '"/>'));
                 templateSetContainer.click(function() {
-                    display_template(templateSet, template)
+                    displayTemplate(templateSet, template)
                 });
             }
 
@@ -108,14 +108,14 @@ function displayTemplateForActiveSet(type) {
     var activeTemplateSet = savedData.activeTemplateSet;
     var template = getTemplateByType(type, activeTemplateSet)
     if(template != null) {
-        display_template(activeTemplateSet, template);
+        displayTemplate(activeTemplateSet, template);
     }
 }
 
 /**
  * Displays the selected template and its overlays.
  */
-function display_template(templateSet, template) {
+function displayTemplate(templateSet, template) {
     if(templateSet == null || template == null) {
         return;
     }
@@ -269,7 +269,7 @@ function textFocusOut(e) {
     var p = $(this).parent().find("p");
     p.html(text);
 
-    save_text_for_tag(elementId, text);
+    saveTextByTag(elementId, text);
 
     $(this).css({
         "display" : "none"
@@ -310,7 +310,7 @@ function textFormatClick(e) {
     var txtEditor = $(this).parent().parent().find("textarea");
     var txt = $(this).parent().parent().find("p");
 
-    save_text_for_tag(elementId, txt.text());
+    saveTextByTag(elementId, txt.text());
 
     // Setting up the requested change.
     var templateType = getActiveTemplateType();
@@ -543,7 +543,7 @@ $(document).ready(function() {
         // savedData = (response["general"]) ? response["general"] : savedData;
         // // Abrindo o template que estava salvo na sessão
         // if (savedData.activeTemplateSetId != null && savedData.activeTemplateId != null) {
-        // display_template(savedData.activeTemplateSet, savedData.activeTemplate);
+        // displayTemplate(savedData.activeTemplateSet, savedData.activeTemplate);
         // }
         // // Somente ativa o auto save por tempo caso o intervalo seja um valor > 0
         // if (autoSaveTime > 0) {
