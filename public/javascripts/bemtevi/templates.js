@@ -63,7 +63,7 @@ function createTemplateList() {
             // in the template list as thumbnails).
             var template = templateSet.image_templates[t];
             if(template.template_type == "detail") {
-                imgContainer.append($('<img class="thumb-img_' + t + '" src="' + template.background_image.url + '"/>'));
+                imgContainer.append($('<img class="thumb-img_' + t + '" src="' + template.background_image.thumbnail_url + '"/>'));
                 templateSetContainer.click(function() {
                     display_template(templateSet, template)
                 });

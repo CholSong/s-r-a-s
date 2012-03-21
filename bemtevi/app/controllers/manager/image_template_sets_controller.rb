@@ -19,7 +19,7 @@ class Manager::ImageTemplateSetsController < Admin::ResourceController
           :include => { 
             :background_image => {
               :only => [:id],
-              :methods => [:url]
+              :methods => [:url, :thumbnail_url]
             },
             :overlays => { 
               :only => [:id, :position_x, :position_y, :width, :height, :tag],
