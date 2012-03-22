@@ -384,16 +384,6 @@ function createImageOverlay(data, tplType) {
     var value = data.value;
     var elementId = 'image-overlay_' + data.id;
 
-    /* searching for saved data */
-    for(var sd = 0; sd < savedData[tplType].length; sd++) {
-        if(savedData[tplType][sd].type == "image" && savedData[tplType][sd].elementId == "") {
-            value = savedData[tplType][sd].value;
-            valueFormat = savedData[tplType][sd].valueFormat;
-            savedData[tplType][sd].elementId = elementId;
-            break;
-        }
-    }
-
     var overlay = '<div class="image-overlay overlay" id="' + elementId + '"><div class="image-control" ></div>';
     overlay += '<div class="up-panel hidden">';
     overlay += '<div class="upload-btn" ><em><input type="file" name="img-upload" id="img-upload_' + data.id + '" class="img-upload"/></em>';
@@ -411,16 +401,22 @@ function createImageOverlay(data, tplType) {
     data.image_overlay.width || (data.image_overlay.width = data.width);
     data.image_overlay.height || (data.image_overlay.height = data.height);
 
-    createImage(overlay.find(".image-control"), data.image_overlay.overlay_image.url, data.image_overlay);
+    var imageUrl = data.image_overlay.overlay_image.url
+    var templateType = getActiveTemplateType();
+    if(savedData[templateType][data.tag] !== undefined && savedData[templateType][data.tag].image_url !== undefined) {
+        imageUrl = savedData[templateType][data.tag].image_url;
+    }
+
+    createImage(overlay.find(".image-control"), imageUrl, data.image_overlay);
 }
 
-function createImage(parent, filePath, valueFormat) {
+function createImage(parent, filePath, imageOverlay) {
     var image = $('<img src="' + filePath + '" />');
     parent.append(image);
 
     image.css({
-        "width" : valueFormat.width,
-        "height" : valueFormat.height,
+        "width" : imageOverlay.width,
+        "height" : imageOverlay.height,
         "left" : 0,
         "top" : 0
     });
@@ -432,8 +428,8 @@ function createImage(parent, filePath, valueFormat) {
         stop : imageResizeStop
     });
     parent.css({
-        "left" : valueFormat.position_x,
-        "top" : valueFormat.position_y
+        "left" : imageOverlay.position_x,
+        "top" : imageOverlay.position_y
     });
 }
 
