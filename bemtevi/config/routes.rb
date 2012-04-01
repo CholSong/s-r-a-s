@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       end
       collection do 
         get :templates
+        get :promotions
       end
     end
     resources :image_template_sets do

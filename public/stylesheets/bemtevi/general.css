@@ -14,28 +14,47 @@ input[type=submit]
 	outline:none;
 }
 
+.duplicate-template-btn,
 .deactive-template-btn,
-.activate-template-btn,
+.active-template-btn,
 .edit-template-btn 
 {
 	background-image: url(/images/bemtevi/btn/sprite-btn.png);
 	background-repeat: no-repeat;
 	text-indent: -9999em;
-	width:33px;
+	width:35px;
 	height:28px;
 	float:left;
 }
+.duplicate-template-btn {
+    display:none;
+    background-position: -232px -320px;
+}
+.inactive .duplicate-template-btn {
+    display: block;
+}
 .deactive-template-btn {
+    display:none;
 	background-position: -118px -320px;
 }
-.activate-template-btn {
+.active .deactive-template-btn {
+    display: block;
+}
+
+.active-template-btn {
 	background-position: -155px -320px;
+}
+.active .active-template-btn,
+.inactive .active-template-btn
+{
+    display: none;
 }
 .edit-template-btn  {
 	background-position: -197px -320px;
 }
-
-
+.inactive .edit-template-btn  {
+    display: none;
+}
 /**
 * General
 */
@@ -135,7 +154,16 @@ div.user-data a {
 	text-decoration:none;
 	margin-top:5px;
 }
-
+/* Select Company */
+#header select#selCompany {
+    width: 150px;
+}
+#header .ui-selectmenu,
+.ui-selectmenu-menu li a {
+    font-size: 12px;
+    color:#847654;
+    font-weight:bold;
+}
 /* Logout Confirm */
 div#logout-confirm {
 	background:url(/images/bemtevi/backgrounds/confirm-popup.png) left top no-repeat transparent;

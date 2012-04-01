@@ -1,8 +1,6 @@
 // JavaScript Document
 
 var templates = [];
-templates["active"] = [];
-templates["history"] = [];
 
 function menageTplAction(id, action) {
 	var post = {
@@ -13,51 +11,80 @@ function menageTplAction(id, action) {
 		if (res.error) {
 			alert(res.error);
 		} else {
-			loadTemplates();
+            $("#tpl-list-item_"+res.id).removeClass("active").addClass(res.status);
 		}
 	}, "json");
 }
 
-function loadTemplates() {
-	// Obtendo lista de templates
-	$.getJSON("activeTemplates.php",null, function(response){
-		templates["active"] = response["active"];
-		templates["history"] = response["history"];
+function getPage(pg) {
+    $.getJSON("/manager/promotions/promotions?pg=" + pg, null, function(response){
+        templates = response["templates"];
+        pg = response["page"];
+        firstPg = response["first_page"];
+        lastPg = response["last_page"];
+        totalPg = response["total_pages"];
 		
 		/* Creating list of active templates */
-		var content = "<div class='foo'><ul>";
-		for (var a=0; a<templates["active"].length; a++) {
-			content += "<li id='tpl-active-item_"+templates["active"][a]["id"]+"' ><img src='"+templates["active"][a]["thumb"]+"' />";
-			content += "<div><a href='#' class='deactive-template-btn'  title='Desativar'>Desativar</a>";
-			content += "<a href='#' class='edit-template-btn'  title='Editar'>Editar</a></div></li>";
+        var content = "";
+        var counter = 0;
+        for (var a=0; a<templates.length; a++) {
+            content += "<div class='tpl-list-item "+templates[a]["status"]+"' id='tpl-list-item_"+templates[a]["id"]+"' ><img src='"+templates[a]["thumb"]+"' /><div>";
+            content += "<a href='#' class='duplicate-template-btn' title='Duplicar'>Duplicar</a>";
+            content += "<a href='#' class='deactive-template-btn' title='Desativar'>Desativar</a>";
+            content += "<a href='#' class='active-template-btn' title='Ativar'>Ativar</a>";
+            content += "<a href='#' class='edit-template-btn' title='Editar'>Editar</a></div>";
+            content += "<label>Val. "+templates[a]["valdate"]+"</label></div>";
 		}
-		content += "</ul></div>";
-		$("#promo-panel div.foo").remove();
-		$("#promo-panel").append( $(content) );
-		$("#promo-panel div.foo").carousel();
+        $("#tpl-container").html(content);
 		
-		/* Creating list of history templates */
-		var content = "<div class='foo'><ul>";
-		for (var a=0; a<templates["history"].length; a++) {
-			content += "<li id='tpl-history-item_"+templates["history"][a]["id"]+"' ><img src='"+templates["history"][a]["thumb"]+"' />";
-			content += "<div><a href='#' class='activate-template-btn'  title='Ativar'>Ativar</a>";
-			content += "<a href='#' class='edit-template-btn'  title='Editar'>Editar</a></div></li>";
+        //Criando os links de paginação
+        content = "<a href='javascript:getPage(0)' title='Primeira' ><<</a>";
+        for (var p=firstPg; p<=lastPg; p++){
+            active = (p == pg) ? "active" : "";
+            content += "<a href='javascript:getPage("+p+")' class='"+active+"' title='Página "+(p+1)+"' >"+(p+1)+"</a>";
 		}
-		content += "</ul></div>";
-		$("#hist-panel div.foo").remove();
-		$("#hist-panel").append( $(content) );
-		$("#hist-panel div.foo").carousel();
+        content += "<a href='javascript:getPage("+lastPg+")' title='Última' >>></a>";
+        $("#pagination").html(content);
+        
+        /* Configurando ações dos links */
+        $(".deactive-template-btn").click(function(e){
+            menageTplAction(getId($(this).parent().parent().attr("id")), 0);            
+        });
+        $(".active-template-btn").click(function(e){
+            menageTplAction(getId($(this).parent().parent().attr("id")), 1);            
+        });
+    });
+}
+
+function loadTemplates() {
+    // Obtendo lista de templates
+    $.getJSON("activeTemplates.php",null, function(response){
+        templates = response["templates"];
+        
+        // Criando a lista de templates
+        var content = "";
+        var counter = 0;
+        for (var a=0; a<templates.length; a++) {
+            content += "<div class='tpl-list-item "+templates[a]["status"]+"' id='tpl-list-item_"+templates[a]["id"]+"' ><img src='"+templates[a]["thumb"]+"' /><div>";
+            content += "<a href='#' class='duplicate-template-btn' title='Duplicar'>Duplicar</a>";
+            content += "<a href='#' class='deactive-template-btn' title='Desativar'>Desativar</a>";
+            content += "<a href='#' class='active-template-btn' title='Ativar'>Ativar</a>";
+            content += "<a href='#' class='edit-template-btn' title='Editar'>Editar</a></div>";
+            content += "<label>Val. "+templates[a]["valdate"]+"</label></div>";
+        }
+        $("#tpl-container").html(content);
 		
 		/* Configurando ações dos links */
 		$(".deactive-template-btn").click(function(e){
 			menageTplAction(getId($(this).parent().parent().attr("id")), 0);			
 		});
-		$(".activate-template-btn").click(function(e){
+        $(".active-template-btn").click(function(e){
 			menageTplAction(getId($(this).parent().parent().attr("id")), 1);			
 		});
 	});
 }
 
 $(document).ready(function() {
-	loadTemplates();
+//  loadTemplates();
+    getPage(0);
 });
