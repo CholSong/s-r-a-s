@@ -1,5 +1,3 @@
-var autoSaveId = null;
-var autoSaveTime = 5000;
 var templateSets = null;
 
 var savedData = {
@@ -11,16 +9,10 @@ var savedData = {
     summary : {}
 };
 
-var formatDescriptor = {};
-formatDescriptor["bold-style"] = ["font_weight", "font-weight", "bold", "normal"];
-formatDescriptor["italic-style"] = ["font_style", "font-style", "italic", "normal"];
-formatDescriptor["underline-style"] = ["text_decoration", "text-decoration", "underline", "none"];
-formatDescriptor["left-style"] = ["text_align", "text-align", "left", "left"];
-formatDescriptor["center-style"] = ["text_align", "text-align", "center", "left"];
-formatDescriptor["right-style"] = ["text_align", "text-align", "right", "left"];
-formatDescriptor["justified-style"] = ["text_align", "text-align", "justify", "left"];
-formatDescriptor["size-up-style"] = ["font_size", "font-size", null, "+=1"];
-formatDescriptor["size-down-style"] = ["font_size", "font-size", null, "-=1"];
+var counterpartType = {
+    "summary" : "detail",
+    "detail" : "summary"
+};
 
 /**
  * Utility function to substitute line-breaks by br element.
@@ -50,27 +42,21 @@ function createTemplateList() {
     // Loops through all available template sets (templateSets)
     for(var f = 0; f < templateSets.length; f++) {
 
+        var templateSet = templateSets[f].image_template_set;
+        var detailTemplate = getTemplateByType("detail", templateSet);
+        var summaryTemplate = getTemplateByType("summary", templateSet);
+        if(detailTemplate == null || summaryTemplate == null) {
+            continue;
+        }
+
         // Creating the primary structure for the template set.
         var templateSetContainer = $('<div class="tpl-thumb" id="family-' + f + '"></div>');
         var imgContainer = $('<div class="img-container" ></div>');
         templateSetContainer.append(imgContainer);
 
-        // Loops through the templates in the template set
-        var templateSet = templateSets[f].image_template_set;
-        for(var t = 0; t < templateSet.image_templates.length; t++) {
-
-            // Creating the template structure (only detailed templates are displayed
-            // in the template list as thumbnails).
-            var template = templateSet.image_templates[t];
-            if(template.template_type == "detail") {
-                imgContainer.append($('<img class="thumb-img_' + t + '" src="' + template.background_image.thumbnail_url + '"/>'));
-                templateSetContainer.click(function() {
-                    displayTemplate(templateSet, template)
-                });
-            }
-
-        }
-
+        // Creates the thumbnail for the template set
+        imgContainer.append($('<img class="thumb-img_' + detailTemplate.id + '" src="' + detailTemplate.background_image.thumbnail_url + '"/>'));
+        templateSetContainer.click(onTemplateSetClicked(templateSet, detailTemplate, summaryTemplate));
         // Closing the template set element
         templateSetContainer.append($('<div class="frame" ></div>'));
         listItem.append(templateSetContainer);
@@ -102,67 +88,69 @@ function getTemplateByType(type, templateSet) {
 }
 
 /**
- * Selects either the detail or summary template for the current template set.
+ * Displays the selected template and its overlays.
  */
-function displayTemplateForActiveSet(type) {
-    var activeTemplateSet = savedData.activeTemplateSet;
-    var template = getTemplateByType(type, activeTemplateSet)
-    if(template != null) {
-        displayTemplate(activeTemplateSet, template);
+function displayTemplateForActiveSet(templateType) {
+    if(savedData.activeTemplateSet === undefined) {
+        return;
     }
+    var templateToDisplay = getTemplateByType(templateType, savedData.activeTemplateSet);
+    savedData.activeTemplate = templateToDisplay;
+    savedData.activeTemplateId = templateToDisplay.id;
+    $(".template-container." + counterpartType[templateType]).addClass("hidden");
+    $(".template-container." + templateType).removeClass("hidden");
+}
+
+function onTemplateSetClicked(templateSet, detailTemplate, summaryTemplate) {
+    return function() {
+        createTemplateContainers(templateSet, detailTemplate, summaryTemplate);
+    }
+}
+
+function createTemplateContainers(templateSet, detailTemplate, summaryTemplate) {
+    createTemplateContainer(templateSet, detailTemplate);
+    createTemplateContainer(templateSet, summaryTemplate);
+    savedData.activeTemplateSet = templateSet;
+    savedData.activeTemplateSetId = templateSet.id;
+    displayTemplateForActiveSet("detail");
 }
 
 /**
  * Displays the selected template and its overlays.
  */
-function displayTemplate(templateSet, template) {
-    if(templateSet == null || template == null) {
-        return;
-    }
-
-    savedData.activeTemplateSet = templateSet;
-    savedData.activeTemplateSetId = templateSet.id;
-    savedData.activeTemplate = template;
-    savedData.activeTemplateId = template.id;
-
+function createTemplateContainer(templateSet, template) {
     // Setting up the container according to the template type.
-    $("#regions-container").html("");
-    $("#template-container").removeClass("detail");
-    $("#template-container").removeClass("summary");
-    $("#template-container").addClass(template.template_type);
-    $("#regions-container").css({
-        backgroundImage : "url(" + template.background_image.url + ")",
-        backgroundRepeat : "no-repeat"
-    });
+    var containerContext = $(".template-container." + template.template_type)
+    $(".regions-container", containerContext).html("");
+    $(".regions-container", containerContext).append($('<img src="' + template.background_image.url + '" />'));
 
     // Setting up the overlays.
     for(var o = 0; o < template.overlays.length; o++) {
         var overlay = template.overlays[o];
         if(overlay.overlay_type == "text") {
-            createTextOverlay(overlay, template.template_type);
+            createTextOverlay(containerContext, template, overlay);
         } else if(overlay.overlay_type == "image") {
-            createImageOverlay(overlay, template.template_type);
+            createImageOverlay(containerContext, template, overlay);
         }
     }
-
     // Configuring actions for the overlays.
-    $(".overlay").mouseenter(function() {
+    $(".overlay", containerContext).mouseenter(function() {
         if($(this).find(".hidden").css("display") == "none") {
             $(this).find(".hidden").fadeIn(300);
         };
     });
-    $(".overlay").mouseleave(function() {
+    $(".overlay", containerContext).mouseleave(function() {
         if($(this).find(".hidden").css("display") != "none") {
             $(this).find(".hidden").fadeOut(500);
         }
     });
     // Setting up upload events for Upload Panel.
-    $("input.img-upload").change(function() {
+    $("input.img-upload", containerContext).change(function() {
         /* Creating iFrame */
         var frame = $('<iframe id="up-iframe_' + getId($(this).attr("id")) + '" name="up-iframe" ></iframe>');
         $(this).parent().append(frame);
         frame.bind('load', function() {
-            var cross = 'javascript:window.parent.callBack("' + getId($(this).attr("id")) + '", document.body.innerHTML)';
+            var cross = 'javascript:window.parent.onOverlayImageUploadComplete("' + getId($(this).attr("id")) + '", document.body.innerHTML)';
             $(this).attr('src', cross);
         });
         /* Creating form */
@@ -175,7 +163,7 @@ function displayTemplate(templateSet, template) {
         form.submit();
     });
     // Setting up events for text editor.
-    $("div.text-overlay p").click(function() {
+    $("div.text-overlay p", containerContext).click(function() {
         var txt = $(this).parent().find("textarea");
         txt.text(br2nl($(this).text()));
         $(this).css({
@@ -187,9 +175,7 @@ function displayTemplate(templateSet, template) {
         txt.focus();
     });
 
-    $("div.text-overlay textarea").focusout(textFocusOut);
-
-    $(".format-tools a").click(textFormatClick);
+    $("div.text-overlay textarea", containerContext).focusout(onTextFocusOut);
 }
 
 /**
@@ -246,23 +232,9 @@ function saveUrlByTag(elementId, image_url) {
 }
 
 /**
- * Verifies savedData for the given text element. When there is no saved data, a entry is created in the array.
- * Otherwise, an entry is created with the given value.
- */
-function verifySavedData(elementId, overlay) {
-    var templateType = getActiveTemplateType();
-    if(savedData[templateType][elementId] === undefined) {
-        savedData[templateType][elementId] = overlay;
-        return overlay;
-    } else {
-        return savedData[templateType][elementId];
-    }
-}
-
-/**
  * Applies text formatting and saves the entered text into savedData.
  */
-function textFocusOut(e) {
+function onTextFocusOut(e) {
     var text = nl2br($(this).attr("value"));
     var elementId = $(this).parent().attr("id");
 
@@ -296,70 +268,17 @@ function applyTextFormatting(element, overlay) {
     element.css(styleMap);
 }
 
-/**
- * Formats a text overlay through the formatting toolbar.
- */
-function textFormatClick(e) {
-    e.preventDefault();
-
-    $(this).removeClass("active");
-
-    var cssClass = $(this).attr("class");
-    var elementId = $(this).parent().parent().attr("id");
-
-    var txtEditor = $(this).parent().parent().find("textarea");
-    var txt = $(this).parent().parent().find("p");
-
-    saveTextByTag(elementId, txt.text());
-
-    // Setting up the requested change.
-    var templateType = getActiveTemplateType();
-    var descriptor = formatDescriptor[cssClass];
-    var property = descriptor[0];
-    var oldValue = savedData[templateType][elementId][property];
-    if(descriptor[2] == null) {
-        var tmp = $("<p></p>");
-        applyTextFormatting(tmp, savedData[activeTemplateType][elementId]);
-        tmp.css(descriptor[1], descriptor[3]);
-        savedData[activeTemplateType][elementId][property] = tmp.css(descriptor[1]);
-    } else if(oldValue == descriptor[2]) {
-        savedData[activeTemplateType][elementId][property] = descriptor[3];
-    } else {
-        savedData[activeTemplateType][elementId][property] = descriptor[2];
-    }
-
-    // Applying to the element.
-    applyTextFormatting(txt, savedData[activeTemplateType][elementId].text_overlay)
-    applyTextFormatting(txtEditor, savedData[activeTemplateType][elementId].text_overlay);
-}
-
-/**
- * Função que cria a estrutura html de overlays do tipo texto
- */
-function createTextOverlay(overlay, tplType) {
-    var value = overlay.text_overlay.text;
+function createTextOverlay(context, template, overlay) {
     var txtOverlay = overlay.text_overlay;
     var elementId = "text-overlay_" + overlay.id;
-    var savedTxt = savedData[tplType][overlay.tag] !== undefined ? savedData[tplType][overlay.tag].text : undefined;
-    var value = savedTxt !== undefined ? savedTxt : overlay.text_overlay.text;
+    var value = overlay.text_overlay.text;
+    if(savedData[template.template_type][overlay.tag] !== undefined && savedData[template.template_type][overlay.tag].text !== undefined) {
+        value = savedData[template.template_type][overlay.tag].text;
+    }
 
     var overlayElement = $('<div class="text-overlay overlay" id="' + elementId + '" ></div>');
     var text = $('<p>' + value + '</p>');
     var formatPanel = '<textarea id="txtArea' + overlay.id + '" name="txtArea' + overlay.id + '" ></textarea>';
-
-    // Hiding formatting for the time being.
-    // formatPanel += '<div class="format-tools hidden">';
-    // formatPanel += '<a href="#" class="bold-style" >Negrito</a>';
-    // formatPanel += '<a href="#" class="italic-style" >Itálico</a>';
-    // formatPanel += '<a href="#" class="underline-style" >Itálico</a>';
-    // formatPanel += '<a href="#" class="left-style" >Alinhar à esquerda</a>';
-    // formatPanel += '<a href="#" class="center-style" >Centralizar</a>';
-    // formatPanel += '<a href="#" class="right-style" >Alinhar à direita</a>';
-    // formatPanel += '<a href="#" class="justified-style" >Justificar</a>';
-    // formatPanel += '<a href="#" class="size-up-style" >A+</a>';
-    // formatPanel += '<a href="#" class="size-down-style" >A-</a>';
-    // formatPanel += '</div>';
-
     formatPanel = $(formatPanel);
 
     overlayElement.append(text);
@@ -370,44 +289,42 @@ function createTextOverlay(overlay, tplType) {
     overlayElement.css("width", overlay.width);
     overlayElement.css("height", overlay.height);
 
-    var savedTxtOverlay = verifySavedData(elementId, overlay.text_overlay);
-    applyTextFormatting(overlayElement.find("textarea"), savedTxtOverlay);
-    applyTextFormatting(text, savedTxtOverlay);
+    applyTextFormatting(overlayElement.find("textarea"), overlay.text_overlay);
+    applyTextFormatting(text, overlay.text_overlay);
 
-    $('#regions-container').append(overlayElement);
+    $('.regions-container', context).append(overlayElement);
 }
 
 /**
  * Função que cria a estrutura html de overlays do tipo imagem
  */
-function createImageOverlay(data, tplType) {
-    var value = data.value;
-    var elementId = 'image-overlay_' + data.id;
+function createImageOverlay(context, template, overlay) {
+    var value = overlay.value;
+    var elementId = 'image-overlay_' + overlay.id;
 
-    var overlay = '<div class="image-overlay overlay" id="' + elementId + '"><div class="image-control" ></div>';
-    overlay += '<div class="up-panel hidden">';
-    overlay += '<div class="upload-btn" ><em><input type="file" name="img-upload" id="img-upload_' + data.id + '" class="img-upload"/></em>';
-    overlay += '<img src="/images/bemtevi/ajax-loader.gif" /></div>';
-    overlay += '</div>';
-    overlay = $(overlay);
-    overlay.css("left", data.position_x);
-    overlay.css("top", data.position_y);
-    overlay.css("height", data.height);
-    overlay.css("width", data.width);
-    $('#regions-container').append(overlay);
+    var overlayElement = '<div class="image-overlay overlay" id="' + elementId + '"><div class="image-control" ></div>';
+    overlayElement += '<div class="up-panel hidden">';
+    overlayElement += '<div class="upload-btn" ><em><input type="file" name="img-upload" id="img-upload_' + overlay.id + '" class="img-upload"/></em>';
+    overlayElement += '<img src="/images/bemtevi/ajax-loader.gif" /></div>';
+    overlayElement += '</div>';
+    overlayElement = $(overlayElement);
+    overlayElement.css("left", overlay.position_x);
+    overlayElement.css("top", overlay.position_y);
+    overlayElement.css("height", overlay.height);
+    overlayElement.css("width", overlay.width);
+    $('.regions-container', context).append(overlayElement);
 
-    data.image_overlay.position_x || (data.image_overlay.position_x = 0);
-    data.image_overlay.position_y || (data.image_overlay.position_y = 0);
-    data.image_overlay.width || (data.image_overlay.width = data.width);
-    data.image_overlay.height || (data.image_overlay.height = data.height);
+    overlay.image_overlay.position_x || (overlay.image_overlay.position_x = 0);
+    overlay.image_overlay.position_y || (overlay.image_overlay.position_y = 0);
+    overlay.image_overlay.width || (overlay.image_overlay.width = overlay.width);
+    overlay.image_overlay.height || (overlay.image_overlay.height = overlay.height);
 
-    var imageUrl = data.image_overlay.overlay_image.url
-    var templateType = getActiveTemplateType();
-    if(savedData[templateType][data.tag] !== undefined && savedData[templateType][data.tag].image_url !== undefined) {
-        imageUrl = savedData[templateType][data.tag].image_url;
+    var imageUrl = overlay.image_overlay.overlay_image.url
+    if(savedData[template.template_type][overlay.tag] !== undefined && savedData[template.template_type][overlay.tag].image_url !== undefined) {
+        imageUrl = savedData[template.template_type][overlay.tag].image_url;
     }
 
-    createImage(overlay.find(".image-control"), imageUrl, data.image_overlay);
+    createImage(overlayElement.find(".image-control"), imageUrl, overlay.image_overlay);
 }
 
 function createImage(parent, filePath, imageOverlay) {
@@ -422,37 +339,36 @@ function createImage(parent, filePath, imageOverlay) {
     });
 
     parent.draggable({
-        stop : imageDragStop
+        stop : onImageDragStop
     });
     parent.find('img').resizable({
-        stop : imageResizeStop
+        stop : onImageResizeStop
     });
+
     parent.css({
         "left" : imageOverlay.position_x,
         "top" : imageOverlay.position_y
     });
 }
 
-function imageDragStop(event, ui) {
+function onImageDragStop(event, ui) {
     var elementId = $(this).parent().attr("id");
     var overlay = getOverlayById(getId(elementId), savedData.activeTemplate);
-    var savedOverlay = verifySavedData(elementId, overlay.image_overlay);
-    savedOverlay.position_x = $(this).css("left");
-    savedOverlay.position_y = $(this).css("top");
+    overlay.image_overlay.position_x = $(this).css("left");
+    overlay.image_overlay.position_y = $(this).css("top");
 }
 
-function imageResizeStop(event, ui) {
+function onImageResizeStop(event, ui) {
     var elementId = $(this).parent().parent().attr("id");
     var overlay = getOverlayById(getId(elementId), savedData.activeTemplate);
-    var savedOverlay = verifySavedData(elementId, overlay.image_overlay);
-    savedOverlay.width = $(this).css("width");
-    savedOverlay.height = $(this).css("height");
+    overlay.image_overlay.width = $(this).css("width");
+    overlay.image_overlay.height = $(this).css("height");
 }
 
 /**
- * Função de callback chamada após o upload de uma nova imagem
+ * Triggered when the overlay image upload finishes.
  */
-function callBack(e, res) {
+function onOverlayImageUploadComplete(e, res) {
     var response = $(res);
 
     /* Moving input element */
@@ -481,72 +397,17 @@ function callBack(e, res) {
     }
 }
 
-function autoSave() {
-    autoSaveId = null;
-    var post = {
-        "detail" : savedData.detail,
-        "simple" : savedData.summary,
-        "general" : savedData
-    }
-    $.post('save.php', {
-        data : JSON.stringify(post)
-    }, function(res) {
-        if(res.error) {
-            alert(res.error);
-        }
-        var d = new Date();
-        // Somente ativa o auto save por tempo caso o intervalo seja um valor > 0
-        if(autoSaveTime > 0) {
-            autoSaveId = setTimeout(autoSave, autoSaveTime);
-        }
-    }, "json");
-}
-
-function showResult(res) {
-    templateSets = res;
-    createTemplateList();
-
-    $(".tpl-thumb span").mouseenter(function() {
-        var id = getId($(this).attr("id"));
-        $(this).parent().find(".img-container img").css("display", "none");
-        $(this).parent().find(".img-container img.thumb-img_" + id).css("display", "block");
-    });
-}
-
 
 $(document).ready(function() {
     templateSets = null;
 
-    // Setando ação do link de logout
     $("a.logout").click(function(e) {
         e.preventDefault();
     });
-    // Obtendo lista de templates
+
     $.getJSON("/manager/image_template_sets", null, function(response) {
         templateSets = response;
         createTemplateList();
-
-        $(".tpl-thumb span").mouseenter(function() {
-            var id = getId($(this).attr("id"));
-            $(this).parent().find(".img-container img").css("display", "none");
-            $(this).parent().find(".img-container img.thumb-img_" + id).css("display", "block");
-        });
-        // TODO: investigate how to store data into session
-        // // Obtendo dados salvos em sessão
-        // $.getJSON("savedData.php", null, function(response){
-        // savedData.detail = (response["detail"]) ? response["detail"] : [];
-        // savedData.summary = (response["simple"]) ? response["simple"] : [];
-        // savedData = (response["general"]) ? response["general"] : savedData;
-        // // Abrindo o template que estava salvo na sessão
-        // if (savedData.activeTemplateSetId != null && savedData.activeTemplateId != null) {
-        // displayTemplate(savedData.activeTemplateSet, savedData.activeTemplate);
-        // }
-        // // Somente ativa o auto save por tempo caso o intervalo seja um valor > 0
-        // if (autoSaveTime > 0) {
-        // autoSaveId = setTimeout(autoSave, autoSaveTime);
-        // }
-        // });
-
     });
 
     $("a.full").click(function() {

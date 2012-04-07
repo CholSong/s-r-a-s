@@ -4,46 +4,46 @@ div#content {
   background: url(/images/bemtevi/backgrounds/brown-panel.png) no-repeat scroll right 55px transparent;
 }
 
-div#template-container {
+.template-container {
 	margin-left:50px;
 	float:left;
   padding: 46px 46px 0 35px;
   width: 395px;
 }
-div#template-container.detail {
+.template-container.detail {
 	background:url(/images/bemtevi/backgrounds/template-big.png) 0px 10px no-repeat;
 	height: 576px;
 }
-div#template-container.summary {
+.template-container.summary {
   background: url(/images/bemtevi/backgrounds/template-small.png) no-repeat scroll 0 17px transparent;
   height: 260px;
   margin-bottom: 50px;
   margin-top: 144px;
 }
 
-div#template-container #regions-container {
+.template-container .regions-container {
 	width:390px;
 	overflow:hidden;
 	border:solid 2px #ccc;
 	height:86.5%;
 	position: relative;
 }
-div#template-container #regions-container div.overlay
+.template-container .regions-container div.overlay
 {
 	position:absolute;
 	overflow:hidden;
 	float:left;
 }
-div#template-container #regions-container div.overlay div.hidden {
+.template-container .regions-container div.overlay div.hidden {
 	display:none;
 }
 
-div#template-container #regions-container div.text-overlay p {
+.template-container .regions-container div.text-overlay p {
 	margin:0;
 	padding:0;
 }
 
-div#template-container #regions-container div textarea
+.template-container .regions-container div textarea
 {
 	display: none;
 	width:100%;
@@ -54,7 +54,7 @@ div#template-container #regions-container div textarea
 	margin:0;
 }
 
-div#template-container #regions-container div .format-tools
+.template-container .regions-container div .format-tools
 {
 	width:100%;
 	overflow:hidden;
@@ -64,7 +64,7 @@ div#template-container #regions-container div .format-tools
 	border:solid 1px #aec5c5;
 	z-index:12px;
 }
-div#template-container #regions-container div .format-tools a {
+.template-container .regions-container div .format-tools a {
   background-image: url("/images/bemtevi/btn/sprite-btn.png");
   background-repeat: no-repeat;
   border: 1px solid #EEF4F4;
@@ -74,36 +74,36 @@ div#template-container #regions-container div .format-tools a {
   text-indent: -999em;
   width: 30px;
 }
-div#template-container #regions-container div .format-tools a:hover,
-div#template-container #regions-container div .format-tools a.active
+.template-container .regions-container div .format-tools a:hover,
+.template-container .regions-container div .format-tools a.active
 {
 	background-color:#aac6cb;
 }
-div#template-container #regions-container div .format-tools a.bold-style {
+.template-container .regions-container div .format-tools a.bold-style {
 	background-position:4px -363px;
 }
-div#template-container #regions-container div .format-tools a.italic-style {
+.template-container .regions-container div .format-tools a.italic-style {
 	background-position:-26px -363px;
 }
-div#template-container #regions-container div .format-tools a.underline-style {
+.template-container .regions-container div .format-tools a.underline-style {
 	background-position:-57px -363px;
 }
-div#template-container #regions-container div .format-tools a.left-style {
+.template-container .regions-container div .format-tools a.left-style {
 	background-position:-99px -363px;
 }
-div#template-container #regions-container div .format-tools a.center-style {
+.template-container .regions-container div .format-tools a.center-style {
 	background-position:-130px -363px;
 }
-div#template-container #regions-container div .format-tools a.right-style {
+.template-container .regions-container div .format-tools a.right-style {
 	background-position:-160px -363px;
 }
-div#template-container #regions-container div .format-tools a.justified-style {
+.template-container .regions-container div .format-tools a.justified-style {
 	background-position:-192px -363px;
 }
-div#template-container #regions-container div .format-tools a.size-up-style {
+.template-container .regions-container div .format-tools a.size-up-style {
 	background-position:-250px -363px;
 }
-div#template-container #regions-container div .format-tools a.size-down-style {
+.template-container .regions-container div .format-tools a.size-down-style {
 	background-position:-222px -363px;
 }
 

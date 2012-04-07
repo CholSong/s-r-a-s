@@ -1,5 +1,7 @@
 /* CSS Document */
-
+.hidden {
+    display: none;
+}
 body {
 	background:url(/images/bemtevi/backgrounds/general.jpg) top center no-repeat;
 	margin:0;
