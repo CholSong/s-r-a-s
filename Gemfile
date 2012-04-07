@@ -38,7 +38,7 @@ gem 'aws-s3'
 # gem 'spree', :path => '../spree' 
 
 # Use spree from git when deploying to production 
-gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '0-60-stable'
+gem 'spree', :git => 'git://github.com/spree/spree.git', :tag => 'v0.60.6'
 
 gem 'bemtevi', :require => "bemtevi", :path => "bemtevi"
 
