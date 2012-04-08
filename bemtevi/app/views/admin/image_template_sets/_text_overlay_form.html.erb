@@ -8,8 +8,9 @@
     (<%= f.text_field :width, :size => 4 %>,<%= f.text_field :height, :size => 4 %>)<br />
     <p />
 
+    <% overlay_tag = f.object.tag %>
     <%= f.fields_for :text_overlay do |f| %>
-        <% f.object.text = t("#{f.object.overlay.tag}_tag_text") if f.object.text.nil? || f.object.text.blank? %>
+        <% f.object.text = t("#{overlay_tag}_tag_text") if f.object.text.nil? || f.object.text.blank? %>
         <%= f.label t(:text) %>
         <%= f.text_field :text %><br />
         <%= f.label t(:color) %>
