@@ -1,3 +1,5 @@
+<% template = f.object %> 
+
 <%= f.hidden_field :template_type %>
 
 <%= f.fields_for :background_image do |bg_image_form| %>
@@ -12,18 +14,17 @@
 <p/>
 
 <div class="yui-gb">
-  <% image_overlay_id = 1 %>
-  <%= f.fields_for :overlays do |overlay_form| %>
-    <% if !overlay_form.object.image_overlay.nil? %>
-      <%= render :partial => "overlay_form", :locals => { :f => overlay_form, :overlay_type => :image_overlay, :overlay_id => image_overlay_id } %>
-      <% image_overlay_id += 1 %>
-    <% end %>
+  <% image_overlays = template.overlays.select {|overlay| !overlay.image_overlay.nil? } %>
+
+  <%= f.fields_for :overlays, image_overlays[0] do |overlay_form| %>
+    <%= render :partial => "image_overlay_form", :locals => { :f => overlay_form, :field_set_position => 1 } %>
   <% end %>
   <p/ >
+  
   <% text_overlay_id = 1 %>
   <%= f.fields_for :overlays do |overlay_form| %>
     <% if !overlay_form.object.text_overlay.nil? %>
-      <%= render :partial => "overlay_form", :locals => { :f => overlay_form, :overlay_type => :text_overlay, :overlay_id => text_overlay_id } %>
+      <%= render :partial => "text_overlay_form", :locals => { :f => overlay_form, :field_set_position => text_overlay_id } %>
       <% text_overlay_id += 1 %>
     <% end %>
   <% end %>

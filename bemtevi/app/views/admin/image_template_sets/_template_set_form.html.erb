@@ -1,0 +1,31 @@
+<%= render "shared/error_messages", :target => @image_template_set %>
+
+<fieldset id="general_fields">
+  <%= f.field_container :name do %>
+    <%= f.label t(:name) %><br />
+    <%= f.text_field :name %>
+  <% end %>
+
+  <%= f.field_container :vendor do %>
+    <%= f.label t(:vendor) %><br />
+    <%= f.select :vendor_id, options_from_collection_for_select(Vendor.all, :id, :name, @image_template_set.vendor_id) %>
+  <% end %>
+</fieldset>
+
+<% template_set = f.object %> 
+
+<% summary_templates = template_set.image_templates.select {|template| template.template_type == "summary"} %>
+<%= f.fields_for :image_templates, summary_templates[0] do |template_form| %>
+  <fieldset id="summary_template_fields">
+    <legend><%= t(:summary_image_template)%></legend>
+    <%= render :partial => "template_form", :locals => { :f => template_form, :template_type => "summary" } %>
+  </fieldset>
+<% end %>
+
+<% detail_templates = template_set.image_templates.select {|template| template.template_type == "detail"} %>
+<%= f.fields_for :image_templates, detail_templates[0] do |template_form| %>
+  <fieldset id="detail_template_fields">
+    <legend><%= t(:detailed_image_template)%></legend>
+    <%= render :partial => "template_form", :locals => { :f => template_form, :template_type => "detail" } %>
+  </fieldset>
+<% end %>

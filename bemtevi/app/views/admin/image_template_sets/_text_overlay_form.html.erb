@@ -1,17 +1,29 @@
-<%= f.fields_for :text_overlay do |f| %>
+<div class="yui-u <%= field_set_position == 1 ? :first : "" %> ">
   <fieldset >
-    <%= f.label t(:text) %>
-    <%= f.text_field :text %><br />
-    <%= f.label t(:color) %>
-    <%= f.text_field :color %><br />
-    <%= f.label t(:font) %>
-    <%= f.select :font_family, [ :Arial, :Georgia, :"Gill Sans", :Tahoma ] %>
-    <%= f.select :font_size, options_for_select([:"10px", :"12px", :"14px", :"16px", :"18px", :"20px", :"22px", :"24px", :"26px", :"28px", :"30px", :"32px", :"34px", :"36px", :"38px", :"40px", :"42px"], f.object.font_size) %><br />
-    <%= f.label t(:align) %>
-    <%= f.select :text_align, options_for_select({t(:left) => :left, t(:center) => :center, t(:right) => :right, t(:justify) => :justify}) %><br />
-    <%= f.label t(:format) %>
-    <%= f.select :font_weight, options_for_select([["",""], [t(:bold), :bold]]) %>
-    <%= f.select :font_style, options_for_select([["",""], [t(:italic), :italic]]) %>
-    <%= f.select :text_decoration, options_for_select([["",""], [t(:underline), :underline]]) %><br />
+    <legend><%= t(f.object.tag) %></legend>
+    <%= f.hidden_field :tag %>
+    <%= f.label t(:position) %>
+    (<%= f.text_field :position_x, :size => 4 %>,<%= f.text_field :position_y, :size => 4 %>)<br />
+    <%= f.label t(:dimension) %>
+    (<%= f.text_field :width, :size => 4 %>,<%= f.text_field :height, :size => 4 %>)<br />
+    <p />
+
+    <%= f.fields_for :text_overlay do |f| %>
+        <% f.object.text = t("#{f.object.overlay.tag}_tag_text") if f.object.text.nil? || f.object.text.blank? %>
+        <%= f.label t(:text) %>
+        <%= f.text_field :text %><br />
+        <%= f.label t(:color) %>
+        <%= f.text_field :color %><br />
+        <%= f.label t(:font) %>
+        <%= f.select :font_family, [ :Arial, :Georgia, :"Gill Sans", :Tahoma ] %>
+        <%= f.select :font_size, options_for_select([:"10px", :"12px", :"14px", :"16px", :"18px", :"20px", :"22px", :"24px", :"26px", :"28px", :"30px", :"32px", :"34px", :"36px", :"38px", :"40px", :"42px"], f.object.font_size) %><br />
+        <%= f.label t(:align) %>
+        <%= f.select :text_align, options_for_select({t(:left) => :left, t(:center) => :center, t(:right) => :right, t(:justify) => :justify}) %><br />
+        <%= f.label t(:format) %>
+        <%= f.select :font_weight, options_for_select([["",""], [t(:bold), :bold]]) %>
+        <%= f.select :font_style, options_for_select([["",""], [t(:italic), :italic]]) %>
+        <%= f.select :text_decoration, options_for_select([["",""], [t(:underline), :underline]]) %><br />
+    <% end %>
+
   </fieldset>
-<% end %>
+</div>

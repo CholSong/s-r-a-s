@@ -1,6 +1,6 @@
 <h1><%= t("editing_template") %></h1>
 
 <%= form_for(@object, :url => object_url, :html => { :multipart => true }) do |template_set_form| %>
-  <%= render :partial => "form", :locals => { :f => template_set_form } %>
+  <%= render :partial => "template_set_form", :locals => { :f => template_set_form } %>
   <%= render :partial => 'admin/shared/edit_resource_links' %>
 <% end %>

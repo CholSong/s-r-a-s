@@ -36,6 +36,11 @@ en:
   position: "Position"
   dimension: "Dimension"
   tag: Tag
+  title_tag_text: "Promotion Title"
+  title: Title
+  details_tag_text: "Promotion Details"
+  details: Details
+  product_image: "Product Image"
   text_overlay: "Text "
   image_overlay: "Image "
   font: Font

@@ -1,10 +1,22 @@
-<%= f.fields_for :image_overlay do |img_overlay_form| %>
-  <%= img_overlay_form.fields_for :overlay_image do |overlay_img_form|%>
-    <%= overlay_img_form.file_field :attachment %><br />
-    <%  overlay = overlay_img_form.object %>
-    <% if !overlay.attachment_file_name.nil? %>
-      <%= link_to(image_tag(overlay.attachment.url(:small)), overlay.attachment.url(:original)) %>
-    <% end %>
-  <% end%>
-<% end %>
+<div class="yui-u <%= field_set_position == 1 ? :first : "" %> ">
+  <fieldset >
+    <legend><%= t(f.object.tag) %></legend>
+    <%= f.hidden_field :tag %>
+    <%= f.label t(:position) %>
+    (<%= f.text_field :position_x, :size => 4 %>,<%= f.text_field :position_y, :size => 4 %>)<br />
+    <%= f.label t(:dimension) %>
+    (<%= f.text_field :width, :size => 4 %>,<%= f.text_field :height, :size => 4 %>)<br />
+    <p />
 
+    <%= f.fields_for :image_overlay do |img_overlay_form| %>
+      <%= img_overlay_form.fields_for :overlay_image do |overlay_img_form|%>
+        <%= overlay_img_form.file_field :attachment %><br />
+        <%  overlay = overlay_img_form.object %>
+        <% if !overlay.attachment_file_name.nil? %>
+          <%= link_to(image_tag(overlay.attachment.url(:small)), overlay.attachment.url(:original)) %>
+        <% end %>
+      <% end%>
+    <% end %>
+
+  </fieldset>
+</div>

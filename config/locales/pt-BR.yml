@@ -1146,6 +1146,11 @@ pt-BR:
   position: "Posição"
   dimension: "Dimensão"
   tag: Rótulo
+  title_tag_text: "Título da Promoção"
+  title: Título
+  details_tag_text: "Detalhes da Promoção"
+  details: Detalhes
+  product_image: "Imagem do Produto"
   text_overlay: "Texto "
   image_overlay: "Imagem "
   font: Fonte
