@@ -97,8 +97,8 @@ function displayTemplateForActiveSet(templateType) {
     var templateToDisplay = getTemplateByType(templateType, savedData.activeTemplateSet);
     savedData.activeTemplate = templateToDisplay;
     savedData.activeTemplateId = templateToDisplay.id;
-    $(".template-container." + counterpartType[templateType]).addClass("hidden");
-    $(".template-container." + templateType).removeClass("hidden");
+    $(".template-container." + counterpartType[templateType]).addClass("is-hidden");
+    $(".template-container." + templateType).removeClass("is-hidden");
 }
 
 function onTemplateSetClicked(templateSet, detailTemplate, summaryTemplate) {
@@ -135,13 +135,13 @@ function createTemplateContainer(templateSet, template) {
     }
     // Configuring actions for the overlays.
     $(".overlay", containerContext).mouseenter(function() {
-        if($(this).find(".hidden").css("display") == "none") {
-            $(this).find(".hidden").fadeIn(300);
+        if($(this).find(".up-panel")) {
+            $(this).find(".up-panel").fadeIn(300);
         };
     });
     $(".overlay", containerContext).mouseleave(function() {
-        if($(this).find(".hidden").css("display") != "none") {
-            $(this).find(".hidden").fadeOut(500);
+        if($(this).find(".up-panel")) {
+            $(this).find(".up-panel").fadeOut(500);
         }
     });
     // Setting up upload events for Upload Panel.
@@ -303,7 +303,7 @@ function createImageOverlay(context, template, overlay) {
     var elementId = 'image-overlay_' + overlay.id;
 
     var overlayElement = '<div class="image-overlay overlay" id="' + elementId + '"><div class="image-control" ></div>';
-    overlayElement += '<div class="up-panel hidden">';
+    overlayElement += '<div class="up-panel">';
     overlayElement += '<div class="upload-btn" ><em><input type="file" name="img-upload" id="img-upload_' + overlay.id + '" class="img-upload"/></em>';
     overlayElement += '<img src="/images/bemtevi/ajax-loader.gif" /></div>';
     overlayElement += '</div>';

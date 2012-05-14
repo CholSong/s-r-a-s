@@ -151,10 +151,10 @@ function saveCanvasToAttachmentAsBase64() {
     var boundary='myboundaryrandom';
     var canvas = document.getElementById("image_from_template_canvas");
     var promotionId = document.getElementById("promotion_id_for_image_from_template").value;
-    var arr, data, j, xhr;
-    data = canvas.toDataURL(type);
-    data = data.replace('data:' + type + ';base64,', '');
-    arr = ['--' + boundary, 
+    var arr, data, j, xhr;
+    data = canvas.toDataURL(type);
+    data = data.replace('data:' + type + ';base64,', '');
+    arr = ['--' + boundary, 
            'Content-Disposition: form-data; name="authenticity_token"', 
            '',
            AUTH_TOKEN,
@@ -173,7 +173,7 @@ function saveCanvasToAttachmentAsBase64() {
            '',
            data,
            '--' + boundary + '--'];
-    j = arr.join('\r\n');
+    j = arr.join('\r\n');
 
     var formAction = document.getElementById("image_from_template_form").getAttribute("action");
     
@@ -182,7 +182,7 @@ function saveCanvasToAttachmentAsBase64() {
         handleCanvasSubmitResponse(xhr, formAction);
     }
     xhr.open("POST", formAction);  
-    xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
+    xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
     xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
     xhr.send(j);
 }
