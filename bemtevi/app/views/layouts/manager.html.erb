@@ -13,12 +13,13 @@
   <% if flash[:error] %>
     <div class="flash error"><%= flash[:error] %></div>
   <% end %>
-  <!-- if self.notice % >
-    <div class="flash notice">< % = self.notice % ></div>
-  < % end -->
 
-  <%= render :partial => 'admin/shared/alert', :collection => session[:alerts] %>
+<!--   <% if self.notice %>
+    <div class="flash notice"><%= self.notice %></div>
+  <% end %>
 
+  <%= render :partial => 'admin/shared/alert', :collection => session[:alerts] %> -->
+  
   <div id="header">
     <h1><%= link_to t("administration"), admin_path %></h1>
     <% if  current_user %>
