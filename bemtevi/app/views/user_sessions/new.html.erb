@@ -1,0 +1,12 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "bemtevi/login" %>
+<% end %>
+
+<%= image_tag("bemtevi/bemtevi_cloud.png", :alt => "bemtevi logo", :class => "bemtevi-login-logo") %>
+<% @body_id = 'login' %>
+<div class="existing-customer">
+  <%= hook :login do %>
+    <%= render :partial => 'shared/login' %>
+  <% end %>
+</div>
+<%= hook :login_extras %>

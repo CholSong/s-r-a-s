@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   namespace :manager do
+
     resources :promotions do
       member do 
         post :create

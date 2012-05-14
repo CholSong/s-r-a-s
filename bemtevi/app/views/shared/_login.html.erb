@@ -1,0 +1,9 @@
+<%= form_for(:user, :url => user_session_path) do |f| %>
+  <%= submit_tag "", :class => 'login-btn' %>
+  <div class='username-bg'>
+    <%= f.text_field 'email', :class => 'username-field' %>
+  </div>
+  <div class='password-bg'>
+    <%= f.password_field 'password', :class => 'password-field' %>
+  </div>
+<% end %>

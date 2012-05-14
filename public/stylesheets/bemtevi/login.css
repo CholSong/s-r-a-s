@@ -1,0 +1,74 @@
+/* CSS Document */
+.bemtevi-login-logo {
+    width: 845px;
+    position: relative;
+    left: 0;
+    top: -17px;
+    padding-top: 0;
+    margin-top: 100px;
+    margin-bottom: 0;
+}
+
+.existing-customer {
+    padding-left: 75px;
+}
+
+.login-btn {
+    left: -2px;
+    top: 31px;
+    background-color: transparent;
+    border: none;
+    background-image: url(/images/bemtevi/btn/login_button.png);
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-repeat: no-repeat;
+    z-index: 10;
+    position: relative;
+    width: 165px;
+    height: 170px;
+}
+
+.username-bg {
+    z-index: 5;
+    background-image: url(/images/bemtevi/backgrounds/login_field_bg.png);
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-repeat: no-repeat;
+    height: 59px;
+    position: relative;
+    width: 287px;
+    left: 130px;
+    top: -93px;
+}
+
+.username-field {
+    position: relative;
+    width: 225px;
+    height: 35px;
+    left: 30px;
+    top: 10px;
+    font-size:11pt; 
+}
+
+.password-bg {
+    z-index: 5;
+    background-image: url(/images/bemtevi/backgrounds/login_field_bg.png);
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-repeat: no-repeat;
+    height: 59px;
+    position: relative;
+    width: 287px;
+    left: 431px;
+    top: -152px;
+}
+
+.password-field {
+    position: relative;
+    width: 225px;
+    height: 35px;
+    left: 30px;
+    top: 10px;
+    font-size:11pt; 
+}
+
