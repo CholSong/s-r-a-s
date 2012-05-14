@@ -18,6 +18,7 @@ Rails.application.routes.draw do
         post :create
       end
       collection do 
+        get :dummy_page_5
         get :templates
         get :promotions
       end

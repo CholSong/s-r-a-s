@@ -1,5 +1,9 @@
 class Manager::PromotionsController < Manager::BaseController
 
+  def dummy_page_5
+    render "dummy_page_5", :layout => false
+  end
+
   def templates
 
     template_array = Array.new(2) { |f|
