@@ -1,6 +1,6 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag "bemtevi/create-template" %>
-  <%= javascript_include_tag "bemtevi/templates" %>
+  <%= javascript_include_tag "bemtevi/templates", "bemtevi/template-canvas" %>
 <% end %>
 
 <div id="change-tpl-btn" >
@@ -24,6 +24,7 @@
 <div id="nav-buttons-container" >
     <a id="btnVoltar" class="nav-btn" href="/manager/promotions" title="voltar" ><span class="left">voltar</span></a>
     <a id="btnProximo" class="nav-btn" href="/manager/promotions/dummy_page_5" title="próximo" ><span class="right">próximo</span></a>
+<!--     <a id="btnProximo" class="nav-btn" href="javascript:drawTemplates()" title="próximo" ><span class="right">próximo</span></a> -->
 </div>
 
 <div id="canvas-container-detail" class="is-hidden">

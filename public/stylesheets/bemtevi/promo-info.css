@@ -1,0 +1,253 @@
+ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input{
+	margin:0;
+	padding:0;
+}
+ul{
+	list-style:none;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+}
+
+fieldset{
+	border:0;
+}
+a,a:link,a:visited,a:hover{
+	color:#00f;
+	text-decoration:none;
+}
+a:focus,a:hover{
+	text-decoration:underline;
+}
+
+a img{
+	border:none;
+}
+
+.clear{
+	clear:both;
+}
+
+body{
+	position:relative;
+	background:#afc9ce;
+	font:62.5% Arial,sans-serif;
+}
+
+#popup-container{
+	width:960px;
+	height: 720px;
+	margin:0 auto;
+	background:url(/images/bemtevi/promo-screen-images/popup-container-bg.jpg) no-repeat;
+}
+
+#popup{
+	width:884px;
+	margin:0 auto;
+}
+
+#popup-head{
+	width:884px;
+	height:188px;
+	padding:12px 0px 0px 0px;
+}
+
+#popup-logo{
+	float:left;
+}
+
+#popup-head-right{
+	float:right;
+}
+
+#popup-head-right p{
+	color:#7d6e4d;
+	font-size:19px;
+	text-align:right;
+	text-shadow: -3px 3px 4px #acbbae;
+	padding:14px 0px 14px 0px;
+}
+
+#popup-head-right p span{
+	display:block;
+	font-weight:bold;
+	font-size:21px;
+}
+
+a.close{
+	height:30px;
+	display:block;
+	color:#7d6e4d !important;
+	font-size:16px;
+	font-weight:bold;
+	letter-spacing:3px;
+	text-shadow: -3px 3px 4px #acbbae;
+	line-height:100%;
+	text-align:right;
+	text-decoration: none;
+	padding:2px 25px 0px 0px;
+	background:url(/images/bemtevi/promo-screen-images/close.jpg) right top no-repeat;
+}
+
+#inner-popup{
+	width:884px;
+	height: 412px;
+	position:relative;
+	text-align:center;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	padding:40px 0px 0px 0px;
+	-moz-box-shadow: -2px 2px 2px #a0afa4;
+	-webkit-box-shadow: -2px 2px 2px #a0afa4;
+	box-shadow: -2px 2px 2px #a0afa4;
+	background:url(/images/bemtevi/promo-screen-images/inner-popup-bg.jpg);
+}
+
+#inner-popup label{
+	display:block;
+	color:#887b58;
+	font-size:20px;
+	line-height:100%;
+	padding:7px 0px 7px 0px;
+}
+
+#inner-popup input{
+	width:762px;
+	height:59px;
+	border:none;
+	color:#7d6e4d;
+	padding: 0px 10px;
+	margin:0px 0px 9px 0px;
+	-moz-border-radius: 35px;
+	border-radius: 35px;
+	background:url(/images/bemtevi/promo-screen-images/input-bg.jpg);
+	-moz-box-shadow: inset -2px 2px 2px #b6ac91;
+	-webkit-box-shadow: inset -2px 2px 2px #b6ac91;
+	box-shadow: inset -2px 2px 2px #b6ac91;
+}
+
+#inner-popup textarea{
+	font-family: arial;
+	width:762px;
+	height:103px;
+	border:none;
+	color:#7d6e4d;
+	resize: none;
+	padding: 20px 10px;
+	margin:0px 0px 17px 0px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	background:url(/images/bemtevi/promo-screen-images/input-bg.jpg);
+	-moz-box-shadow: inset -2px 2px 2px #b6ac91;
+	-webkit-box-shadow: inset -2px 2px 2px #b6ac91;
+	box-shadow: inset -2px 2px 2px #b6ac91;
+}
+
+#small{
+	padding:0px 0px 0px 37px;
+}
+
+#inner-popup #small label{
+	float:left;
+	padding:12px 10px 0px 22px;
+}
+
+#inner-popup #small label.second{
+	padding:12px 10px 0px 42px;
+}
+
+#inner-popup #small input{
+	float:left;
+	width:166px;
+	height:33px;
+	font-size: 20px;
+	margin:0px 10px 0px 0px;
+	padding:5px 10px 5px 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	background: #e1dcd1;
+}
+
+#button-container{
+	position: absolute;
+	bottom: -64px;
+	right: 0px;
+}
+
+#button-container ul{
+	float:right;
+	padding:0px 35px 0px 0px;
+}
+
+#button-container ul li{
+	float:left;
+	font-size:18px;
+	text-align:center;
+	padding:0px 9px 0px 0px;
+}
+
+#button-container ul li a{
+	color:#cdc5b2;
+	text-decoration: none;
+	line-height:100%;
+}
+
+#button-container ul li a span{
+	color:#f6b300;
+	display:inline-block;
+	padding:4px 0px 0px 0px;
+}
+
+#button-container ul li input{
+	width:180px;
+	height:55px;
+	color: #f4ac00;
+	font-size: 24px;
+	cursor: pointer;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	border: none;
+	line-height: 200%;
+	padding: 0px 0px 10px 0px;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	background: url(/images/bemtevi/promo-screen-images/publicar.jpg) no-repeat;
+}
+
+
+#button-container ul li a.button-img{
+	display: block;
+	width: 120px;
+	height: 42px;
+	font-size: 24px;
+	display:inline-block;
+	margin:0px 10px 0px 0px;
+	padding: 13px 0px 0px 60px;
+	background: url(/images/bemtevi/promo-screen-images/voltar.jpg)
+}
+
+
+
+/**/
+.replace{
+	position:relative;
+	margin:0;
+	padding:0;
+	/* \*/
+	overflow:hidden;
+	/* */
+}
+.replace span{
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:1;
+}
+.skiplink{
+	display:none;
+}
+#wrapper{
+	margin:0 auto;
+}

@@ -1,22 +1,66 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <%= render :partial => "manager/shared/manager_head" %>
-</head>
-<body>
-<!--[if IE 7]>
-<div id='IE7'>
-<![endif]-->
-<div id='wrapper'>
-  <div id="content" style="margin-top: 0px">
-    <img src="/images/bemtevi/pagina_5_b.png" style="width: 960px;">
-    </img>
-  </div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Project: </title>
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <link href="/stylesheets/bemtevi/promo-info.css" rel="stylesheet" type="text/css" />
+        <link type="text/css" href="/stylesheets/bemtevi/jquery-ui-1.8.20.custom.css" rel="stylesheet" />
+        <script type="text/javascript" src="/javascripts/bemtevi/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="/javascripts/bemtevi/jquery-ui-1.8.20.custom.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
 
-</div>
-<!--[if IE]>
-</div>
-<![endif]-->
-</body>
+                // Datepicker
+                $('#datepicker').datepicker({
+                    inline : true
+                });
+                $('#datepicker2').datepicker({
+                    inline : true
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <div id="popup-container">
+            <div id="popup">
+                <div id="popup-head">
+                    <a href="#" id="popup-logo"><img src="/images/bemtevi/promo-screen-images/popup-logo.png" alt="" /></a>
+                    <div id="popup-head-right">
+                        <p>
+                            <span>bem-vindo,</span> Usuário_1
+                        </p>
+                        <a href="#" class="close">sair</a>
+                    </div><!--popup-head-right ends-->
+                </div><!--popup-head ends-->
+                <div id="inner-popup">
+                    <form id="contact" name="contact" action="/manager/promotions" method="get">
+                        <label>nome da promoção</label>
+                        <input type="text" name="fname" />
+                        <label>descrição da promoção</label>
+                        <textarea cols="" rows="" name="message"></textarea>
+                        <div id="small">
+                            <label>válida a partir de</label>
+                            <input type="text" name="date" id="datepicker" />
+                            <label class="second">válida até</label>
+                            <input type="text" name="date2" id="datepicker2" />
+                        </div><!--small ends-->
+                        <div id="button-container">
+                            <ul>
+                                <li>
+                                    <a href="/manager/promotions/new" class="button-img">voltar</a>
+                                </li>
+                                <li>
+                                    <input type="submit" value="publicar" />
+                                </li>
+                            </ul>
+                        </div><!--button-container ends-->
+                    </form>
+                    <div class="clear"></div>
+                </div><!--inner-popup ends-->
+            </div><!--popup ends-->
+        </div><!--popup-container ends-->
+    </body>
 </html>

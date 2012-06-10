@@ -120,9 +120,11 @@ function createTemplateContainers(templateSet, detailTemplate, summaryTemplate) 
  */
 function createTemplateContainer(templateSet, template) {
     // Setting up the container according to the template type.
-    var containerContext = $(".template-container." + template.template_type)
+    var templateType = template.template_type;
+    var containerContext = $(".template-container." + templateType)
     $(".regions-container", containerContext).html("");
-    $(".regions-container", containerContext).append($('<img src="' + template.background_image.url + '" />'));
+    var background = $('<img src="' + template.background_image.url + '" class="template-background-' + templateType + '" />');
+    $(".regions-container", containerContext).append(background);
 
     // Setting up the overlays.
     for(var o = 0; o < template.overlays.length; o++) {
