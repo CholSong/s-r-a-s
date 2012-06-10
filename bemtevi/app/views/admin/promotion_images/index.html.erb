@@ -28,10 +28,6 @@
 
 <%= button_link_to t("from_local_file"), new_admin_promotion_promotion_image_url(@promotion), {:remote => true, :id => 'new_image_link', :'data-update' => ""} %>
 
-<% @image_templates.each do |image_template| %>
-  <%= link_to(image_tag(image_template.attachment.url(:small)), new_admin_promotion_promotion_image_url(@promotion), :id => "new_image_link_from_template#{image_template.id}", :'data-template-id' => "#{image_template.id}") %>
-<% end %>
-
 <% content_for :head do %>
   <%= javascript_include_tag 'bemtevi/bemtevi-image-template.js' %>
 
