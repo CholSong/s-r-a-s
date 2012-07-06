@@ -43,3 +43,6 @@ gem 'spree', :git => 'git://github.com/spree/spree.git', :tag => 'v0.60.6'
 gem 'bemtevi', :require => "bemtevi", :path => "bemtevi"
 
 gem 'uuidtools'
+
+# kaminari is for pagination
+gem 'kaminari', '0.13.0'
