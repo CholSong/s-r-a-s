@@ -43,7 +43,7 @@ class Manager::PromotionsController < Manager::BaseController
   end
 
   def index
-    @promotions = Promotion.all
+    @promotions = Promotion.where(deleted_at: nil)
   end
 
   private

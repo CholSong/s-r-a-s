@@ -7,9 +7,16 @@
 
 <div id="promo-panel" class="list-panel" >
 	<div class="header" >
-  	  <p>Suas promoções ativas</p>
-      <a href="/manager/promotions/new" id="new-promo-btn" title="criar promoção">criar promoção</a>
-    </div>
+	  <p>Suas promoções ativas</p>
+    <a href="/manager/promotions/new" id="new-promo-btn" title="criar promoção">criar promoção</a>
+  </div>
+
+  <ul>
+  <% @promotions.each do |promotion| %>
+    <li><%= promotion.name %> - Valid <%= promotion.starts_at %> - <%= promotion.expires_at %><li>
+  <% end %>
+  </ul>
+
 	<div id="tpl-container">
     <div class="tpl-list-item inactive" id="tpl-list-item_0">
       <img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg">
