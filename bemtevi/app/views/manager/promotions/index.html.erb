@@ -16,6 +16,7 @@
     <% if promotion_image.attachment_aspect_ratio < 1 %>
       <% image_url = promotion_image.attachment.url(:medium) %>
     <% end %>
+    <% end %>
 
     <div class="tpl-list-item inactive" id="tpl-list-item_<%= promotion.id %>">
       <%= image_tag(image_url, title: promotion.name) if promotion.promotion_images.count > 0 %>
