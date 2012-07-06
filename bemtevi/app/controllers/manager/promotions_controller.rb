@@ -42,6 +42,10 @@ class Manager::PromotionsController < Manager::BaseController
     end
   end
 
+  def index
+    @promotions = Promotion.all
+  end
+
   private
 
   def prefix(t)
