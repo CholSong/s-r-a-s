@@ -41,11 +41,13 @@ class Manager::PromotionsController < Manager::BaseController
   #    format.json { render :json => response }
   #  end
 
-    if !params[:page].blank?
-      @promotions = Promotion.page(params[:page])
-    else
-      @promotions = Promotion.page(1)
-    end
+  #  if !params[:page].blank?
+  #    @promotions = Promotion.page(params[:page])
+  #  else
+  #    @promotions = Promotion.page(1)
+  #  end
+
+  @promotions = Promotion.all
   end
 
   private
