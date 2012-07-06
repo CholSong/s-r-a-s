@@ -3,31 +3,32 @@
   <!-- <%= javascript_include_tag "bemtevi/active-templates" %> -->
 <% end %>
 
-<h1>Hello <%= @promotions.first.name %></h1>
-
 <div id="promo-panel" class="list-panel" >
 	<div class="header" >
 	  <p>Suas promoções ativas</p>
     <a href="/manager/promotions/new" id="new-promo-btn" title="criar promoção">criar promoção</a>
   </div>
 
-  <ul>
-  <% @promotions.each do |promotion| %>
-    <li><%= promotion.name %> - Valid <%= promotion.starts_at %> - <%= promotion.expires_at %><li>
-  <% end %>
-  </ul>
-
 	<div id="tpl-container">
-    <div class="tpl-list-item inactive" id="tpl-list-item_0">
-      <img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg">
+
+    <% @promotions.each do |promotion| %>
+
+    <div class="tpl-list-item inactive" id="tpl-list-item_<%= promotion.id %>">
+      <%= image_tag promotion.image.attachment.url %>
+      <div><%= promotion.name %></div>
       <div>
         <a href="#" class="duplicate-template-btn" title="Duplicar">Duplicar</a>
         <a href="#" class="deactive-template-btn" title="Desativar">Desativar</a>
         <a href="#" class="active-template-btn" title="Ativar">Ativar</a>
         <a href="#" class="edit-template-btn" title="Editar">Editar</a>
       </div>
-      <label>Val. 10/10/2012 0</label>
+      <label>Val. <%= promotion.starts_at %> - <%= promotion.expires_at %></label>
     </div>
+
+    <% end %>
+
+
+    
     <div class="tpl-list-item inactive" id="tpl-list-item_0">
       <img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg">
       <div>
