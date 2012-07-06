@@ -14,7 +14,7 @@
     <% @promotions.each do |promotion| %>
 
     <div class="tpl-list-item inactive" id="tpl-list-item_<%= promotion.id %>">
-      <%= image_tag promotion.image.attachment.url %>
+      <%= image_tag promotion.image.attachment.url if promotion.image && promotion.image.attachment %>
       <div><%= promotion.name %></div>
       <div>
         <a href="#" class="duplicate-template-btn" title="Duplicar">Duplicar</a>

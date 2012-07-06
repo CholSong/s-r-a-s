@@ -46,7 +46,7 @@ class Manager::PromotionsController < Manager::BaseController
     @promotions = Promotion.where(deleted_at: nil)
     promotion_images = PromotionImage.where(viewable_type: "Promotion")
     @promotions.each do |promotion|
-      @promotion.image = promotion_images.where(viewable_id: promotion.id)
+      promotion.image = promotion_images.where(viewable_id: promotion.id).first
     end
   end
 
