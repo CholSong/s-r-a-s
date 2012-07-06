@@ -44,6 +44,7 @@ class Manager::PromotionsController < Manager::BaseController
 
   def index
     @promotions = Promotion.where(deleted_at: nil)
+    @image_url = nil
   end
 
   private

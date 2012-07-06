@@ -14,12 +14,12 @@
     <% @promotions.each do |promotion| %>
     <% promotion.promotion_images.each do |promotion_image| %>
     <% if promotion_image.attachment_aspect_ratio < 1 %>
-      <% image_url = promotion_image.attachment.url(:medium) %>
+      <% @image_url = promotion_image.attachment.url(:medium) %>
     <% end %>
     <% end %>
 
     <div class="tpl-list-item inactive" id="tpl-list-item_<%= promotion.id %>">
-      <%= image_tag(image_url, title: promotion.name) if promotion.promotion_images.count > 0 %>
+      <%= image_tag(@image_url, title: promotion.name) if promotion.promotion_images.count > 0 %>
       <!--
       <div>
         <a href="#" class="duplicate-template-btn" title="Duplicar">Duplicar</a>
