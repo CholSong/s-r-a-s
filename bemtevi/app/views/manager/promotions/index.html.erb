@@ -12,17 +12,22 @@
 	<div id="tpl-container">
 
     <% @promotions.each do |promotion| %>
+    <% promotion.promotion_images.each do |promotion_image| %>
+    <% if promotion_image.attachment_aspect_ratio < 1 %>
+      <% image_url = promotion_image.attachment.url(:medium) %>
+    <% end %>
 
     <div class="tpl-list-item inactive" id="tpl-list-item_<%= promotion.id %>">
-      <%= image_tag promotion.promotion_images.last.attachment.url(:medium) if promotion.promotion_images.count > 0 %>
-      <div><%= promotion.name %></div>
+      <%= image_tag(image_url, title: promotion.name) if promotion.promotion_images.count > 0 %>
+      <!--
       <div>
         <a href="#" class="duplicate-template-btn" title="Duplicar">Duplicar</a>
         <a href="#" class="deactive-template-btn" title="Desativar">Desativar</a>
         <a href="#" class="active-template-btn" title="Ativar">Ativar</a>
         <a href="#" class="edit-template-btn" title="Editar">Editar</a>
       </div>
-      <label>Val. <%= promotion.starts_at %> - <%= promotion.expires_at %></label>
+    -->
+      <label>Val. <%= promotion.starts_at.to_date.to_formatted_s(:short) %> - <%= promotion.expires_at.to_date.to_formatted_s(:short) %></label>
     </div>
 
     <% end %>
