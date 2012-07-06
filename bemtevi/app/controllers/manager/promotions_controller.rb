@@ -20,34 +20,26 @@ class Manager::PromotionsController < Manager::BaseController
   end
 
   def promotions
-  #  offset = params[:pg].to_i * 12
-  #  promotions_array = Array.new(12) { |i|
-  #    f = i + offset
-  #    {
-  #      :id => f,
-  #      :thumb => "#{path_prefix}/templates/thumbs/#{thumb_prefix_for_promos(f)}-thumb.jpg",
-  #      :status => status_for_promo(f),
-  #      :valdate => "10/10/2012 #{f}"
-  #    }
-  #  }
-  #  response = {
-  #    :first_page => 0,
-  #    :last_page => 4,
-  #    :total_pages => 5,
-  #    :page => params[:pg],
-  #    :templates => promotions_array
-  #  }
-  #  respond_to do |format|
-  #    format.json { render :json => response }
-  #  end
-
-  #  if !params[:page].blank?
-  #    @promotions = Promotion.page(params[:page])
-  #  else
-  #    @promotions = Promotion.page(1)
-  #  end
-
-  @promotions = Promotion.all
+    offset = params[:pg].to_i * 12
+    promotions_array = Array.new(12) { |i|
+      f = i + offset
+      {
+        :id => f,
+        :thumb => "#{path_prefix}/templates/thumbs/#{thumb_prefix_for_promos(f)}-thumb.jpg",
+        :status => status_for_promo(f),
+        :valdate => "10/10/2012 #{f}"
+      }
+    }
+    response = {
+      :first_page => 0,
+      :last_page => 4,
+      :total_pages => 5,
+      :page => params[:pg],
+      :templates => promotions_array
+    }
+    respond_to do |format|
+      format.json { render :json => response }
+    end
   end
 
   private
