@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   namespace :manager do
 
+    resources :promotions, only: [:index]
     resources :promotions do
       member do 
         post :create
