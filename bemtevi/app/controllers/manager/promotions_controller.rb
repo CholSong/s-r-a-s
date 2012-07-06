@@ -44,10 +44,7 @@ class Manager::PromotionsController < Manager::BaseController
 
   def index
     @promotions = Promotion.where(deleted_at: nil)
-    promotion_images = PromotionImage.where(viewable_type: "Promotion")
-    @promotions.each do |promotion|
-      promotion.image = promotion_images.where(viewable_id: promotion.id).first
-    end
+    @promotion_images = PromotionImage.all
   end
 
   private

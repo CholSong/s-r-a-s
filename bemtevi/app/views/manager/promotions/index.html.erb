@@ -12,9 +12,10 @@
 	<div id="tpl-container">
 
     <% @promotions.each do |promotion| %>
+    <% image = @promotion_images.where(viewable_id: promotion.id)
 
     <div class="tpl-list-item inactive" id="tpl-list-item_<%= promotion.id %>">
-      <%= image_tag promotion.image.attachment.url if promotion.image && promotion.image.attachment %>
+      <%= image_tag image.attachment.url %>
       <div><%= promotion.name %></div>
       <div>
         <a href="#" class="duplicate-template-btn" title="Duplicar">Duplicar</a>
