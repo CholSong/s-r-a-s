@@ -28,7 +28,7 @@
         <a href="#" class="edit-template-btn" title="Editar">Editar</a>
       </div>
     -->
-      <label>Val. <%= promotion.starts_at.to_date.to_formatted_s(:short) %> - <%= promotion.expires_at.to_date.to_formatted_s(:short) %></label>
+      <label>Val. <%= promotion.starts_at.to_date.to_formatted_s(:db) %> - <%= promotion.expires_at.to_date.to_formatted_s(:db) %></label>
     </div>
 
     <% end %>
