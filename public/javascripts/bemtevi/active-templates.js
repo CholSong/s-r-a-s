@@ -85,6 +85,6 @@ function loadTemplates() {
 }
 
 $(document).ready(function() {
-//  loadTemplates();
-    getPage(0);
+  loadTemplates();
+//  getPage(0);
 });

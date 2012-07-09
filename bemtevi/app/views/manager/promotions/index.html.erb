@@ -1,6 +1,6 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag "bemtevi/active-template" %>
-  <!-- <%= javascript_include_tag "bemtevi/active-templates" %> -->
+  <%= javascript_include_tag "bemtevi/active-templates" %>
 <% end %>
 
 <div id="promo-panel" class="list-panel" >
@@ -20,14 +20,12 @@
 
     <div class="tpl-list-item inactive" id="tpl-list-item_<%= promotion.id %>">
       <%= image_tag(@image_url, title: promotion.name) if promotion.promotion_images.count > 0 %>
-      <!--
       <div>
         <a href="#" class="duplicate-template-btn" title="Duplicar">Duplicar</a>
         <a href="#" class="deactive-template-btn" title="Desativar">Desativar</a>
         <a href="#" class="active-template-btn" title="Ativar">Ativar</a>
         <a href="#" class="edit-template-btn" title="Editar">Editar</a>
       </div>
-    -->
       <label>Val. <%= promotion.starts_at.to_date.to_formatted_s(:db) %> - <%= promotion.expires_at.to_date.to_formatted_s(:db) %></label>
     </div>
 
