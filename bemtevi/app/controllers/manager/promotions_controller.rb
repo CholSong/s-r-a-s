@@ -1,5 +1,7 @@
 class Manager::PromotionsController < Manager::BaseController
 
+  before_filter :load_vendors
+
   def dummy_page_5
     render "dummy_page_5", :layout => false
   end
@@ -17,6 +19,11 @@ class Manager::PromotionsController < Manager::BaseController
     respond_to do |format|
       format.json { render :json => template_array }
     end
+  end
+
+  def index
+    @promotions = Promotion.where(deleted_at: nil)
+    @image_url = nil
   end
 
   def promotions
@@ -42,12 +49,11 @@ class Manager::PromotionsController < Manager::BaseController
     end
   end
 
-  def index
-    @promotions = Promotion.where(deleted_at: nil)
-    @image_url = nil
-  end
-
   private
+
+  def load_vendors
+    @vendors = Vendor.where(deleted_at: nil)
+  end
 
   def prefix(t)
     "f1t1"

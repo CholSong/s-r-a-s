@@ -28,8 +28,9 @@
         <span><%= current_user.email %></span>
         <%= link_to t('logout'), "#", :id => "btn-logout" %>
         <select id="selCompany" class="dropDownMenu" >
-          <option value="1">ZCafé</option>
-          <option value="2">Outra Empresa</option>
+          <% @vendors.each do |vendor| %>
+          <option value="<%= vendor.id %>"><%= vendor.name %></option>
+          <% end %>
         </select>
       </div>
       <div id="logout-popup" class="alert-popup">
