@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20120215082220) do
 
   create_table "adjustments", :force => true do |t|
     t.integer  "order_id"
-    t.decimal  "amount",          :precision => 8, :scale => 2
+    t.decimal  "amount",          :precision => 8, :scale => 2, :default => 0.0
     t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -616,7 +616,7 @@ ActiveRecord::Schema.define(:version => 20120215082220) do
     t.datetime "deleted_at"
     t.boolean  "is_master",                                   :default => false
     t.integer  "count_on_hand",                               :default => 0,     :null => false
-    t.decimal  "cost_price",    :precision => 8, :scale => 2
+    t.decimal  "cost_price",    :precision => 8, :scale => 2, :default => 0.0
     t.integer  "position"
   end
 
