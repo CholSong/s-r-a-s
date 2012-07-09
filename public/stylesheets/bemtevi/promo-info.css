@@ -13,13 +13,6 @@ input:focus, textarea:focus {
 fieldset{
 	border:0;
 }
-a,a:link,a:visited,a:hover{
-	color:#00f;
-	text-decoration:none;
-}
-a:focus,a:hover{
-	text-decoration:underline;
-}
 
 a img{
 	border:none;
@@ -39,7 +32,6 @@ body{
 	width:960px;
 	height: 720px;
 	margin:0 auto;
-	background:url(/images/bemtevi/promo-screen-images/popup-container-bg.jpg) no-repeat;
 }
 
 #popup{
@@ -92,16 +84,10 @@ a.close{
 
 #inner-popup{
 	width:884px;
-	height: 412px;
+	height: 400px;
 	position:relative;
 	text-align:center;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
-	padding:40px 0px 0px 0px;
-	-moz-box-shadow: -2px 2px 2px #a0afa4;
-	-webkit-box-shadow: -2px 2px 2px #a0afa4;
-	box-shadow: -2px 2px 2px #a0afa4;
-	background:url(/images/bemtevi/promo-screen-images/inner-popup-bg.jpg);
+	padding:100px 0px 0px 0px;
 }
 
 #inner-popup label{

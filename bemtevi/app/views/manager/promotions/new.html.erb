@@ -1,42 +1,65 @@
 <% content_for :head do %>
-  <%= stylesheet_link_tag "bemtevi/create-template" %>
-  <%= javascript_include_tag "bemtevi/templates", "bemtevi/template-canvas" %>
+<%= stylesheet_link_tag "bemtevi/create-template", "bemtevi/promo-info", "bemtevi/jquery-ui-1.8.20.custom" %>
+<%= javascript_include_tag "bemtevi/templates", "bemtevi/template-canvas", "bemtevi/jquery-ui-1.8.20.custom.min" %>
+<script type="text/javascript">
+    $(function() {
+        $('#datepicker').datepicker({
+            inline : true
+        });
+        $('#datepicker2').datepicker({
+            inline : true
+        });
+    }); 
+</script>
 <% end %>
 
-<div id="change-tpl-btn" >
-    <a href="javascript:void(0);" class="full" ><span>Completo</span></a>
-    <a href="javascript:void(0);" class="small" ><span>Reduzido</span></a>
-</div>
-
-<div id="template-container-detail" class="template-container detail" >
-    <div id="regions-container-detail" class="regions-container" >
+<div id="template_editing">
+    <div id="change-tpl-btn" >
+        <a href="javascript:void(0);" class="full" ><span>Completo</span></a>
+        <a href="javascript:void(0);" class="small" ><span>Reduzido</span></a>
     </div>
-</div>
 
-<div id="template-container-summary" class="template-container summary is-hidden" >
-    <div id="regions-container-summary" class="regions-container" >
+    <div id="template-container-detail" class="template-container detail" >
+        <div id="regions-container-detail" class="regions-container" ></div>
     </div>
-</div>
 
-<div id="template-list" >
-</div>
-
-<div id="nav-buttons-container" >
-    <a id="btnVoltar" class="nav-btn" href="/manager/promotions" title="voltar" ><span class="left">voltar</span></a>
-    <a id="btnProximo" class="nav-btn" href="/manager/promotions/dummy_page_5" title="próximo" ><span class="right">próximo</span></a>
-<!--     <a id="btnProximo" class="nav-btn" href="javascript:drawTemplates()" title="próximo" ><span class="right">próximo</span></a> -->
-</div>
-
-<div id="canvas-container-detail" class="is-hidden">
-    <canvas id="canvas-detail" width="394" height="502">
-    </canvas>
-    <div id="template-elements-detail">
+    <div id="template-container-summary" class="template-container summary is-hidden" >
+        <div id="regions-container-summary" class="regions-container" ></div>
     </div>
+
+    <div id="template-list" ></div>
+
+    <div id="nav-buttons-container" >
+        <a id="btnVoltar" class="nav-btn" href="/manager/promotions" title="voltar" ><span class="left">voltar</span></a>
+        <a id="btnProximo" class="nav-btn" href="javascript:showPromotionDetails()" title="próximo" ><span class="right">próximo</span></a>
+    </div>
+
+    <div id="canvas-container-detail" class="is-hidden"></div>
+
+    <div id="canvas-container-summary" class="is-hidden"></div>
 </div>
 
-<div id="canvas-container-summary" class="is-hidden">
-    <canvas id="canvas-summary" width="394" height="228">
-    </canvas>
-    <div id="template-elements-summary">
+<div id="promotion-details" class="is-hidden">
+    <div id="popup-container">
+        <div id="popup">
+            <div id="inner-popup">
+                <form id="contact" name="contact" action="/manager/promotions" method="get">
+                    <label>nome da promoção</label>
+                    <input type="text" name="fname" />
+                    <label>descrição da promoção</label>
+                    <textarea cols="" rows="" name="message"></textarea>
+                    <div id="small">
+                        <label>válida a partir de</label>
+                        <input type="text" name="date" id="datepicker" />
+                        <label class="second">válida até</label>
+                        <input type="text" name="date2" id="datepicker2" />
+                    </div>
+                </form>
+            </div>
+            <div id="nav-buttons-container" >
+                <a id="btnVoltar" class="nav-btn" href="javascript:showTemplateEditing()" title="voltar" ><span class="left">voltar</span></a>
+                <a id="btnProximo" class="nav-btn" href="#" title="próximo" ><span class="right">publicar</span></a>
+            </div>
+        </div>
     </div>
 </div>
