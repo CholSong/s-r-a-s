@@ -52,7 +52,7 @@ class Manager::PromotionsController < Manager::BaseController
   private
 
   def load_vendors
-    @vendors = Vendor.where(deleted_at: nil)
+    @vendors = Vendor.where(deleted_at: nil).order('name ASC')
   end
 
   def prefix(t)
