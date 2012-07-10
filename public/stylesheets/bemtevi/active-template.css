@@ -119,21 +119,32 @@ div.tpl-list-item label {
     font-weight:bold;
 }
 
-#pagination {
+#pagination, .pagination {
     margin: 10px;
     text-align:center;
 }
-#pagination a {
+#pagination a, .pagination a {
   color: #847654;
   font-size: 18px;
   font-weight: normal;
     text-decoration:none;
     margin:0 5px;
 }
-#pagination a:hover {
+#pagination a:hover, .pagination a:hover {
     text-decoration:underline;
 }
-#pagination a.active {
+#pagination a.active, .pagination a.active {
     text-decoration: underline;
     font-weight:bold;
+}
+
+.pagination .disabled {
+  display: none;
+}
+
+.pagination em {
+  opacity: 100;
+  filter: none;
+  position: inherit;
+  font-style: normal;
 }

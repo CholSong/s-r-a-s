@@ -1418,3 +1418,8 @@ pt-BR:
       activate: "Ativar"
       deactivate: "Desativar"
       edit: "Editar"
+
+  will_paginate:
+    previous_label: "&lt;"
+    next_label: "&gt;"
+    page_gap: "&hellip;"

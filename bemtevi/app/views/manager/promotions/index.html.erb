@@ -26,16 +26,11 @@
         <%= link_to t('promos.buttons.activate'), '#', title: t('promos.buttons.activate'), class: 'active-template-btn' %>
         <%= link_to t('promos.buttons.edit'), '/manager/promotions/new', title: t('promos.buttons.edit'), class: 'edit-template-btn' %>
       </div>
-      <label><%= promotion.starts_at.to_date.to_formatted_s(:db) %> - <%= promotion.expires_at.to_date.to_formatted_s(:db) %></label>
+      <label><%= promotion.starts_at.to_date.to_formatted_s(:db) if promotion.starts_at %> - <%= promotion.expires_at.to_date.to_formatted_s(:db) if promotion.expires_at %></label>
     </div>
 
     <% end %>
 
   </div>
-    <div id="pagination" >
-        <a href="#" class="first" title="Primeiro" ><<</a>
-        <a href="#" class="prior" title="Anterior" ><</a>
-        <a href="#" class="next" title="Próximo" >></a>
-        <a href="#" class="last" title="Último" >>></a>
-    </div>
+  <%= will_paginate @promotions %>
 </div>

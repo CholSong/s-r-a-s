@@ -22,7 +22,7 @@ class Manager::PromotionsController < Manager::BaseController
   end
 
   def index
-    @promotions = Promotion.where(deleted_at: nil)
+    @promotions = Promotion.order('created_at DESC').where(deleted_at: nil).paginate(page: params[:page] || 1, per_page: 12)
     @image_url = nil
   end
 
