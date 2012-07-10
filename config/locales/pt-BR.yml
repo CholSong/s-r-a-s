@@ -1411,3 +1411,10 @@ pt-BR:
 
       full_messages:
         format: "%{attribute} %{message}"
+
+  promos:
+    buttons:
+      duplicate: "Duplicar"
+      activate: "Ativar"
+      deactivate: "Desativar"
+      edit: "Editar"

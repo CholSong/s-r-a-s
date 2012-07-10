@@ -21,28 +21,16 @@
     <div class="tpl-list-item inactive" id="tpl-list-item_<%= promotion.id %>">
       <%= image_tag(@image_url, title: promotion.name) if promotion.promotion_images.count > 0 %>
       <div>
-        <a href="#" class="duplicate-template-btn" title="Duplicar">Duplicar</a>
-        <a href="#" class="deactive-template-btn" title="Desativar">Desativar</a>
-        <a href="#" class="active-template-btn" title="Ativar">Ativar</a>
-        <a href="#" class="edit-template-btn" title="Editar">Editar</a>
+        <%= link_to t('promos.buttons.duplicate'), '/manager/promotions/new', title: t('promos.buttons.duplicate'), class: 'duplicate-template-btn' %>
+        <%= link_to t('promos.buttons.deactivate'), '#', title: t('promos.buttons.deactivate'), class: 'deactive-template-btn' %>
+        <%= link_to t('promos.buttons.activate'), '#', title: t('promos.buttons.activate'), class: 'active-template-btn' %>
+        <%= link_to t('promos.buttons.edit'), '/manager/promotions/new', title: t('promos.buttons.edit'), class: 'edit-template-btn' %>
       </div>
-      <label>Val. <%= promotion.starts_at.to_date.to_formatted_s(:db) %> - <%= promotion.expires_at.to_date.to_formatted_s(:db) %></label>
+      <label><%= promotion.starts_at.to_date.to_formatted_s(:db) %> - <%= promotion.expires_at.to_date.to_formatted_s(:db) %></label>
     </div>
 
     <% end %>
 
-
-    
-    <div class="tpl-list-item inactive" id="tpl-list-item_0">
-      <img src="/images/bemtevi/temp/templates/thumbs/f1t1-thumb.jpg">
-      <div>
-        <a href="#" class="duplicate-template-btn" title="Duplicar">Duplicar</a>
-        <a href="#" class="deactive-template-btn" title="Desativar">Desativar</a>
-        <a href="#" class="active-template-btn" title="Ativar">Ativar</a>
-        <a href="#" class="edit-template-btn" title="Editar">Editar</a>
-      </div>
-      <label>Val. 10/10/2012 0</label>
-    </div>
   </div>
     <div id="pagination" >
         <a href="#" class="first" title="Primeiro" ><<</a>

@@ -59,3 +59,10 @@ en:
   # Bemtevi Manager UI
   welcome: "Welcome,"
   confirm_logout: "Are you sure you want to exit?"
+
+  promos:
+    buttons:
+      duplicate: "Duplicate"
+      activate: "Activate"
+      deactivate: "Deactivate"
+      edit: "Edit"
