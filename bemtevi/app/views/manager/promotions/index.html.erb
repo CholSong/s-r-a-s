@@ -18,7 +18,7 @@
     <% end %>
     <% end %>
 
-    <div class="tpl-list-item inactive" id="tpl-list-item_<%= promotion.id %>">
+    <div class="tpl-list-item <%= promotion.deactivated? ? 'inactive' : 'active' %>" id="tpl-list-item_<%= promotion.id %>">
       <%= image_tag(@image_url, title: promotion.name) if promotion.promotion_images.count > 0 %>
       <div>
         <%= link_to t('promos.buttons.duplicate'), '/manager/promotions/new', title: t('promos.buttons.duplicate'), class: 'duplicate-template-btn' %>

@@ -42,6 +42,12 @@
         <%= f.label :expires_at %>
         <%= f.spree_date_picker :expires_at, :prompt => true, :use_month_numbers => true %>
       </p>
+
+        <label>
+          <%= f.check_box :active %> 
+          <%= t(:active) %>
+        </label>
+
     </fieldset>
 
     <fieldset id="vendor_field">

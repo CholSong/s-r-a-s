@@ -46,10 +46,11 @@ input[type=submit]
 .active-template-btn {
 	background-position: -155px -320px;
 }
-.active .active-template-btn,
-.inactive .active-template-btn
-{
+.active .active-template-btn {
     display: none;
+}
+.inactive .active-template-btn {
+	display: block;
 }
 .edit-template-btn  {
 	background-position: -197px -320px;

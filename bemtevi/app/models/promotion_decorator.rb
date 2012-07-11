@@ -18,4 +18,20 @@ Promotion.class_eval do
     taxon_ids
   end
 
+  def deactivated?
+    !!deactivated_at
+  end
+
+  def active?
+    !deactivated?
+  end
+
+  def activate
+    update_attribute(:deactivated_at, nil)
+  end
+
+  def deactivate
+    update_attribute(:deactivated_at, Time.now)
+  end
+
 end
