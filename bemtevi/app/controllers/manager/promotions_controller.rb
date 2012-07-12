@@ -21,9 +21,9 @@ class Manager::PromotionsController < Manager::BaseController
     end
   end
 
-  def index
-    @promotions = Promotion.order('created_at DESC').where(deleted_at: nil).paginate(page: params[:page] || 1, per_page: 12)
+  def index    
     @image_url = nil
+    @promotions = Promotion.order('created_at DESC').where(deleted_at: nil).where(vendor_id: @vendor.id).paginate(page: params[:page] || 1, per_page: 12)
   end
 
   def activate
@@ -65,6 +65,8 @@ class Manager::PromotionsController < Manager::BaseController
 
   def load_vendors
     @vendors = Vendor.where(deleted_at: nil).order('name ASC')
+    cookies[:vendor_id] = params[:vendor_id] if params[:vendor_id]
+    @vendor = cookies[:vendor_id] ? Vendor.find(cookies[:vendor_id]) : @vendors.first
   end
 
   def prefix(t)
