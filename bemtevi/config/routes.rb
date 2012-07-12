@@ -17,8 +17,8 @@ Rails.application.routes.draw do
     resources :promotions do
       member do 
         post :create
-        get :activate
-        get :deactivate
+        put :activate
+        put :deactivate
       end
       collection do 
         get :dummy_page_5

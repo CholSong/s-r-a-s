@@ -27,6 +27,10 @@ input[type=submit]
 	width:35px;
 	height:28px;
 	float:left;
+	/* the following styles are for button */
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
 }
 .duplicate-template-btn {
     display:none;
