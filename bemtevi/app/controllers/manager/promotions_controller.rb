@@ -1,6 +1,6 @@
 class Manager::PromotionsController < Manager::BaseController
 
-  before_filter :load_vendors
+  before_filter :load_vendors, except: [:activate, :deactivate]
 
   def dummy_page_5
     render "dummy_page_5", :layout => false
@@ -24,6 +24,18 @@ class Manager::PromotionsController < Manager::BaseController
   def index
     @promotions = Promotion.order('created_at DESC').where(deleted_at: nil).paginate(page: params[:page] || 1, per_page: 12)
     @image_url = nil
+  end
+
+  def activate
+    promotion = Promotion.find(params[:id])
+    promotion.activate
+    redirect_to :back
+  end
+
+  def deactivate
+    promotion = Promotion.find(params[:id])
+    promotion.deactivate
+    redirect_to :back
   end
 
   def promotions
