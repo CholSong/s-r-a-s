@@ -16,6 +16,10 @@ $(document).ready(function() {
         menuWidth : '150px'
     });
 
+    $("select.dropDownMenu").change(function() {
+        window.location = "/manager/promotions?vendor_id=" + $("select.dropDownMenu").val();
+    });
+
     $("#btn-logout").click(function(e) {
         var popup = $("#logout-popup");
         var x = e.pageX - Math.round(popup.width() / 2);

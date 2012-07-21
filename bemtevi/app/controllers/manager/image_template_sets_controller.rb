@@ -57,10 +57,10 @@ class Manager::ImageTemplateSetsController < Admin::ResourceController
   
       @collection = @search.paginate(pagination_options)
     else
-      if params[:vendor_id].nil?
+      if cookies[:vendor_id].nil?
         @collection = super.where(["vendor_id is not null"])
       else
-        @collection = super.where(["vendor_id = ?", "#{params[:vendor_id]}"])
+        @collection = super.where(["vendor_id = ?", "#{cookies[:vendor_id]}"])
       end
     end
   end

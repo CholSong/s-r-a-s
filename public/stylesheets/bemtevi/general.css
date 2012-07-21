@@ -26,6 +26,7 @@ input[type=submit]
 	text-indent: -9999em;
 	width:35px;
 	height:28px;
+	position: relative;
 	float:left;
 	/* the following styles are for button */
 	border: none;
@@ -42,6 +43,7 @@ input[type=submit]
 .deactive-template-btn {
     display:none;
 	background-position: -118px -320px;
+    top: -68px;
 }
 .active .deactive-template-btn {
     display: block;
@@ -49,6 +51,7 @@ input[type=submit]
 
 .active-template-btn {
 	background-position: -155px -320px;
+	top: -68px;
 }
 .active .active-template-btn {
     display: none;

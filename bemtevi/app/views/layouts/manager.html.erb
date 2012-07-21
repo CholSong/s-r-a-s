@@ -27,7 +27,9 @@
         <label><%= t('welcome') %></label>
         <span><%= current_user.email %></span>
         <%= link_to t('logout'), "#", :id => "btn-logout" %>
-        <%= select "vendor", "id", @vendors.collect{|v| [ v.name, v.id ] }, {}, :id => "selCompany", :class => "dropDownMenu" %>
+        <% if !@vendors.nil? %>
+          <%= select "vendor", "id", @vendors.collect{|v| [ v.name, v.id ] }, {}, :id => "selCompany", :class => "dropDownMenu" %>
+        <% end%>
       </div>
       <div id="logout-popup" class="alert-popup">
         <div class="left-side"></div>

@@ -1,6 +1,7 @@
 class Manager::PromotionsController < Manager::ResourceController
 
-  before_filter :load_vendors, except: [:activate, :deactivate]
+  before_filter :load_vendors, except: [:activate, :deactivate, :new]
+  create.before :set_vendor_from_cookie
   
   def index
     @image_url = nil
@@ -31,6 +32,10 @@ class Manager::PromotionsController < Manager::ResourceController
   end
 
   private
+
+  def set_vendor_from_cookie
+    @object.vendor_id = cookies[:vendor_id]
+  end
 
   def load_vendors
     @vendors = Vendor.where(deleted_at: nil).order('name ASC')

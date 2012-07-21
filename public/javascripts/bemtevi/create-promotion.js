@@ -40,7 +40,7 @@ function submitPromotionForm() {
 
 function handleCanvasSubmitResponse(request, formAction) {
     if (request.readyState == 4) {
-        $(window.document.body).html(request.responseText);
+        window.location = "/manager/promotions";
     }
 }
 

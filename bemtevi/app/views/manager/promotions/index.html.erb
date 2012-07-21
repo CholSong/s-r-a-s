@@ -1,13 +1,5 @@
 <% content_for :head do %>
     <%= stylesheet_link_tag "bemtevi/active-template" %>
-    <%= javascript_include_tag "bemtevi/active-templates" %>
-    <script type="text/javascript">
-        $(function() {
-            $("select#selCompany").change(function() {
-                window.location = "/manager/promotions?vendor_id=" + $("select#selCompany").val();
-            });
-        });
-    </script>
 <% end %>
 
 <div id="promo-panel" class="list-panel" >
