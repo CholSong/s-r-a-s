@@ -148,7 +148,7 @@
 
       <div class="yui-u">
         <%= label :vendor, t(:vendor) %><br />
-        <%= select_tag "product[vendor_id]", options_from_collection_for_select(Vendor.all, :id, :name, @product.vendor_id) %></label>
+        <%= select_tag "product[vendor_id]", options_from_collection_for_select(Vendor.where(deleted_at: nil).order('name ASC'), :id, :name, @product.vendor_id) %></label>
       </div>
 
     </div>

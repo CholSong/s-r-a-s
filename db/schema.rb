@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215082220) do
+ActiveRecord::Schema.define(:version => 20120710192122) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -392,10 +392,11 @@ ActiveRecord::Schema.define(:version => 20120215082220) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "starts_at"
-    t.string   "match_policy", :default => "all"
+    t.string   "match_policy",   :default => "all"
     t.string   "name"
     t.datetime "deleted_at"
     t.integer  "vendor_id"
+    t.datetime "deactivated_at"
   end
 
   create_table "promotions_taxons", :id => false, :force => true do |t|

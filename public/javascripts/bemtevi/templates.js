@@ -297,9 +297,6 @@ function createTextOverlay(context, template, overlay) {
     $('.regions-container', context).append(overlayElement);
 }
 
-/**
- * Função que cria a estrutura html de overlays do tipo imagem
- */
 function createImageOverlay(context, template, overlay) {
     var value = overlay.value;
     var elementId = 'image-overlay_' + overlay.id;

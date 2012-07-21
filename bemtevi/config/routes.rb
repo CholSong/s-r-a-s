@@ -21,9 +21,7 @@ Rails.application.routes.draw do
         put :deactivate
       end
       collection do 
-        get :dummy_page_5
         get :templates
-        get :promotions
       end
     end
     resources :image_template_sets do

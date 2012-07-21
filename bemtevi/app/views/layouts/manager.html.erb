@@ -27,11 +27,7 @@
         <label><%= t('welcome') %></label>
         <span><%= current_user.email %></span>
         <%= link_to t('logout'), "#", :id => "btn-logout" %>
-        <select id="selCompany" class="dropDownMenu" >
-          <% @vendors.each do |vendor| %>
-          <option value="<%= vendor.id %>" <%= vendor == @vendor ? "selected" : "" %>><%= vendor.name %></option>
-          <% end %>
-        </select>
+        <%= select "vendor", "id", @vendors.collect{|v| [ v.name, v.id ] }, {}, :id => "selCompany", :class => "dropDownMenu" %>
       </div>
       <div id="logout-popup" class="alert-popup">
         <div class="left-side"></div>

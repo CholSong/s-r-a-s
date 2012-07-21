@@ -41,7 +41,7 @@ class Manager::ImageTemplateSetsController < Admin::ResourceController
             }
           }
         }
-      })
+      }).gsub "http://s3.amazonaws.com", "#{request.protocol}#{request.host_with_port}"
   end
 
   def collection

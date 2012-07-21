@@ -92,7 +92,7 @@
 
     <fieldset id="vendor_field">
       <legend><%= t(:vendor) %></legend>
-      <%= select_tag "promotion[vendor_id]", options_from_collection_for_select(Vendor.all, :id, :name, @promotion.vendor_id) %></label>
+      <%= select_tag "promotion[vendor_id]", options_from_collection_for_select(Vendor.where(deleted_at: nil).order('name ASC'), :id, :name, @promotion.vendor_id) %></label>
     </fieldset>
     
 <% end %>

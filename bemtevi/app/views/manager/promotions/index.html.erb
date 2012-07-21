@@ -1,36 +1,45 @@
 <% content_for :head do %>
-  <%= stylesheet_link_tag "bemtevi/active-template" %>
-  <%= javascript_include_tag "bemtevi/active-templates" %>
+    <%= stylesheet_link_tag "bemtevi/active-template" %>
+    <%= javascript_include_tag "bemtevi/active-templates" %>
+    <script type="text/javascript">
+        $(function() {
+            $("select#selCompany").change(function() {
+                window.location = "/manager/promotions?vendor_id=" + $("select#selCompany").val();
+            });
+        });
+    </script>
 <% end %>
 
 <div id="promo-panel" class="list-panel" >
-	<div class="header" >
-	  <p>Suas promoções ativas</p>
-    <a href="/manager/promotions/new" id="new-promo-btn" title="criar promoção">criar promoção</a>
-  </div>
-
-	<div id="tpl-container">
-
-    <% @promotions.each do |promotion| %>
-    <% promotion.promotion_images.each do |promotion_image| %>
-    <% if promotion_image.attachment_aspect_ratio < 1 %>
-      <% @image_url = promotion_image.attachment.url(:medium) %>
-    <% end %>
-    <% end %>
-
-    <div class="tpl-list-item <%= promotion.deactivated? ? 'inactive' : 'active' %>" id="tpl-list-item_<%= promotion.id %>">
-      <%= image_tag(@image_url, title: promotion.name) if promotion.promotion_images.count > 0 %>
-      <div>
-        <%= link_to t('promos.buttons.duplicate'), '/manager/promotions/new', title: t('promos.buttons.duplicate'), class: 'duplicate-template-btn' %>
-        <%= button_to t('promos.buttons.deactivate'), deactivate_manager_promotion_path(promotion), method: :put, title: t('promos.buttons.deactivate'), class: 'deactive-template-btn' %>
-        <%= button_to t('promos.buttons.activate'), activate_manager_promotion_path(promotion), method: :put, title: t('promos.buttons.activate'), class: 'active-template-btn' %>
-        <%= link_to t('promos.buttons.edit'), '/manager/promotions/new', title: t('promos.buttons.edit'), class: 'edit-template-btn' %>
-      </div>
-      <label><%= promotion.starts_at.to_date.to_formatted_s(:db) if promotion.starts_at %> - <%= promotion.expires_at.to_date.to_formatted_s(:db) if promotion.expires_at %></label>
+    <div class="header" >
+        <p>
+            Suas promoções ativas
+        </p>
+        <a href="/manager/promotions/new" id="new-promo-btn" title="criar promoção">criar promoção</a>
     </div>
 
-    <% end %>
+    <div id="tpl-container">
 
-  </div>
-  <%= will_paginate @promotions %>
+        <% @promotions.each do |promotion| %>
+        <% promotion.promotion_images.each do |promotion_image| %>
+            <% if promotion_image.attachment_aspect_ratio < 1 %>
+                <% @image_url = promotion_image.attachment.url(:medium) %>
+            <% end %>
+        <% end %>
+
+        <div class="tpl-list-item <%= promotion.deactivated? ? 'inactive' : 'active' %>" id="tpl-list-item_<%= promotion.id %>">
+            <%= image_tag(@image_url, title: promotion.name) if promotion.promotion_images.count > 0 %>
+            <div>
+                <%= link_to t('promos.buttons.duplicate'), '/manager/promotions/new', title: t('promos.buttons.duplicate'), class: 'duplicate-template-btn' %>
+                <%= button_to t('promos.buttons.deactivate'), deactivate_manager_promotion_path(promotion), method: :put, title: t('promos.buttons.deactivate'), class: 'deactive-template-btn' %>
+                <%= button_to t('promos.buttons.activate'), activate_manager_promotion_path(promotion), method: :put, title: t('promos.buttons.activate'), class: 'active-template-btn' %>
+                <%= link_to t('promos.buttons.edit'), '/manager/promotions/new', title: t('promos.buttons.edit'), class: 'edit-template-btn' %>
+            </div>
+            <label><%= promotion.starts_at.to_date.to_formatted_s(:db) if promotion.starts_at %> - <%= promotion.expires_at.to_date.to_formatted_s(:db) if promotion.expires_at %></label>
+        </div>
+
+        <% end %>
+
+    </div>
+    <%= will_paginate @promotions %>
 </div>

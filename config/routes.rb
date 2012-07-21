@@ -56,7 +56,7 @@ BemteviEcomm::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
   
-  match '*bucket/public/assets/products/*s3path' => 's3_proxy#get_image', :via => :get
+  match '*bucket/public/assets/*s3path' => 's3_proxy#get_image', :via => :get
   match '*bucket/temp_images/*s3path' => 's3_proxy#get_image', :via => :get
   match '/upload_temp_image' => 's3_proxy#upload_temp_image', :via => :post
 end
