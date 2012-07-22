@@ -52,7 +52,8 @@ function wrapText(context, text, x, y, maxWidth, textSizeInPx) {
 function drawTemplateAndOverlays(template, templateContainer, canvasContainer) {
     // Recreates the canvas container, removing previous elements from it.
     canvasContainer.children().remove();
-    var height = template.template_type == "summary" ? 228 : 502;
+    var templateType = template.template_type;
+    var height = templateType == "summary" ? 228 : 502;
     var canvas = $('<canvas width="394" height="' + height + '" />');
     canvasContainer.append(canvas);
     var templateElementsContainer = $('<div class="template-elements-container">');
@@ -77,7 +78,8 @@ function drawTemplateAndOverlays(template, templateContainer, canvasContainer) {
             ctx.textAlign = textOverlay.text_align;
             ctx.textBaseline = "top";
             ctx.fillStyle = textOverlay.color;
-            wrapText(ctx, textOverlay.text, overlay.position_x, overlay.position_y, overlay.width, textOverlay.font_size);
+            var text = savedData[templateType][overlay.tag] === undefined ? textOverlay.text : savedData[templateType][overlay.tag].text;
+            wrapText(ctx, text, overlay.position_x, overlay.position_y, overlay.width, textOverlay.font_size);
         } else if (overlay.overlay_type == "image") {
             drawImageOverlay(overlay, ctx, templateElementsContainer, template, templateContainer, canvasContainer);
         }

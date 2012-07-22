@@ -1,4 +1,6 @@
 function createPromotionFromTemplate() {
+    $("#btnVoltar2").click(false);
+    $("#btnProximo2").click(false);
     drawTemplates();
     submitPromotionForm();
 }
