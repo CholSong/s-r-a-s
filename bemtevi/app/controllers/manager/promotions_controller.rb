@@ -30,17 +30,17 @@ class Manager::PromotionsController < Manager::ResourceController
 
     super
   end
-
+  
   private
 
   def set_vendor_from_cookie
     @object.vendor_id = cookies[:vendor_id]
   end
-
+  
   def load_vendors
     @vendors = Vendor.where(deleted_at: nil).order('name ASC')
-    cookies[:vendor_id] = params[:vendor_id] if params[:vendor_id]
-    @vendor = cookies[:vendor_id] ? Vendor.find(cookies[:vendor_id]) : @vendors.first
+    cookies[:vendor_id] = params[:vendor_id] if !params[:vendor_id].nil?
+    @vendor = !cookies[:vendor_id].nil? ? Vendor.find(cookies[:vendor_id]) : @vendors.first
     if @vendor.nil? || @vendor.deleted?
       @vendor = @vendors.first
     end

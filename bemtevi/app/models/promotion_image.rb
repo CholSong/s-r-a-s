@@ -5,8 +5,8 @@ class PromotionImage < Asset
   has_attached_file :attachment,
                     :styles => { :mini => '48x48>', :small => '100x100>', :medium => '240x240>', :large => '600x600>' },
                     :default_style => :product,
-                    :url => "/assets/promotions/:id/:style/:basename.:extension",
-                    :path => ":rails_root/public/assets/promotions/:id/:style/:basename.:extension"
+                    :url => "/assets/promotions/:id/:style/:basename.:id.:extension",
+                    :path => ":rails_root/public/assets/promotions/:id/:style/:basename.:id.:extension"
 
   # save the w,h of the original image (from which others can be calculated)
   # we need to look at the write-queue for images which have not been saved yet
