@@ -43,11 +43,10 @@ class Manager::PromotionsController < Manager::ResourceController
     else
       @vendors = current_user.vendors
     end
-    cookies[:vendor_id] = params[:vendor_id] if !params[:vendor_id].nil?
-    @vendor = !cookies[:vendor_id].nil? ? Vendor.find(cookies[:vendor_id]) : @vendors.first
-    if @vendor.nil? || @vendor.deleted?
-      @vendor = @vendors.first
-    end
+    @vendor = @vendors.select { |vendor| vendor.id.to_s == params[:vendor_id] }[0]
+    @vendor = @vendors.select { |vendor| vendor.id.to_s == cookies[:vendor_id] }[0] if @vendor.nil? 
+    @vendor = @vendors.first if @vendor.nil?
+    cookies[:vendor_id] = @vendor.id
   end
   
   def fill_missing_summary_overlays(image_template)
