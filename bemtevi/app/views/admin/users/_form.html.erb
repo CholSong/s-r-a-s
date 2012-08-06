@@ -1,5 +1,12 @@
 <%- locals = {:f => f} %>
 <%= hook :admin_user_form_fields, locals do %>
+
+  <%= f.field_container :name do %>
+    <%= f.label :name, t("name") %><br />
+    <%= f.text_field :name  %>
+    <%= error_message_on :user, :name%>
+  <% end %>
+
   <%= f.field_container :email do %>
     <%= f.label :email, t("email") %><br />
     <%= f.text_field :email  %>

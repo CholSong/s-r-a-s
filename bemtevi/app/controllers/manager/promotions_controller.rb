@@ -38,7 +38,11 @@ class Manager::PromotionsController < Manager::ResourceController
   end
   
   def load_vendors
-    @vendors = Vendor.where(deleted_at: nil).order('name ASC')
+    if current_user.vendors.empty?
+      @vendors = Vendor.where(deleted_at: nil).order('name ASC')
+    else
+      @vendors = current_user.vendors
+    end
     cookies[:vendor_id] = params[:vendor_id] if !params[:vendor_id].nil?
     @vendor = !cookies[:vendor_id].nil? ? Vendor.find(cookies[:vendor_id]) : @vendors.first
     if @vendor.nil? || @vendor.deleted?

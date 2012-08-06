@@ -8,6 +8,8 @@ class Vendor < ActiveRecord::Base
   
   has_and_belongs_to_many :taxons
   
+  belongs_to :user
+  
 
   # use deleted? rather than checking the attribute directly. this
   # allows extensions to override deleted? if they want to provide

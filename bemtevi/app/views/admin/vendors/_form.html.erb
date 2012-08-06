@@ -8,11 +8,14 @@
         <%= f.error_message_on :name %>
       <% end %>
 
+      <%= label :user, t(:user) %><br />
+      <%= select_tag "vendor[user_id]", options_from_collection_for_select(User.standard_user.order('users.name ASC'), :id, :name, @vendor.user_id) %>
       <%= f.field_container :description do %>
         <%= f.label :description, t("description")%><br />
         <%= f.text_area :description, {:cols => 60, :rows => 4, :class => 'fullwidth'} %>
         <%= f.error_message_on :description %>
       <% end %>
+
     <% end %>
   </div>
 </div>
