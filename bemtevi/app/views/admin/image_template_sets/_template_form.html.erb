@@ -1,8 +1,8 @@
 <% template = f.object %> 
 
 <%= f.hidden_field :template_type %>
-<% bg_width = 394 %>
-<% bg_height = template_type == "summary" ? 228 : 502 %>
+<% bg_width = template_type == "summary" ? 393 : 423 %>
+<% bg_height = template_type == "summary" ? 216 : 695 %>
 
 <%= f.fields_for :background_image do |bg_image_form| %>
   <%= bg_image_form.label "#{t(:background_image)} - #{t(:dimension)}: #{bg_width} #{t(:width)}, #{bg_height} #{t(:height)}" %><br />

@@ -200,7 +200,7 @@ div#logout-confirm a {
 */
 div#content {
   margin: -35px auto 0;
-  width: 950px;
+  width: 1020px;
 	position:relative;
 	overflow:hidden;
 }
@@ -239,7 +239,7 @@ a.nav-btn span.right {
 #nav-buttons-container {
 	width:420px;
 	float:right;
-	margin-top:26px;
+	margin-top:235px;
 }
 #nav-buttons-container a.nav-btn {
 	float:left;

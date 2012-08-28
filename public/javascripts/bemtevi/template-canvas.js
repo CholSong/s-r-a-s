@@ -53,8 +53,9 @@ function drawTemplateAndOverlays(template, templateContainer, canvasContainer) {
     // Recreates the canvas container, removing previous elements from it.
     canvasContainer.children().remove();
     var templateType = template.template_type;
-    var height = templateType == "summary" ? 228 : 502;
-    var canvas = $('<canvas width="394" height="' + height + '" />');
+    var width = templateType == "summary" ? 393 : 423;
+    var height = templateType == "summary" ? 216 : 695;
+    var canvas = $('<canvas width="' + width + '" height="' + height + '" />');
     canvasContainer.append(canvas);
     var templateElementsContainer = $('<div class="template-elements-container">');
     canvasContainer.append(templateElementsContainer);
