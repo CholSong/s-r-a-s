@@ -6,7 +6,7 @@ function createPromotionFromTemplate() {
 }
 
 function submitPromotionForm() { 
-    jQuery("#progress").css("display", "block");
+    $("#progress").slideDown();
 
     var formData = new FormData();
     formData.append("authenticity_token", AUTH_TOKEN); 
