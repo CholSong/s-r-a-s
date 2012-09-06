@@ -53,8 +53,9 @@ function drawTemplateAndOverlays(template, templateContainer, canvasContainer) {
     // Recreates the canvas container, removing previous elements from it.
     canvasContainer.children().remove();
     var templateType = template.template_type;
-    var height = templateType == "summary" ? 228 : 502;
-    var canvas = $('<canvas width="394" height="' + height + '" />');
+    var width = templateType == "summary" ? 393 : 423;
+    var height = templateType == "summary" ? 216 : 695;
+    var canvas = $('<canvas width="' + (width + 10) + '" height="' + (height + 10) + '" />');
     canvasContainer.append(canvas);
     var templateElementsContainer = $('<div class="template-elements-container">');
     canvasContainer.append(templateElementsContainer);
@@ -66,7 +67,14 @@ function drawTemplateAndOverlays(template, templateContainer, canvasContainer) {
 
     // Draws the template background over the canvas.
     var backgroundNode = $(templateContainer).find("[class|=template-background]")[0];
+    ctx.shadowColor = "#999";
+    ctx.shadowBlur = 5;
+    ctx.shadowOffsetX = 5;
+    ctx.shadowOffsetY = 5;
     ctx.drawImage(backgroundNode, 0, 0, backgroundNode.width, backgroundNode.height);
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
 
     // Loops through the template overlays to draw tem over the background.
     var overlays = template.overlays;

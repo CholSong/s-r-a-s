@@ -1,59 +1,89 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <%= render :partial => "manager/shared/manager_head" %>
-</head>
-<body>
-<!--[if IE 7]>
-<div id='IE7'>
-<![endif]-->
-<div id='wrapper'>
+    <head>
+        <%= render :partial => "manager/shared/manager_head" %>
+        <%= stylesheet_link_tag "bemtevi/jquery-ui-1.8.20.custom" %>
+        <%= javascript_include_tag "bemtevi/jquery-ui-1.8.20.custom.min", "bemtevi/spin.min" %>
+        <script type="text/javascript">
+            $(document).ready(function (){
+            var opts = {
+                lines : 13, // The number of lines to draw
+                length : 7, // The length of each line
+                width : 4, // The line thickness
+                radius : 8, // The radius of the inner circle
+                corners : 1, // Corner roundness (0..1)
+                rotate : 3, // The rotation offset
+                color : '#000', // #rgb or #rrggbb
+                speed : 1, // Rounds per second
+                trail : 72, // Afterglow percentage
+                shadow : false, // Whether to render a shadow
+                hwaccel : false, // Whether to use hardware acceleration
+                className : 'spinner', // The CSS class to assign to the spinner
+                zIndex : 2e9, // The z-index (defaults to 2000000000)
+                top : '-4px', // Top position relative to parent in px
+                left : '53px' // Left position relative to parent in px
+            };
+            var target = document.getElementById('progress');
+            var spinner = new Spinner(opts).spin(target);
+            });
+        </script>
+    </head>
+    <body>
+        <!--[if IE 7]>
+        <div id='IE7'>
+        <![endif]-->
+        <div id='wrapper'>
 
-<!--  <% if flash[:error] %>
-    <div class="flash error"><%= flash[:error] %></div>
-  <% end %>
+            <!--  <% if flash[:error] %>
+            <div class="flash error"><%= flash[:error] %></div>
+            <% end %>
 
-  <% if self.notice %>
-    <div class="flash notice"><%= self.notice %></div>
-  <% end %>
+            <% if self.notice %>
+            <div class="flash notice"><%= self.notice %></div>
+            <% end %>
 
-  <%= render :partial => 'admin/shared/alert', :collection => session[:alerts] %> -->  
+            <%= render :partial => 'admin/shared/alert', :collection => session[:alerts] %> -->
+            <div id="progress">
+                <%= t('loading') %>...
+            </div>
 
-  <div id="header">
-    <h1><%= link_to t("administration"), admin_path %></h1>
-    <% if  current_user %>
-      <div class="user-data">
-        <label><%= t('welcome') %></label>
-        <span><%= current_user.email %></span>
-        <%= link_to t('logout'), "#", :id => "btn-logout" %>
-        <% if !@vendors.nil? && @vendors.size > 1 %>
-          <%= select "vendor", "id", @vendors.collect{|v| [ v.name, v.id ] }, {}, :id => "selCompany", :class => "dropDownMenu" %>
-        <% end%>
-      </div>
-      <div id="logout-popup" class="alert-popup">
-        <div class="left-side"></div>
-        <div class="middle">
-          <label>&nbsp;</label>
-          <p><%= t('confirm_logout')%></p>
-          <div class="btn-container">
-            <%= link_to t("yes"), destroy_user_session_path, :class => "btn-yes" %>
-            <%= link_to t("no"), "#", :class => "btn-no" %>
-          </div>
+            <div id="header">
+                <h1><%= link_to t("administration"), admin_path %></h1>
+                <% if  current_user %>
+                <div class="user-data">
+                    <label><%= t('welcome') %></label>
+                    <span><%= current_user.email %></span>
+                    <%= link_to t('logout'), "#", :id => "btn-logout" %>
+                    <% if !@vendors.nil? && @vendors.size > 1 %>
+                    <%= select "vendor", "id", @vendors.collect{|v| [ v.name, v.id ] }, {}, :id => "selCompany", :class => "dropDownMenu" %>
+                    <% end%>
+                </div>
+                <div id="logout-popup" class="alert-popup">
+                    <div class="left-side"></div>
+                    <div class="middle">
+                        <label>&nbsp;</label>
+                        <p>
+                            <%= t('confirm_logout')%>
+                        </p>
+                        <div class="btn-container">
+                            <%= link_to t("yes"), destroy_user_session_path, :class => "btn-yes" %>
+                            <%= link_to t("no"), "#", :class => "btn-no" %>
+                        </div>
+                    </div>
+                    <div class="right-side"></div>
+                </div>
+
+                <% end %>
+            </div>
+
+            <div id="content" >
+                <%= yield %>
+            </div>
+
         </div>
-        <div class="right-side"></div>
-      </div>
-
-    <% end %>
-  </div>
-
-  <div id="content" >
-    <%= yield %>
-  </div>
-
-</div>
-<!--[if IE]>
-</div>
-<![endif]-->
-</body>
+        <!--[if IE]>
+        </div>
+        <![endif]-->
+    </body>
 </html>

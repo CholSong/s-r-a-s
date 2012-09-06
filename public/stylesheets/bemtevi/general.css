@@ -1,48 +1,72 @@
 /* CSS Document */
+#progress {
+    display: none;
+    background-image: linear-gradient(bottom, rgb(119,125,119) 18%, rgb(158,168,156) 59%, rgb(176,181,175) 80%);
+    background-image: -o-linear-gradient(bottom, rgb(119,125,119) 18%, rgb(158,168,156) 59%, rgb(176,181,175) 80%);
+    background-image: -moz-linear-gradient(bottom, rgb(119,125,119) 18%, rgb(158,168,156) 59%, rgb(176,181,175) 80%);
+    background-image: -webkit-linear-gradient(bottom, rgb(119,125,119) 18%, rgb(158,168,156) 59%, rgb(176,181,175) 80%);
+    background-image: -ms-linear-gradient(bottom, rgb(119,125,119) 18%, rgb(158,168,156) 59%, rgb(176,181,175) 80%);
+    background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.18, rgb(119,125,119)),
+    color-stop(0.59, rgb(158,168,156)),
+    color-stop(0.8, rgb(176,181,175))
+    );
+    color: #fff;
+    font-size: 20px;
+    height: 25px;
+    left: 33%;
+    padding: 10px 0 15px;
+    position: fixed;
+    text-align: center;
+    width: 320px;
+    font-weight: bold;
+    -moz-border-radius-bottomleft: 15px;
+    -moz-border-radius-bottomright: 15px;
+    -webkit-border-bottom-left-radius: 15px;
+    -webkit-border-bottom-right-radius: 15px;
+    z-index: 100;
+}
+
 .is-hidden {
     display: none;
 }
 body {
-	background:url(/images/bemtevi/backgrounds/general.jpg) top center no-repeat;
-	margin:0;
-	padding:0;
-	position:relative;
-	z-index:9999;
+    background: url(/images/bemtevi/backgrounds/general.jpg) top center no-repeat;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 9999;
 }
-a,
-input[type=button],
-input[type=submit]
-{
-	outline:none;
+a, input[type=button], input[type=submit] {
+    outline: none;
 }
 
-.duplicate-template-btn,
-.deactive-template-btn,
-.active-template-btn,
-.edit-template-btn 
-{
-	background-image: url(/images/bemtevi/btn/sprite-btn.png);
-	background-repeat: no-repeat;
-	text-indent: -9999em;
-	width:35px;
-	height:28px;
-	position: relative;
-	float:left;
-	/* the following styles are for button */
-	border: none;
-	background-color: transparent;
-	cursor: pointer;
+.duplicate-template-btn, .deactive-template-btn, .active-template-btn, .edit-template-btn {
+    background-image: url(/images/bemtevi/btn/sprite-btn.png);
+    background-repeat: no-repeat;
+    text-indent: -9999em;
+    width: 35px;
+    height: 28px;
+    position: relative;
+    float: left;
+    /* the following styles are for button */
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 .duplicate-template-btn {
-    display:none;
+    display: none;
     background-position: -232px -320px;
 }
 .inactive .duplicate-template-btn {
     display: block;
 }
 .deactive-template-btn {
-    display:none;
-	background-position: -118px -320px;
+    display: none;
+    background-position: -118px -320px;
     top: -68px;
 }
 .active .deactive-template-btn {
@@ -50,255 +74,249 @@ input[type=submit]
 }
 
 .active-template-btn {
-	background-position: -155px -320px;
-	top: -68px;
+    background-position: -155px -320px;
+    top: -68px;
 }
 .active .active-template-btn {
     display: none;
 }
 .inactive .active-template-btn {
-	display: block;
+    display: block;
 }
-.edit-template-btn  {
-	background-position: -197px -320px;
+.edit-template-btn {
+    background-position: -197px -320px;
 }
-.inactive .edit-template-btn  {
+.inactive .edit-template-btn {
     display: none;
 }
 /**
-* General
-*/
+ * General
+ */
 .alert-popup {
-	position: absolute;
-	z-index:99999;
-	min-width:278px;
-	display:none;
+    position: absolute;
+    z-index: 99999;
+    min-width: 278px;
+    display: none;
 }
 .alert-popup div {
-	float: left;
+    float: left;
 }
 .alert-popup .left-side {
-	background:url(/images/bemtevi/backgrounds/alert-popup.png) left top no-repeat;
-	height:189px;
-	width:28px;
+    background: url(/images/bemtevi/backgrounds/alert-popup.png) left top no-repeat;
+    height: 189px;
+    width: 28px;
 }
 .alert-popup .middle {
-	background:url(/images/bemtevi/backgrounds/alert-popup.png) left center repeat-x;
-	height:189px;
+    background: url(/images/bemtevi/backgrounds/alert-popup.png) left center repeat-x;
+    height: 189px;
 }
 .alert-popup .middle label {
-	display:block;
-	padding:5px 5px 15px 5px;
+    display: block;
+    padding: 5px 5px 15px 5px;
 }
 .alert-popup .middle p {
-	font-size:22px;
-	color:#ffffff;
-	font-family:Arial, Helvetica, sans-serif;
-	text-align:center;
-	padding:5px;
-	margin:0;
-	height:65px;
+    font-size: 22px;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 5px;
+    margin: 0;
+    height: 65px;
 }
 .alert-popup .btn-container {
-	float: none;
-	margin:0 auto;
+    float: none;
+    margin: 0 auto;
 }
 .alert-popup .btn-container a {
-	float: left;
-	background-image:url(/images/bemtevi/btn/sprite-btn.png);
-	background-repeat:no-repeat;
-	height:42px;
-	text-indent:-9999em;
-	margin:5px;
+    float: left;
+    background-image: url(/images/bemtevi/btn/sprite-btn.png);
+    background-repeat: no-repeat;
+    height: 42px;
+    text-indent: -9999em;
+    margin: 5px;
 }
 .alert-popup .btn-container a.btn-yes {
-	background-position: left -453px;
-	width:100px;
+    background-position: left -453px;
+    width: 100px;
 }
 .alert-popup .btn-container a.btn-no {
-	background-position: -114px -453px;
-	width:100px;
+    background-position: -114px -453px;
+    width: 100px;
 }
 
 .alert-popup .right-side {
-	background:url(/images/bemtevi/backgrounds/alert-popup.png) right bottom no-repeat;
-	height:189px;
-	width:28px;
+    background: url(/images/bemtevi/backgrounds/alert-popup.png) right bottom no-repeat;
+    height: 189px;
+    width: 28px;
 }
 
 /**
-* Header
-*/
+ * Header
+ */
 #header {
-	background:url(/images/bemtevi/backgrounds/header.png) top left no-repeat;
-	height:199px;
-	width:100%;
-	min-width:970px;
+    background: url(/images/bemtevi/backgrounds/header.png) top left no-repeat;
+    height: 199px;
+    width: 100%;
+    min-width: 970px;
 }
 
 #header h1 {
-	background:url(/images/bemtevi/logo.png) top left no-repeat;
-	width:599px;
-	height:103px;
-	text-indent:-9999em;
-	margin:10px 0 0 50px;
-	float: left;
+    background: url(/images/bemtevi/logo.png) top left no-repeat;
+    width: 599px;
+    height: 103px;
+    text-indent: -9999em;
+    margin: 10px 0 0 50px;
+    float: left;
 }
 /* User Data */
 div.user-data {
-	color: #847654;
-	font-size: 22px;
-	float: right;
-	margin: 30px;
-	position:relative;
+    color: #847654;
+    font-size: 22px;
+    float: right;
+    margin: 30px;
+    position: relative;
 }
 div.user-data label {
-	font-weight: bold;
-	display: block;
+    font-weight: bold;
+    display: block;
 }
 div.user-data a {
-	color: #847654;
-	font-size: 16px;
-	font-weight: bold;
-	display: block;
-	text-decoration:none;
-	margin-top:5px;
+    color: #847654;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    text-decoration: none;
+    margin-top: 5px;
 }
 /* Select Company */
 #header select#selCompany {
     width: 150px;
 }
-#header .ui-selectmenu,
-.ui-selectmenu-menu li a {
+#header .ui-selectmenu, .ui-selectmenu-menu li a {
     font-size: 12px;
-    color:#847654;
-    font-weight:bold;
+    color: #847654;
+    font-weight: bold;
 }
 /* Logout Confirm */
 div#logout-confirm {
-	background:url(/images/bemtevi/backgrounds/confirm-popup.png) left top no-repeat transparent;
-	position:absolute;
-	width:277px;
-	height:143px;
-	top:43px;
-	z-index:999;
-	display:none;
+    background: url(/images/bemtevi/backgrounds/confirm-popup.png) left top no-repeat transparent;
+    position: absolute;
+    width: 277px;
+    height: 143px;
+    top: 43px;
+    z-index: 999;
+    display: none;
 }
 div#logout-confirm p {
-	margin: 5px 10px;
-	clear:both;
-	height:90px;
+    margin: 5px 10px;
+    clear: both;
+    height: 90px;
 }
 div#logout-confirm a {
-	float: left;
-	width:50px;
-	text-align:center;
+    float: left;
+    width: 50px;
+    text-align: center;
 }
 
 /**
-* Content
-*/
+ * Content
+ */
 div#content {
-  margin: -35px auto 0;
-  width: 950px;
-	position:relative;
-	overflow:hidden;
+    margin: -35px auto 0;
+    width: 1020px;
+    position: relative;
+    overflow: hidden;
 }
 
 div.foo {
-	outline: none;
+    outline: none;
 }
 
 /* Navigation Buttons */
 a.nav-btn {
-	background:transparent url(/images/bemtevi/btn/sprite-btn.png) left -149px no-repeat;
-	width: 190px;
-	height:60px;
-	display:block;
-	font-size:25px;
-	font-family:Arial, Helvetica, sans-serif;
-	color:#cac2ac;
-	text-decoration:none;
-	text-align:center;
-	padding-top:10px;
+    background: transparent url(/images/bemtevi/btn/sprite-btn.png) left -149px no-repeat;
+    width: 190px;
+    height: 60px;
+    display: block;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #cac2ac;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 10px;
 }
 a.nav-btn span {
-	background-image:url(/images/bemtevi/btn/sprite-btn.png);
-	background-color:transparent;
-	background-repeat:no-repeat;
+    background-image: url(/images/bemtevi/btn/sprite-btn.png);
+    background-color: transparent;
+    background-repeat: no-repeat;
 }
 a.nav-btn span.left {
-  background-position: 0px -260px;
-  padding: 2px 0 2px 54px;
+    background-position: 0px -260px;
+    padding: 2px 0 2px 54px;
 }
 a.nav-btn span.right {
-  background-position: -48px -220px;
-  padding: 2px 54px 2px 0;
+    background-position: -48px -220px;
+    padding: 2px 54px 2px 0;
 }
 
 #nav-buttons-container {
-	width:420px;
-	float:right;
-	margin-top:26px;
+    width: 420px;
+    float: right;
+    margin-top: 235px;
 }
 #nav-buttons-container a.nav-btn {
-	float:left;
+    float: left;
 }
-
 
 /* Upload Panel for Images */
 .up-panel {
-  background: none repeat scroll 0 0 #EEF4F4;
-  border: 1px solid #AEC5C5;
-  display: none;
-  height: 38px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 45px;
-  z-index: 12;
+    background: none repeat scroll 0 0 #EEF4F4;
+    border: 1px solid #AEC5C5;
+    display: none;
+    height: 38px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 45px;
+    z-index: 12;
 }
-.up-panel iframe,
-.up-panel form,
-.up-panel img
-{
-	display:none;
+.up-panel iframe, .up-panel form, .up-panel img {
+    display: none;
 }
 
 .upload-btn {
-  background: url("/images/bemtevi/btn/sprite-btn.png") no-repeat scroll -103px -87px transparent;
-  cursor: pointer;
-  height: 36px;
-  margin: 0 5px;
-  overflow: hidden;
-  position: relative;
-  width: 36px;
+    background: url("/images/bemtevi/btn/sprite-btn.png") no-repeat scroll -103px -87px transparent;
+    cursor: pointer;
+    height: 36px;
+    margin: 0 5px;
+    overflow: hidden;
+    position: relative;
+    width: 36px;
 }
 em {
-  height: 100%;
-  right: 0;
-  opacity: 0;
-	filter: alpha(opacity = 0);
-  position: absolute;
-  top: 0;
-  cursor: pointer;
+    height: 100%;
+    right: 0;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    position: absolute;
+    top: 0;
+    cursor: pointer;
 }
 em input {
-  height: 100%;
-	cursor:pointer;
+    height: 100%;
+    cursor: pointer;
 }
-
 
 .uploading {
-	display: block !important;
+    display: block !important;
 }
-.uploading .upload-btn  {
-	background:none;
+.uploading .upload-btn {
+    background: none;
 }
 .uploading em {
-	display:none;
+    display: none;
 }
 .uploading img {
-	display:block;
-	margin: 3px 0 0 2px;
+    display: block;
+    margin: 3px 0 0 2px;
 }
