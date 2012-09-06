@@ -8,6 +8,18 @@
         <%= f.error_message_on :name %>
       <% end %>
 
+      <%= f.field_container :latitude do %>
+        <%= f.label :latitude, t("latitude") %> <span class="required">*</span><br />
+        <%= f.text_field :latitude, :class => 'fullwidth title'  %>
+        <%= f.error_message_on :latitude %>
+      <% end %>
+
+      <%= f.field_container :longitude do %>
+        <%= f.label :longitude, t("longitude") %> <span class="required">*</span><br />
+        <%= f.text_field :longitude, :class => 'fullwidth title'  %>
+        <%= f.error_message_on :longitude %>
+      <% end %>
+
       <%= label :user, t(:user) %><br />
       <%= select_tag "vendor[user_id]", options_from_collection_for_select(User.standard_user.order('users.name ASC'), :id, :name, @vendor.user_id) %>
       <%= f.field_container :description do %>

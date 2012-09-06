@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120805200430) do
+ActiveRecord::Schema.define(:version => 20120904233407) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20120805200430) do
 
   create_table "adjustments", :force => true do |t|
     t.integer  "order_id"
-    t.decimal  "amount",          :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "amount",          :precision => 8, :scale => 2
     t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -617,7 +617,7 @@ ActiveRecord::Schema.define(:version => 20120805200430) do
     t.datetime "deleted_at"
     t.boolean  "is_master",                                   :default => false
     t.integer  "count_on_hand",                               :default => 0,     :null => false
-    t.decimal  "cost_price",    :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "cost_price",    :precision => 8, :scale => 2
     t.integer  "position"
   end
 
@@ -632,6 +632,8 @@ ActiveRecord::Schema.define(:version => 20120805200430) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "latitude"
+    t.integer  "longitude"
   end
 
   create_table "zone_members", :force => true do |t|

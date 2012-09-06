@@ -9,6 +9,18 @@
     <%= f.error_message_on :name %>
   <% end %>
   
+  <%= f.field_container :latitude do %>
+    <%= f.label :latitude, t("latitude") %> <span class="required">*</span><br />
+    <%= f.text_field :latitude, :class => 'fullwidth title'  %>
+    <%= f.error_message_on :latitude %>
+  <% end %>
+
+  <%= f.field_container :longitude do %>
+    <%= f.label :longitude, t("longitude") %> <span class="required">*</span><br />
+    <%= f.text_field :longitude, :class => 'fullwidth title'  %>
+    <%= f.error_message_on :longitude %>
+  <% end %>
+
   <%= f.field_container :description do %>
     <%= f.label :description, t("description")%><br />
     <%= f.text_area :description, {:cols => 60, :rows => 4, :class => 'fullwidth'} %>

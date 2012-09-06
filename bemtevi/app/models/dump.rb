@@ -49,6 +49,8 @@ class Dump
           :id => vendor.id, 
           :name => vendor.name, 
           :description => vendor.description,
+          :latitude => vendor.latitude,
+          :longitude => vendor.longitude,
           :taxon_ids => vendor.taxons.find_all { |taxon| !taxon.deleted? }.map { |taxon| taxon.id },
           :vendor_images => vendor.vendor_images.map { |image| { :id => image.id, :type => image.type, :url => image.url } }
         } :

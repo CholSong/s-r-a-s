@@ -11,7 +11,7 @@ class BtvApi::VendorsController < Api::BaseController
   end
 
   def object_serialization_options
-    { :only => [ :id, :name, :description, :deleted_at ],
+    { :only => [ :id, :name, :latitude, :longitude, :description, :deleted_at ],
       :include => {
         :vendor_images => {
           :only => [:id],
