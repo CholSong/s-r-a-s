@@ -55,7 +55,7 @@ function drawTemplateAndOverlays(template, templateContainer, canvasContainer) {
     var templateType = template.template_type;
     var width = templateType == "summary" ? 393 : 423;
     var height = templateType == "summary" ? 216 : 695;
-    var canvas = $('<canvas width="' + (width + 10) + '" height="' + (height + 10) + '" />');
+    var canvas = $('<canvas width="' + width + '" height="' + height + '" />');
     canvasContainer.append(canvas);
     var templateElementsContainer = $('<div class="template-elements-container">');
     canvasContainer.append(templateElementsContainer);
@@ -67,14 +67,7 @@ function drawTemplateAndOverlays(template, templateContainer, canvasContainer) {
 
     // Draws the template background over the canvas.
     var backgroundNode = $(templateContainer).find("[class|=template-background]")[0];
-    ctx.shadowColor = "#999";
-    ctx.shadowBlur = 5;
-    ctx.shadowOffsetX = 5;
-    ctx.shadowOffsetY = 5;
     ctx.drawImage(backgroundNode, 0, 0, backgroundNode.width, backgroundNode.height);
-    ctx.shadowBlur = 0;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 0;
 
     // Loops through the template overlays to draw tem over the background.
     var overlays = template.overlays;
@@ -92,7 +85,24 @@ function drawTemplateAndOverlays(template, templateContainer, canvasContainer) {
             drawImageOverlay(overlay, ctx, templateElementsContainer, template, templateContainer, canvasContainer);
         }
     }
-
+    
+    // Draws the flyer canvas over the withe leaf for the flyer.
+    var leaf = $(templateContainer).children("img")[0];
+    var finalCanvas = $('<canvas width="' + (width + 30) + '" height="' + (height + 30) + '" />');
+    canvasContainer.append(finalCanvas);
+    var finalCanvasNode = finalCanvas[0];
+    var finalCtx = finalCanvasNode.getContext("2d");
+    finalCtx.globalCompositeOperation = "source-over";
+    
+    // Draws the template background over the canvas.
+    var offX = templateType == "summary" ? 14 : 12;
+    var offY = templateType == "summary" ? 10 : 15;
+    var leafNode = $(templateContainer).children("img")[0];
+    finalCtx.drawImage(leafNode, 0, 0, leafNode.width, leafNode.height);
+    finalCtx.drawImage(canvasNode, offX, offY, canvasNode.width, canvasNode.height);
+    
+    // Remove the flyer, as we have the flyer over the white leaf now.
+    $(canvas).remove();
 }
 
 function drawImageOverlay(overlay, outCanvasContext, templateElementsContainer, template, templateContainer, canvasContainer) {

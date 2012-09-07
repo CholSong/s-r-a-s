@@ -12,12 +12,13 @@ div#content {
     width: 429px;
 }
 .template-container.detail {
-    background: url(/images/bemtevi/backgrounds/template-big.png) 0px 10px no-repeat;
+    background: url(/images/bemtevi/backgrounds/template-big.png) 10px 15px no-repeat;
     height: 725px;
-    background-size: 100% 100%;
+    background-size: 95% 98%;
 }
 .template-container.summary {
-    background: url(/images/bemtevi/backgrounds/template-small.png) no-repeat scroll 0 17px transparent;
+    background: url(/images/bemtevi/backgrounds/template-small.png) no-repeat scroll 10px 17px transparent;
+    background-size: 88% 93%;
     height: 260px;
     margin-bottom: 50px;
     margin-top: 144px;
