@@ -10,6 +10,7 @@ class Vendor < ActiveRecord::Base
   
   belongs_to :user
   
+  #attr_accessible :latitude
 
   # use deleted? rather than checking the attribute directly. this
   # allows extensions to override deleted? if they want to provide
