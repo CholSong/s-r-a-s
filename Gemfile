@@ -35,7 +35,7 @@ gem 'aws-s3'
 # end
 
 # Use spree from local repository when debugging 
-# gem 'spree', :path => '../spree' 
+#gem 'spree', :path => '../spree' 
 
 # Use spree from git when deploying to production 
 gem 'spree', :git => 'git://github.com/spree/spree.git', :tag => 'v0.60.6'
@@ -43,3 +43,5 @@ gem 'spree', :git => 'git://github.com/spree/spree.git', :tag => 'v0.60.6'
 gem 'bemtevi', :require => "bemtevi", :path => "bemtevi"
 
 gem 'uuidtools'
+gem 'newrelic_rpm'
+

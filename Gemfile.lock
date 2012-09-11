@@ -122,6 +122,7 @@ GEM
     nested_set (1.6.7)
       activerecord (>= 3.0.0)
       railties (>= 3.0.0)
+    newrelic_rpm (3.4.2)
     orm_adapter (0.0.7)
     paperclip (2.3.11)
       activerecord (>= 2.3.0)
@@ -176,6 +177,7 @@ PLATFORMS
 DEPENDENCIES
   aws-s3
   bemtevi!
+  newrelic_rpm
   pg
   rails (= 3.0.10)
   spree!
