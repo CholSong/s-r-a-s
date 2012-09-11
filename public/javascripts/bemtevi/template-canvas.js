@@ -88,15 +88,15 @@ function drawTemplateAndOverlays(template, templateContainer, canvasContainer) {
     
     // Draws the flyer canvas over the withe leaf for the flyer.
     var leaf = $(templateContainer).children("img")[0];
-    var finalCanvas = $('<canvas width="' + (width + 30) + '" height="' + (height + 30) + '" />');
+    var finalCanvas = $('<canvas width="' + (width + 50) + '" height="' + (height + 50) + '" />');
     canvasContainer.append(finalCanvas);
     var finalCanvasNode = finalCanvas[0];
     var finalCtx = finalCanvasNode.getContext("2d");
     finalCtx.globalCompositeOperation = "source-over";
     
     // Draws the template background over the canvas.
-    var offX = templateType == "summary" ? 14 : 12;
-    var offY = templateType == "summary" ? 10 : 15;
+    var offX = templateType == "summary" ? 24 : 24;
+    var offY = templateType == "summary" ? 21 : 25;
     var leafNode = $(templateContainer).children("img")[0];
     finalCtx.drawImage(leafNode, 0, 0, leafNode.width, leafNode.height);
     finalCtx.drawImage(canvasNode, offX, offY, canvasNode.width, canvasNode.height);
