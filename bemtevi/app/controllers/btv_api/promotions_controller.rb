@@ -14,7 +14,7 @@ class BtvApi::PromotionsController < Api::BaseController
   end
   
   def object_serialization_options
-    { :only => [:id, :name, :description, :starts_at, :expires_at, :deleted_at, :vendor_id],
+    { :only => [:id, :name, :description, :starts_at, :expires_at, :deleted_at, :deactivated_at, :vendor_id],
       :include => { 
         :promotion_images => {
           :only => [:id],
