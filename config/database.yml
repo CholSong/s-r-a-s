@@ -14,8 +14,8 @@ development:
   database: bemtevi_ecomm_development
   pool: 5
   host: localhost
-  username: fpgentil
-  password: 
+  username: postgres
+  password: a
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -38,16 +38,17 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: bemtevi_ecomm_test
+  database: bemtevi_ecomm_development
   pool: 5
   host: localhost
-  username: fpgentil
-  password:
+  username: postgres
+  password: a
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: bemtevi_ecomm_production
+  database: bemtevi_ecomm_development
   pool: 5
-  username: bemtevi_ecomm
-  password:
+  host: localhost
+  username: postgres
+  password: a
