@@ -94,7 +94,7 @@ function getTemplateByType(type, templateSet) {
  */
 function displayTemplateForActiveSet(templateType) {
     template_type = templateType;
-    if(savedData.activeTemplateSet === undefined) {
+    if(savedData.activeTemplateSet === undefined || savedData.activeTemplateSet === null) {
         return;
     }
     var templateToDisplay = getTemplateByType(templateType, savedData.activeTemplateSet);
@@ -330,7 +330,9 @@ function createImageOverlay(context, template, overlay) {
     if(savedData[template.template_type][overlay.tag] !== undefined && savedData[template.template_type][overlay.tag].image_url !== undefined) {
         imageUrl = savedData[template.template_type][overlay.tag].image_url;
     }
-    createImage(overlayElement.find(".image-control"), imageUrl, overlay.image_overlay);
+    if(imageUrl){
+        createImage(overlayElement.find(".image-control"), imageUrl, overlay.image_overlay);
+    }    
 }
 
 function createImage(parent, filePath, imageOverlay) {
@@ -437,32 +439,11 @@ function createImageOverlayGallary(template, overlay){
     }
 }
 function change_product_image(obj){
-    jQuery(obj).siblings().removeClass("image_selected");
-    jQuery(obj).addClass("image_selected");
     var url = jQuery(obj).find("img").attr('src');
-    jQuery(".ul_panel img").show();
-    jQuery(".ui-wrapper img").attr("src",url);
+    jQuery("#template-container-"+template_type+" .ui-wrapper img").attr("src",url);
+    jQuery.fancyboxrun.close();
 }
 function show_gallary_window(){
     product_image_url = jQuery(".ui-wrapper img").attr("src");
-    jQuery("#"+template_type+"_image_gallary").dialog({
-        title: "Imagens do producto",
-        modal: true,
-        autoOpen: false,
-        resizable: false,
-        scrollable: true,
-        width: 550,
-        height: 500,
-        buttons: {
-            "Applicar": function(){
-                jQuery("#"+template_type+"_image_gallary").dialog("close");
-            },
-            "Cancelar": function(){
-                jQuery(".ui-wrapper img").attr("src",product_image_url);
-                jQuery("#"+template_type+"_image_gallary").dialog("close"); 
-            }
-        }
-
-    });
-     jQuery("#"+template_type+"_image_gallary").dialog("open");
+    jQuery.fancyboxrun(jQuery("#"+template_type+"_image_gallary"));
 }

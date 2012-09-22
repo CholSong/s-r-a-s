@@ -583,6 +583,23 @@ span.handle{
   width:14px;
   height:15px;
 }
+.overlay_images_conatainer_div{
+  max-height: 390px;
+  min-width: 487px;
+  overflow: hidden;
+}
+.overlay_images_conatainer_div fieldset{
+  overflow: hidden;
+  max-height: 350px;
+}
+.overlay_images_conatainer_div fieldset:hover{
+  height: auto;
+  max-height: 900px;
+}
+.overlay_images_conatainer_div:hover{
+  overflow: auto;
+  overflow-x: hidden;
+}
 .summary_product_overlay_images, .detail_product_overlay_images{
   min-width: 460px;
   height: 100px;
