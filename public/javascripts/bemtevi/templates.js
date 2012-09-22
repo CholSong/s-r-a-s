@@ -1,4 +1,6 @@
 var templateSets = null;
+var template_type = 'detail';
+var product_image_url;
 
 var savedData = {
     activeTemplateSetId : null,
@@ -91,6 +93,7 @@ function getTemplateByType(type, templateSet) {
  * Displays the selected template and its overlays.
  */
 function displayTemplateForActiveSet(templateType) {
+    template_type = templateType;
     if(savedData.activeTemplateSet === undefined) {
         return;
     }
@@ -125,7 +128,6 @@ function createTemplateContainer(templateSet, template) {
     $(".regions-container", containerContext).html("");
     var background = $('<img src="' + template.background_image.url + '" class="template-background-' + templateType + '" />');
     $(".regions-container", containerContext).append(background);
-
     // Setting up the overlays.
     for(var o = 0; o < template.overlays.length; o++) {
         var overlay = template.overlays[o];
@@ -133,6 +135,7 @@ function createTemplateContainer(templateSet, template) {
             createTextOverlay(containerContext, template, overlay);
         } else if(overlay.overlay_type == "image") {
             createImageOverlay(containerContext, template, overlay);
+            createImageOverlayGallary(template,overlay);
         }
     }
     // Configuring actions for the overlays.
@@ -303,7 +306,8 @@ function createImageOverlay(context, template, overlay) {
 
     var overlayElement = '<div class="image-overlay overlay" id="' + elementId + '"><div class="image-control" ></div>';
     overlayElement += '<div class="up-panel">';
-    overlayElement += '<div class="upload-btn" ><em><input type="file" name="img-upload" id="img-upload_' + overlay.id + '" class="img-upload"/></em>';
+   //overlayElement += '<div class="upload-btn" ><em><input type="file" name="img-upload" id="img-upload_' + overlay.id + '" class="img-upload"/></em>';
+    overlayElement += '<div class="upload-btn" onclick="show_gallary_window();">';
     overlayElement += '<img src="/images/bemtevi/ajax-loader.gif" /></div>';
     overlayElement += '</div>';
     overlayElement = $(overlayElement);
@@ -317,12 +321,15 @@ function createImageOverlay(context, template, overlay) {
     overlay.image_overlay.position_y || (overlay.image_overlay.position_y = 0);
     overlay.image_overlay.width || (overlay.image_overlay.width = overlay.width);
     overlay.image_overlay.height || (overlay.image_overlay.height = overlay.height);
+    var first_image = overlay.image_overlay.overlay_images[0];
+    try{
+        var imageUrl = first_image.url;
+    }catch(e){
 
-    var imageUrl = overlay.image_overlay.overlay_image.url
+    }
     if(savedData[template.template_type][overlay.tag] !== undefined && savedData[template.template_type][overlay.tag].image_url !== undefined) {
         imageUrl = savedData[template.template_type][overlay.tag].image_url;
     }
-
     createImage(overlayElement.find(".image-control"), imageUrl, overlay.image_overlay);
 }
 
@@ -416,3 +423,46 @@ $(document).ready(function() {
         displayTemplateForActiveSet("summary");
     });
 });
+function createImageOverlayGallary(template, overlay){
+    var template_type = template.template_type;
+    if(jQuery("#"+template_type+"_image_gallary").size() > 0 ){
+        jQuery("#"+template_type+"_image_gallary").remove()
+    }
+    jQuery("#content").append('<div class="gallary_container" id="'+template_type+'_image_gallary" style="display:none;"></div>');
+    var overlay_images = overlay.image_overlay.overlay_images;
+    for(var i=0; i<overlay_images.length; i++){
+        var url = overlay_images[i].url;
+        var overlay_image = '<div onclick="change_product_image(this);" class="gallary_overlay_image"><img width=100 height=100 src="'+url+'"/></div>';
+        jQuery("#"+template_type+"_image_gallary").append(overlay_image);
+    }
+}
+function change_product_image(obj){
+    jQuery(obj).siblings().removeClass("image_selected");
+    jQuery(obj).addClass("image_selected");
+    var url = jQuery(obj).find("img").attr('src');
+    jQuery(".ul_panel img").show();
+    jQuery(".ui-wrapper img").attr("src",url);
+}
+function show_gallary_window(){
+    product_image_url = jQuery(".ui-wrapper img").attr("src");
+    jQuery("#"+template_type+"_image_gallary").dialog({
+        title: "Imagens do producto",
+        modal: true,
+        autoOpen: false,
+        resizable: false,
+        scrollable: true,
+        width: 550,
+        height: 500,
+        buttons: {
+            "Applicar": function(){
+                jQuery("#"+template_type+"_image_gallary").dialog("close");
+            },
+            "Cancelar": function(){
+                jQuery(".ui-wrapper img").attr("src",product_image_url);
+                jQuery("#"+template_type+"_image_gallary").dialog("close"); 
+            }
+        }
+
+    });
+     jQuery("#"+template_type+"_image_gallary").dialog("open");
+}

@@ -7,3 +7,5 @@ class TextOverlay < ActiveRecord::Base
   belongs_to :overlay
 
 end
+
+

@@ -583,3 +583,46 @@ span.handle{
   width:14px;
   height:15px;
 }
+.summary_product_overlay_images, .detail_product_overlay_images{
+  min-width: 460px;
+}
+div.product_overlay_child{
+  float:left;
+  padding: 5px 10px;
+}
+.input_tag_container{
+  width: 200px;
+}
+.input_tag_container input{
+  margin-top:25px;
+  width: 180px;
+  border-radius: 3px;
+}
+.view_file{
+  width:100px;
+  overflow: hidden;
+  text-align: center;
+}
+.view_file p{
+  vertical-align: middle;
+  display: table-cell;
+}
+.view_file img{
+  width: 60px;
+  height:70px;
+}
+.file_remove{
+  margin-top:25px;
+  width: 100px;
+}
+.file_remove label{
+  display: inline;
+  color: #666;
+  cursor: pointer;
+}
+.file_remove a{
+  color: #666 !important;
+  cursor: pointer;
+  font-weight: bold;
+}
+

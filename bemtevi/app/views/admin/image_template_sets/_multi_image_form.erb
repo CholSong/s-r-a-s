@@ -1,0 +1,21 @@
+<%= form.fields_for :overlay_images do |overlay_img_form| %>
+	<div class="<%= @type %>_product_overlay_images">
+		<div class="input_tag_container product_overlay_child">
+			<%= overlay_img_form.file_field :attachment, onchange: "select_file(this,'"+@type+"');" %>
+			<%  overlay = overlay_img_form.object %>
+		</div>
+		<div class="view_file product_overlay_child">
+		<% if !overlay.attachment_file_name.nil? %>
+			<%= link_to(image_tag(overlay.attachment.url(:small)), overlay.attachment.url(:original)) %>
+		<% end %>
+		</div>
+		<div class="file_remove product_overlay_child">
+		<% unless overlay_img_form.object==nil || overlay_img_form.object.new_record? %>
+			<div class="field">
+				<%= overlay_img_form.check_box :_destroy %>
+				<%= overlay_img_form.label :_destroy, 'Remover' %>
+			</div>
+		<% end %>
+		</div>
+	</div>
+<% end %>

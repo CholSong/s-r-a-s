@@ -224,3 +224,47 @@ jQuery(".observe_field").live('change', function() {
     }
   );
 });
+
+var detail_file_length;
+var summary_file_length
+function select_file(obj, type){
+  var file_length = 0;
+  if(type == "summary" ){
+    file_length = summary_file_length;
+  }else{
+    file_length = detail_file_length
+  }
+  if( !file_length ){
+    file_length = jQuery("." + type + "_product_overlay_images input[type='file']").size();
+  }
+  var element_name
+  if(type=="summary"){
+    element_name = "image_template_set[image_templates_attributes][0][overlays_attributes][0][image_overlay_attributes][overlay_images_attributes][" + (file_length-1) + "][attachment]";
+  }else{
+    element_name = "image_template_set[image_templates_attributes][1][overlays_attributes][0][image_overlay_attributes][overlay_images_attributes][" + (file_length-1) + "][attachment]"
+  }
+  if(jQuery(obj).attr("name") == element_name){
+    var file_name = obj.files[0].name;
+    if(file_name != ""){
+      var new_element_name
+      if(type=="summary"){
+        new_element_name = "image_template_set[image_templates_attributes][0][overlays_attributes][0][image_overlay_attributes][overlay_images_attributes][" + file_length + "][attachment]";
+      }else{
+        new_element_name = "image_template_set[image_templates_attributes][1][overlays_attributes][0][image_overlay_attributes][overlay_images_attributes][" + file_length + "][attachment]"
+      }
+      jQuery(obj).parent().siblings(".view_file").html("<p>"+file_name+"</p>");
+      jQuery(obj).parent().siblings(".file_remove").html("<a id='"+type+"_file_remove_"+file_length +"' href='javascript:jQuery(\"#"+type+"_file_remove_"+file_length +"\").parent().parent().remove();'>Remover</a>");
+      var new_file_input_div = '<div class="product_overlay_images"><div class="input_tag_container product_overlay_child">' +
+          '<input onchange="javascript:select_file(this,\''+type+'\');" name="'+new_element_name+'" type="file">' +
+         '</div><div class="view_file product_overlay_child"></div><div class="file_remove product_overlay_child"></div></div>';
+      jQuery(obj).parent().parent().parent().append(new_file_input_div);
+      if(type == "summary" ){
+        summary_file_length = file_length;
+        summary_file_length++;
+      }else{
+        detail_file_length = file_length;
+        detail_file_length++;
+      }
+    }
+  }
+}

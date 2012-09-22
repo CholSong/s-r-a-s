@@ -31,7 +31,7 @@ class Manager::ImageTemplateSetsController < Admin::ResourceController
                 :image_overlay => { 
                   :only => [:id, :position_x, :position_y, :width, :height],
                   :include => { 
-                    :overlay_image => {
+                    :overlay_images => {
                       :only => [:id],
                       :methods => [:url]
                     }

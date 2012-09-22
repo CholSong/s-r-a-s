@@ -238,3 +238,20 @@ a.close{
 #wrapper{
 	margin:0 auto;
 }
+.image_selected{
+	background-color: red !important;
+	opacity: 1 !important;
+}
+.gallary_overlay_image{
+  display: inline-table;
+  float: left;
+  margin: 5px;
+  padding: 5px;
+  border: 5px solid white;
+  opacity: 0.6;
+  border-radius: 5px;
+  background-color: #eee;
+}
+.gallary_overlay_image:hover{
+  opacity: 1;
+}
