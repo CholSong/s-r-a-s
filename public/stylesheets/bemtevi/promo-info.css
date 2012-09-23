@@ -256,3 +256,10 @@ a.close{
 .gallary_overlay_image:hover{
   opacity: 1;
 }
+.image_loading{
+	z-index: 9999;
+	display: none;
+	width: 44px;
+	height: 44px;
+	background: url('/images/bemtevi/ajax-loader.gif') center center no-repeat;
+}

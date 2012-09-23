@@ -442,8 +442,15 @@ function change_product_image(obj){
     var url = jQuery(obj).find("img").attr('src');
     jQuery("#template-container-"+template_type+" .ui-wrapper img").attr("src",url);
     jQuery.fancyboxrun.close();
+    jQuery(".image_loading").show().css({
+        "position": "absolute",
+        "top": (jQuery("#template-container-"+template_type+" .ui-wrapper img").position().top+250)+"px",
+        "left": (jQuery("#template-container-"+template_type+" .ui-wrapper img").position().left+250)+"px"});
 }
 function show_gallary_window(){
-    product_image_url = jQuery(".ui-wrapper img").attr("src");
+    jQuery("#template-container-"+template_type+" .ui-wrapper img").attr("onload","photoloaded();")
     jQuery.fancyboxrun(jQuery("#"+template_type+"_image_gallary"));
+}
+function photoloaded(){
+    jQuery(".image_loading").hide();
 }
