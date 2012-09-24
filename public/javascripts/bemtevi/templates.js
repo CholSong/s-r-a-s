@@ -159,6 +159,7 @@ function createTemplateContainer(templateSet, template) {
         var form = $('<form id="up-form_' + getId($(this).attr("id")) + '" name="up-form" method="POST" target="up-iframe" enctype="multipart/form-data" encoding="multipart/form-data" action="/upload_temp_image"></form>');
         $(this).parent().append(form);
         form.append($(this));
+        form.append($('<input type="hidden" name="authenticity_token" value="' + AUTH_TOKEN + '">'));
         // Exibindo a imagem de loading
         $(this).parent().parent().parent().parent().addClass("uploading");
         /* Uploading file */
