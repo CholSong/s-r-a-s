@@ -14,6 +14,10 @@ class OverlayImage < Asset
     attachment.url(:original)
   end
 
+  def thumbnail_url
+    attachment.url(:small)
+  end
+  
   def find_dimensions
     temporary = attachment.queued_for_write[:original]
     filename = temporary.path unless temporary.nil?

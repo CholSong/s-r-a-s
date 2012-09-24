@@ -55,7 +55,6 @@ function createTemplateList() {
         var templateSetContainer = $('<div class="tpl-thumb" id="family-' + f + '"></div>');
         var imgContainer = $('<div class="img-container" ></div>');
         templateSetContainer.append(imgContainer);
-
         // Creates the thumbnail for the template set
         imgContainer.append($('<img class="thumb-img_' + detailTemplate.id + '" src="' + detailTemplate.background_image.thumbnail_url + '"/>'));
         templateSetContainer.click(onTemplateSetClicked(templateSet, detailTemplate, summaryTemplate));
@@ -430,16 +429,17 @@ function createImageOverlayGallary(template, overlay){
     if(jQuery("#"+template_type+"_image_gallary").size() > 0 ){
         jQuery("#"+template_type+"_image_gallary").remove()
     }
-    jQuery("#content").append('<div class="gallary_container" id="'+template_type+'_image_gallary" style="display:none;"></div>');
+    jQuery("#content").append('<div class="gallary_container"  style="display:none;"><div class="gallary_content_div" id="'+template_type+'_image_gallary"></div></div>');
     var overlay_images = overlay.image_overlay.overlay_images;
     for(var i=0; i<overlay_images.length; i++){
         var url = overlay_images[i].url;
-        var overlay_image = '<div onclick="change_product_image(this);" class="gallary_overlay_image"><img width=100 height=100 src="'+url+'"/></div>';
+        var thumbnail_url = overlay_images[i].thumbnail_url;
+        var overlay_image = '<div class="gallary_overlay_image_div"><div onclick="change_product_image(this);" class="gallary_overlay_image"><img org_url="'+url+'" src="'+thumbnail_url+'"/></div></div>';
         jQuery("#"+template_type+"_image_gallary").append(overlay_image);
     }
 }
 function change_product_image(obj){
-    var url = jQuery(obj).find("img").attr('src');
+    var url = jQuery(obj).find("img").attr('org_url');
     jQuery("#template-container-"+template_type+" .ui-wrapper img").attr("src",url);
     jQuery.fancyboxrun.close();
     jQuery(".image_loading").show().css({
@@ -449,7 +449,7 @@ function change_product_image(obj){
 }
 function show_gallary_window(){
     jQuery("#template-container-"+template_type+" .ui-wrapper img").attr("onload","photoloaded();")
-    jQuery.fancyboxrun(jQuery("#"+template_type+"_image_gallary"));
+    jQuery.fancyboxrun(jQuery("#"+template_type+"_image_gallary").parent());
 }
 function photoloaded(){
     jQuery(".image_loading").hide();

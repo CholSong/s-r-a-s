@@ -33,7 +33,7 @@ class Manager::ImageTemplateSetsController < Admin::ResourceController
                   :include => { 
                     :overlay_images => {
                       :only => [:id],
-                      :methods => [:url]
+                      :methods => [:url, :thumbnail_url]
                     }
                   }
                 }

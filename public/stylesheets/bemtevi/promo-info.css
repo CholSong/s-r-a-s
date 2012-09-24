@@ -240,22 +240,31 @@ a.close{
 }
 .gallary_container{
 	width: 546px;
-	overflow: auto;
 	height: 478px;
 	background: url(/images/bemtevi/backgrounds/gallery-brown-panel.png) top left no-repeat;
 }
-.gallary_overlay_image{
+.gallary_content_div{
+	padding:20px;
+}
+.gallary_overlay_image_div{
   display: inline-table;
   float: left;
-  margin: 20px 0px 0px 22px;
-  border: 5px solid white;
+  padding: 0px 10px;
+  text-align: center;
+  overflow: hidden;
+  height: 120px;
+  width: 100px;
+ }
+.gallary_overlay_image{
   opacity: 0.6;
-  border-radius: 5px;	
-  box-shadow: 5px 5px 25px black;
 }
 .gallary_overlay_image:hover{
   opacity: 1;
 }
+.gallary_overlay_image img{
+border: solid 3px white;
+box-shadow: 2px 5px 10px 1px black;
+border-radius: 3px;}
 .image_loading{
 	z-index: 9999;
 	display: none;
