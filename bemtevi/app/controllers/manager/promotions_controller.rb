@@ -17,10 +17,7 @@ class Manager::PromotionsController < Manager::ResourceController
   def deactivate
     promotion = Promotion.find(params[:id])
     promotion.deactivate
-    if promotion.expires_at < Time.now
-      true
-    end
-  redirect_to :back
+    redirect_to :back
   end
 
   def new
