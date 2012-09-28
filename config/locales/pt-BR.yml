@@ -1172,8 +1172,13 @@ pt-BR:
 
   welcome: "Bem vindo,"
   confirm_logout: "Tem certeza que deseja sair?"
-  create_flyer: "Criar Flyer"
-  flyer_dashboard: "Painél de Flyers"
+  flyer:
+    create: "Criar Flyer"
+    dashboard: "Painél de Flyers"
+    name: "Nome do Flyer"
+    description: "Descrição Flyer"
+    valid_from: "Válido a partir de"
+    valid_until: "Válido até"
   
   promos:
     buttons:

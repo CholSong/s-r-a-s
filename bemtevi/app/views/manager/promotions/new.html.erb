@@ -4,17 +4,13 @@
 <script type="text/javascript">
     $(function() {
         $('#datepicker').datetimepicker({
-            hourMin: 09,
             hour: 10,
-            hourMax: 21,
             stepMinute: 30,
             inline : true,
             dateFormat: "yy-mm-dd"
         });
         $('#datepicker2').datetimepicker({
-            hourMin: 09,
             hour: 10,
-            hourMax: 21,
             stepMinute: 30,
             inline : true,
             dateFormat: "yy-mm-dd"
@@ -56,14 +52,14 @@
         <div id="popup">
             <%= form_for(@object, :url => collection_url, :html => { :multipart => true }) do |f| %>
                 <div id="inner-popup">
-                    <%= f.label "nome da promoção" %>
+                    <%= f.label t('flyer.name') %>
                     <%= f.text_field :name %>
-                    <%= f.label "descrição da promoção" %>
+                    <%= f.label t('flyer.description') %>
                     <%= f.text_area :description %>
                     <div id="small">
-                        <%= f.label "válida a partir de" %>
+                        <%= f.label t('flyer.valid_from') %>
                         <%= f.text_field :starts_at, :id => "datepicker" %>
-                        <%= f.label "válida até", :class => "second" %>
+                        <%= f.label t('flyer.valid_until'), :class => "second" %>
                         <%= f.text_field :expires_at, :id => "datepicker2" %>
                     </div>
                 </div>
