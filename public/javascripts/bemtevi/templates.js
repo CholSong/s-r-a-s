@@ -1,4 +1,6 @@
 var templateSets = null;
+var template_type = 'detail';
+var product_image_url;
 
 var savedData = {
     activeTemplateSetId : null,
@@ -53,7 +55,6 @@ function createTemplateList() {
         var templateSetContainer = $('<div class="tpl-thumb" id="family-' + f + '"></div>');
         var imgContainer = $('<div class="img-container" ></div>');
         templateSetContainer.append(imgContainer);
-
         // Creates the thumbnail for the template set
         imgContainer.append($('<img class="thumb-img_' + detailTemplate.id + '" src="' + detailTemplate.background_image.thumbnail_url + '"/>'));
         templateSetContainer.click(onTemplateSetClicked(templateSet, detailTemplate, summaryTemplate));
@@ -91,7 +92,8 @@ function getTemplateByType(type, templateSet) {
  * Displays the selected template and its overlays.
  */
 function displayTemplateForActiveSet(templateType) {
-    if(savedData.activeTemplateSet === undefined) {
+    template_type = templateType;
+    if(savedData.activeTemplateSet === undefined || savedData.activeTemplateSet === null) {
         return;
     }
     var templateToDisplay = getTemplateByType(templateType, savedData.activeTemplateSet);
@@ -125,7 +127,6 @@ function createTemplateContainer(templateSet, template) {
     $(".regions-container", containerContext).html("");
     var background = $('<img src="' + template.background_image.url + '" class="template-background-' + templateType + '" />');
     $(".regions-container", containerContext).append(background);
-
     // Setting up the overlays.
     for(var o = 0; o < template.overlays.length; o++) {
         var overlay = template.overlays[o];
@@ -133,6 +134,7 @@ function createTemplateContainer(templateSet, template) {
             createTextOverlay(containerContext, template, overlay);
         } else if(overlay.overlay_type == "image") {
             createImageOverlay(containerContext, template, overlay);
+            createImageOverlayGallary(template,overlay);
         }
     }
     // Configuring actions for the overlays.
@@ -304,7 +306,8 @@ function createImageOverlay(context, template, overlay) {
 
     var overlayElement = '<div class="image-overlay overlay" id="' + elementId + '"><div class="image-control" ></div>';
     overlayElement += '<div class="up-panel">';
-    overlayElement += '<div class="upload-btn" ><em><input type="file" name="img-upload" id="img-upload_' + overlay.id + '" class="img-upload"/></em>';
+   //overlayElement += '<div class="upload-btn" ><em><input type="file" name="img-upload" id="img-upload_' + overlay.id + '" class="img-upload"/></em>';
+    overlayElement += '<div class="upload-btn" onclick="show_gallary_window();">';
     overlayElement += '<img src="/images/bemtevi/ajax-loader.gif" /></div>';
     overlayElement += '</div>';
     overlayElement = $(overlayElement);
@@ -318,13 +321,18 @@ function createImageOverlay(context, template, overlay) {
     overlay.image_overlay.position_y || (overlay.image_overlay.position_y = 0);
     overlay.image_overlay.width || (overlay.image_overlay.width = overlay.width);
     overlay.image_overlay.height || (overlay.image_overlay.height = overlay.height);
+    var first_image = overlay.image_overlay.overlay_images[0];
+    try{
+        var imageUrl = first_image.url;
+    }catch(e){
 
-    var imageUrl = overlay.image_overlay.overlay_image.url
+    }
     if(savedData[template.template_type][overlay.tag] !== undefined && savedData[template.template_type][overlay.tag].image_url !== undefined) {
         imageUrl = savedData[template.template_type][overlay.tag].image_url;
     }
-
-    createImage(overlayElement.find(".image-control"), imageUrl, overlay.image_overlay);
+    if(imageUrl){
+        createImage(overlayElement.find(".image-control"), imageUrl, overlay.image_overlay);
+    }    
 }
 
 function createImage(parent, filePath, imageOverlay) {
@@ -417,3 +425,33 @@ $(document).ready(function() {
         displayTemplateForActiveSet("summary");
     });
 });
+function createImageOverlayGallary(template, overlay){
+    var template_type = template.template_type;
+    if(jQuery("#"+template_type+"_image_gallary").size() > 0 ){
+        jQuery("#"+template_type+"_image_gallary").remove()
+    }
+    jQuery("#content").append('<div class="gallary_container"  style="display:none;"><div class="gallary_content_div" id="'+template_type+'_image_gallary"></div></div>');
+    var overlay_images = overlay.image_overlay.overlay_images;
+    for(var i=0; i<overlay_images.length; i++){
+        var url = overlay_images[i].url;
+        var thumbnail_url = overlay_images[i].thumbnail_url;
+        var overlay_image = '<div class="gallary_overlay_image_div"><div onclick="change_product_image(this);" class="gallary_overlay_image"><img org_url="'+url+'" src="'+thumbnail_url+'"/></div></div>';
+        jQuery("#"+template_type+"_image_gallary").append(overlay_image);
+    }
+}
+function change_product_image(obj){
+    var url = jQuery(obj).find("img").attr('org_url');
+    jQuery("#template-container-"+template_type+" .ui-wrapper img").attr("src",url);
+    jQuery.fancyboxrun.close();
+    jQuery(".image_loading").show().css({
+        "position": "absolute",
+        "top": (jQuery("#template-container-"+template_type+" .ui-wrapper img").position().top+250)+"px",
+        "left": (jQuery("#template-container-"+template_type+" .ui-wrapper img").position().left+250)+"px"});
+}
+function show_gallary_window(){
+    jQuery("#template-container-"+template_type+" .ui-wrapper img").attr("onload","photoloaded();")
+    jQuery.fancyboxrun(jQuery("#"+template_type+"_image_gallary").parent());
+}
+function photoloaded(){
+    jQuery(".image_loading").hide();
+}

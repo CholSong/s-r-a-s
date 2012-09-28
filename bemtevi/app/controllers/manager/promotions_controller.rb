@@ -5,7 +5,7 @@ class Manager::PromotionsController < Manager::ResourceController
   
   def index
     @image_url = nil
-    @promotions = Promotion.order('created_at DESC').where(deleted_at: nil).where(vendor_id: @vendor.id).paginate(page: params[:page] || 1, per_page: 12)
+    @promotions = Promotion.order('starts_at, expires_at ASC').where(deleted_at: nil).where(vendor_id: @vendor.id).paginate(page: params[:page] || 1, per_page: 12)
   end
 
   def activate
@@ -52,16 +52,15 @@ class Manager::PromotionsController < Manager::ResourceController
   def fill_missing_summary_overlays(image_template)
     product_image_overlay = image_template.overlays.build :tag => "product_image"
     image_overlay = product_image_overlay.build_image_overlay
-    image_overlay.build_overlay_image
 
     promotion_title_overlay = image_template.overlays.build :tag => "title"
     promotion_title_overlay.build_text_overlay
+    #render :text=> image_overlay.inspect and return
   end
 
   def fill_missing_detail_overlays(image_template)
     product_image_overlay = image_template.overlays.build :tag => "product_image"
     image_overlay = product_image_overlay.build_image_overlay
-    image_overlay.build_overlay_image
 
     promotion_title_overlay = image_template.overlays.build :tag => "title"
     promotion_title_overlay.build_text_overlay

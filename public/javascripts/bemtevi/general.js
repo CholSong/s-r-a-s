@@ -15,7 +15,6 @@ $(document).ready(function() {
         style : 'dropdown',
         menuWidth : '150px'
     });
-
     $("select.dropDownMenu").change(function() {
         window.location = "/manager/promotions?vendor_id=" + $("select.dropDownMenu").val();
     });
@@ -33,3 +32,4 @@ $(document).ready(function() {
         $("#logout-popup").hide();
     });
 });
+    

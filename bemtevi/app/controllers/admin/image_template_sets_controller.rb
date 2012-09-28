@@ -1,5 +1,4 @@
 class Admin::ImageTemplateSetsController < Admin::ResourceController
-
   def new
     summary_template = @object.image_templates.build :template_type => "summary"
     summary_template.build_background_image
@@ -8,7 +7,6 @@ class Admin::ImageTemplateSetsController < Admin::ResourceController
     detail_template = @object.image_templates.build :template_type => "detail"
     detail_template.build_background_image
     fill_missing_detail_overlays detail_template
-
     super
   end
 
@@ -24,6 +22,11 @@ class Admin::ImageTemplateSetsController < Admin::ResourceController
       end
     }
     
+    super
+  end
+
+  def update
+    #render :text=> params.inspect and return
     super
   end
 
@@ -51,7 +54,8 @@ class Admin::ImageTemplateSetsController < Admin::ResourceController
     end
     image_overlay = product_image_overlay.image_overlay
     image_overlay = product_image_overlay.build_image_overlay if image_overlay.nil?
-    image_overlay.build_overlay_image if image_overlay.overlay_image.nil?
+    image_overlay.build_overlay_image if image_overlay.overlay_images.nil?
+    @summarry_img_overlay = image_overlay
 
     promotion_title_overlay = image_template.overlays.select {|overlay| overlay.tag == "title"}[0]
     if promotion_title_overlay.nil?
@@ -67,7 +71,8 @@ class Admin::ImageTemplateSetsController < Admin::ResourceController
     end
     image_overlay = product_image_overlay.image_overlay
     image_overlay = product_image_overlay.build_image_overlay if image_overlay.nil?
-    image_overlay.build_overlay_image if image_overlay.overlay_image.nil?
+    image_overlay.build_overlay_image if image_overlay.overlay_images.nil?
+    @detail_img_overlay = image_overlay
 
     promotion_title_overlay = image_template.overlays.select {|overlay| overlay.tag == "title"}[0]
     if promotion_title_overlay.nil?

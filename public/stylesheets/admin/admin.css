@@ -583,3 +583,64 @@ span.handle{
   width:14px;
   height:15px;
 }
+.overlay_images_conatainer_div{
+  max-height: 390px;
+  min-width: 487px;
+  overflow: hidden;
+}
+.overlay_images_conatainer_div fieldset{
+  overflow: hidden;
+  max-height: 350px;
+}
+.overlay_images_conatainer_div fieldset:hover{
+  height: auto;
+  max-height: 900px;
+}
+.overlay_images_conatainer_div:hover{
+  overflow: auto;
+  overflow-x: hidden;
+}
+.summary_product_overlay_images, .detail_product_overlay_images{
+  min-width: 460px;
+  height: 100px;
+}
+div.product_overlay_child{
+  float:left;
+  padding: 5px 10px;
+}
+.input_tag_container{
+  width: 200px;
+}
+.input_tag_container input{
+  margin-top:25px;
+  width: 180px;
+  border-radius: 3px;
+}
+.view_file{
+  width:100px;
+  overflow: hidden;
+  text-align: center;
+}
+.view_file p{
+  vertical-align: middle;
+  display: table-cell;
+}
+.view_file img{
+  width: 60px;
+  height:70px;
+}
+.file_remove{
+  margin-top:25px;
+  width: 100px;
+}
+.file_remove label{
+  display: inline;
+  color: #666;
+  cursor: pointer;
+}
+.file_remove a{
+  color: #666 !important;
+  cursor: pointer;
+  font-weight: bold;
+}
+

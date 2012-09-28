@@ -1,4 +1,4 @@
-<div class="yui-u <%= field_set_position == 1 ? :first : "" %> ">
+<div class="yui-u <%= field_set_position == 1 ? :first : "" %> overlay_images_conatainer_div">
   <fieldset >
     <legend><%= t(f.object.tag) %></legend>
     <%= f.hidden_field :tag %>
@@ -7,16 +7,14 @@
     <%= f.label t(:dimension) %>
     <%= f.text_field :width, :size => 4 %> <%= t(:width) %>, <%= f.text_field :height, :size => 4 %> <%= t(:height) %><br />
     <p />
-
     <%= f.fields_for :image_overlay do |img_overlay_form| %>
-      <%= img_overlay_form.fields_for :overlay_image do |overlay_img_form|%>
-        <%= overlay_img_form.file_field :attachment %><br />
-        <%  overlay = overlay_img_form.object %>
-        <% if !overlay.attachment_file_name.nil? %>
-          <%= link_to(image_tag(overlay.attachment.url(:small)), overlay.attachment.url(:original)) %>
-        <% end %>
-      <% end%>
+      <% if( @type == "detail" ) %>
+        <% @detail_img_overlay.overlay_images.build %>
+        <%= render :partial => 'multi_image_form',:locals => { :form => img_overlay_form } %>
+      <% else %>
+        <% @summarry_img_overlay.overlay_images.build %>
+        <%= render :partial => 'multi_image_form',:locals => { :form => img_overlay_form } %>
+      <% end %>
     <% end %>
-
   </fieldset>
 </div>

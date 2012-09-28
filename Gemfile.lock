@@ -127,8 +127,8 @@ GEM
     paperclip (2.3.11)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
-    pg (0.14.0)
-    pg (0.14.0-x86-mingw32)
+    pg (0.14.1)
+    pg (0.14.1-x86-mingw32)
     polyglot (0.3.3)
     rack (1.2.5)
     rack-mount (0.6.14)
@@ -178,7 +178,7 @@ DEPENDENCIES
   aws-s3
   bemtevi!
   newrelic_rpm
-  pg
+  pg (= 0.14.1)
   rails (= 3.0.10)
   spree!
   uuidtools

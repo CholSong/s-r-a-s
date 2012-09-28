@@ -1,6 +1,8 @@
 <% content_for :head do %>
 <%= stylesheet_link_tag "bemtevi/create-template", "bemtevi/promo-info" %>
 <%= javascript_include_tag "bemtevi/templates", "bemtevi/template-canvas", "bemtevi/create-promotion" %>
+<%= javascript_include_tag 'bemtevi/fancybox.js' %>
+    <%= stylesheet_link_tag 'bemtevi/fancybox.css' %>
 <script type="text/javascript">
     $(function() {
         $('#datepicker').datetimepicker({
@@ -71,3 +73,4 @@
         </div>
     </div>
 </div>
+<div class="image_loading"></div>
