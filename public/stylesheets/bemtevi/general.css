@@ -57,6 +57,10 @@ a, input[type=button], input[type=submit] {
     background-color: transparent;
     cursor: pointer;
 }
+.template-btn_hover{
+    background-color: white;
+    border-radius: 3px;
+}
 .duplicate-template-btn {
     display: none;
     background-position: -232px -320px;
@@ -67,7 +71,7 @@ a, input[type=button], input[type=submit] {
 .deactive-template-btn {
     display: none;
     background-position: -118px -320px;
-    top: -68px;
+    top: -65px;
 }
 .active .deactive-template-btn {
     display: block;
@@ -75,7 +79,7 @@ a, input[type=button], input[type=submit] {
 
 .active-template-btn {
     background-position: -155px -320px;
-    top: -68px;
+    top: -65px;
 }
 .active .active-template-btn {
     display: none;

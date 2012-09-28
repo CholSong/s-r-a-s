@@ -31,5 +31,15 @@ $(document).ready(function() {
     $("#logout-popup a.btn-no").click(function() {
         $("#logout-popup").hide();
     });
+    $(".tpl-list-item").hover(
+        function(){
+            $(this).find("input[class$='-template-btn']").addClass("template-btn_hover");
+            $(this).find("a[class$='-template-btn']").addClass("template-btn_hover");
+        },
+        function(){
+            $(this).find("input[class~='template-btn_hover']").removeClass("template-btn_hover");
+            $(this).find("a[class~='template-btn_hover']").removeClass("template-btn_hover");
+        }
+    );
 });
     
