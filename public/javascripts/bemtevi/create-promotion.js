@@ -5,6 +5,11 @@ function createPromotionFromTemplate() {
     submitPromotionForm();
 }
 
+function padTo2Digits(num) {
+    var s = "0" + num;
+    return s.substr(s.length-2);
+}
+
 function submitPromotionForm() { 
     $("#progress").slideDown();
 
@@ -14,9 +19,16 @@ function submitPromotionForm() {
             
     var formElement = $("#new_promotion");
     var fields = formElement.serializeArray();
+    var timezoneOffset = new Date().getTimezoneOffset();
+    var offsetHours = Math.floor(timezoneOffset / 60);
+    var offsetMin = timezoneOffset % 60;
     
     jQuery.each(fields, function (i, field) {
-        formData.append(field.name, field.value);
+        if (field.name == 'promotion[starts_at]' || field.name == 'promotion[expires_at]') {
+            formData.append(field.name, field.value + "-" + padTo2Digits(offsetHours) + ":" + padTo2Digits(offsetMin));
+        } else {
+            formData.append(field.name, field.value);
+        }
     });
 
     var canvasSummary = $("#canvas-container-summary").children("canvas")[0];

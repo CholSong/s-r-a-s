@@ -4,10 +4,8 @@
 
 <div id="promo-panel" class="list-panel" >
     <div class="header" >
-        <p>
-            Suas promoções ativas
-        </p>
-        <a href="/manager/promotions/new" id="new-promo-btn" title="criar promoção">criar promoção</a>
+        <p><%= t('flyer.dashboard') %></p>
+        <a href="/manager/promotions/new" id="new-promo-btn" title="criar promoção"><%= t('flyer.create') %></a>
     </div>
 
     <div id="tpl-container">
@@ -27,7 +25,7 @@
                 <%= button_to t('promos.buttons.activate'), activate_manager_promotion_path(promotion), method: :put, title: t('promos.buttons.activate'), class: 'active-template-btn' %>
                 <%= link_to t('promos.buttons.edit'), '/manager/promotions/new', title: t('promos.buttons.edit'), class: 'edit-template-btn' %>
             </div>
-            <label><%= promotion.starts_at.to_time.to_formatted_s(:db)[0,promotion.starts_at.to_time.to_formatted_s(:db).length-3]  if promotion.starts_at %> - <%= promotion.expires_at.to_time.to_formatted_s(:db)[0,promotion.expires_at.to_time.to_formatted_s(:db).length-3] if promotion.expires_at %></label>
+            <label><%= promotion.starts_at.to_time.to_formatted_s(:db)[0,promotion.starts_at.to_time.to_formatted_s(:db).length-3]  if promotion.starts_at %><br/><%= promotion.expires_at.to_time.to_formatted_s(:db)[0,promotion.expires_at.to_time.to_formatted_s(:db).length-3] if promotion.expires_at %></label>
         </div>
 
         <% end %>

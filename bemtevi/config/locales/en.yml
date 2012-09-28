@@ -59,6 +59,13 @@ en:
   # Bemtevi Manager UI
   welcome: "Welcome,"
   confirm_logout: "Are you sure you want to exit?"
+  flyer:
+    create: "Create Flyer"
+    dashboard: "Flyer Dashboard"
+    name: "Flyer Name"
+    description: "Flyer Description"
+    valid_from: "Valid from"
+    valid_until: "Valid until"
 
   promos:
     buttons:

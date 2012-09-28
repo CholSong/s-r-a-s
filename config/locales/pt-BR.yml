@@ -1172,6 +1172,25 @@ pt-BR:
 
   welcome: "Bem vindo,"
   confirm_logout: "Tem certeza que deseja sair?"
+  flyer:
+    create: "Criar Flyer"
+    dashboard: "Painél de Flyers"
+    name: "Nome do Flyer"
+    description: "Descrição Flyer"
+    valid_from: "Válido a partir de"
+    valid_until: "Válido até"
+  
+  promos:
+    buttons:
+      duplicate: "Duplicar"
+      activate: "Ativar"
+      deactivate: "Desativar"
+      edit: "Editar"
+
+  will_paginate:
+    previous_label: "&laquo;"
+    next_label: "&raquo;"
+    page_gap: "&hellip;"
     
 # encoding: UTF-8
 # pt-BR translations for Ruby on Rails

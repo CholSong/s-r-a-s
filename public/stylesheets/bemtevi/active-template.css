@@ -86,7 +86,7 @@
 div.tpl-list-item {
     background:url(/images/bemtevi/backgrounds/lists-templates.png) -5px -10px no-repeat;
     float:left;
-    padding:0 5px; 
+    padding:0 5px 20px; 
     position:relative;
 	width: 140px;
     height:178px;
