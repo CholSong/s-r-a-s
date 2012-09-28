@@ -245,6 +245,9 @@ a.close{
 }
 .gallary_content_div{
 	padding:20px;
+	height: 415px;
+	overflow: auto;
+	width: 515px;
 }
 .gallary_overlay_image_div{
   display: inline-table;

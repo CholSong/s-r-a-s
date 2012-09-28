@@ -5,7 +5,7 @@ class Manager::PromotionsController < Manager::ResourceController
   
   def index
     @image_url = nil
-    @promotions = Promotion.order('created_at DESC').where(deleted_at: nil).where(vendor_id: @vendor.id).paginate(page: params[:page] || 1, per_page: 12)
+    @promotions = Promotion.order('starts_at, expires_at ASC').where(deleted_at: nil).where(vendor_id: @vendor.id).paginate(page: params[:page] || 1, per_page: 12)
   end
 
   def activate
@@ -17,7 +17,10 @@ class Manager::PromotionsController < Manager::ResourceController
   def deactivate
     promotion = Promotion.find(params[:id])
     promotion.deactivate
-    redirect_to :back
+    if promotion.expires_at < Time.now
+      true
+    end
+  redirect_to :back
   end
 
   def new

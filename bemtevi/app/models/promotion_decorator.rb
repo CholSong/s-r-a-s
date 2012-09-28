@@ -23,6 +23,7 @@ Promotion.class_eval do
 
   def deactivated?
     !!deactivated_at
+    expires_at < Time.now
   end
 
   def active?
