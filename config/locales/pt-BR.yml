@@ -1172,6 +1172,20 @@ pt-BR:
 
   welcome: "Bem vindo,"
   confirm_logout: "Tem certeza que deseja sair?"
+  create_flyer: "Criar Flyer"
+  flyer_dashboard: "Painél de Flyers"
+  
+  promos:
+    buttons:
+      duplicate: "Duplicar"
+      activate: "Ativar"
+      deactivate: "Desativar"
+      edit: "Editar"
+
+  will_paginate:
+    previous_label: "&laquo;"
+    next_label: "&raquo;"
+    page_gap: "&hellip;"
     
 # encoding: UTF-8
 # pt-BR translations for Ruby on Rails
