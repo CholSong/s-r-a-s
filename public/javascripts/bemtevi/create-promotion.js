@@ -1,4 +1,7 @@
 function createPromotionFromTemplate() {
+    if(template_type==""){
+        return;
+    }
     $("#btnVoltar2").click(false);
     $("#btnProximo2").click(false);
     drawTemplates();
@@ -40,7 +43,21 @@ function submitPromotionForm() {
     var detailDataURL = canvasDetail.toDataURL();
     var blobDetail = dataURLtoBlob(detailDataURL);
     formData.append("promotion[promotion_images_attributes][1][attachment]", blobDetail);
+    if(jQuery("#is_recurrence").attr("checked")){
+        var recurrencedays = "";
+        jQuery("#recurrenceday-div input[type='checkbox']").each(function(){
+            if(jQuery(this).attr("checked")){
+                if(recurrencedays=="")
+                    recurrencedays += jQuery(this).val();
+                else
+                    recurrencedays += "," + jQuery(this).val();
+            }
+        });
 
+        if(recurrencedays!=""){
+            formData.append("promotion[promotion_recurrenceday_attributes][day]", recurrencedays);
+        }
+    }
     var formAction = formElement.attr("action");
     
     var xhr = new XMLHttpRequest();

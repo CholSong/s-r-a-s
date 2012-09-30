@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120906131049) do
+ActiveRecord::Schema.define(:version => 20120929131836) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -362,6 +362,15 @@ ActiveRecord::Schema.define(:version => 20120906131049) do
 
   add_index "products_taxons", ["product_id"], :name => "index_products_taxons_on_product_id"
   add_index "products_taxons", ["taxon_id"], :name => "index_products_taxons_on_taxon_id"
+
+  create_table "promotion_recurrencedays", :force => true do |t|
+    t.string   "day"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "promotion_id"
+  end
+
+  add_index "promotion_recurrencedays", ["promotion_id"], :name => "index_promotion_recurrencedays_on_promotion_id"
 
   create_table "promotion_rules", :force => true do |t|
     t.integer  "promotion_id"

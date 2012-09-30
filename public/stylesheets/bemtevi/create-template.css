@@ -20,7 +20,7 @@ div#content {
     background: url(/images/bemtevi/backgrounds/template-small.png) no-repeat scroll 10px 17px transparent;
     background-size: 88% 93%;
     height: 260px;
-    margin-bottom: 50px;
+    margin-bottom: 165px;
     margin-top: 144px;
 }
 
@@ -147,7 +147,7 @@ div#content {
 /* Template List */
 #template-list {
     float: right;
-    height: 420px;
+    height: 533px;
     margin-top: 80px;
     width: 400px;
     position: relative;

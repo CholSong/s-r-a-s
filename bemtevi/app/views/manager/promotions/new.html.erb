@@ -64,6 +64,16 @@
                         <%= f.label t('flyer.valid_until'), :class => "second" %>
                         <%= f.text_field :expires_at, :id => "datepicker2" %>
                     </div>
+                    <div class="is_recurrence"><input type="checkbox" id="is_recurrence"><label for="is_recurrence">configuraÁıes de recorrÍncia</label></div>
+                    <div id="recurrenceday-div">
+                        <% i = 0 %>
+                        <% @object.weekdays.each do |weekday| %>
+                            <div class="weekday">
+                            <input type="checkbox" id="weekday-chk-<%= i %>" value='<%= i %>' /><label for="weekday-chk-<%= i %>"><%= weekday %></label>
+                            <% i=i+1 %>
+                            </div>
+                        <% end %>
+                    </div>
                 </div>
                 <div id="nav-buttons-container" >
                     <a id="btnVoltar2" class="nav-btn" href="javascript:showTemplateEditing()" title="voltar" ><span class="left">voltar</span></a>

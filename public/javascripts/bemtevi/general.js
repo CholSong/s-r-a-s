@@ -41,5 +41,12 @@ $(document).ready(function() {
             $(this).find("a[class~='template-btn_hover']").removeClass("template-btn_hover");
         }
     );
+    $("#is_recurrence").click(function(){
+        if($(this).attr("checked")){
+            $("#recurrenceday-div").fadeIn(2000)
+        }else{
+            $("#recurrenceday-div").fadeOut(2000);
+        }
+    })
 });
     

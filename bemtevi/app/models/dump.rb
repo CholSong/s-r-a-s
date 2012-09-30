@@ -91,7 +91,8 @@ class Dump
             :starts_at => promotion.starts_at,
             :vendor_id => promotion.vendor_id,
             :taxon_ids => promotion.taxons.find_all { |taxon| !taxon.deleted? }.map { |taxon| taxon.id },
-            :promotion_images => promotion.promotion_images.map { |image| { :id => image.id, :type => image.type, :url => image.url } }
+            :promotion_images => promotion.promotion_images.map { |image| { :id => image.id, :type => image.type, :url => image.url } },
+            :promotion_recurrenceday => promotion.promotion_recurrenceday{|day|{ :day => day.day }}
           }
         end
       }

@@ -1,5 +1,5 @@
 var templateSets = null;
-var template_type = 'detail';
+var template_type = '';
 var product_image_url;
 
 var savedData = {

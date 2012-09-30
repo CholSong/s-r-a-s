@@ -83,7 +83,7 @@ a.close{
 
 #inner-popup{
 	width:884px;
-	height: 400px;
+	height: 513px;
 	position:relative;
 	text-align:center;
 	padding:100px 0px 0px 0px;
@@ -133,6 +133,7 @@ a.close{
 
 #small{
 	padding:0px 0px 0px 37px;
+	height: 60px;
 }
 
 #inner-popup #small label{
@@ -274,4 +275,41 @@ border-radius: 3px;}
 	width: 44px;
 	height: 44px;
 	background: url('/images/bemtevi/ajax-loader.gif') center center no-repeat;
+}
+#recurrenceday-div{
+	padding-top: 10px;
+	margin-left: 58px;
+	width: 770px;
+	border-top: dotted 2px #ddd;
+	display: none;
+}
+#recurrenceday-div .weekday{
+	width: 180px;
+	float: left;
+	height: 35px;		
+}
+#recurrenceday-div input{
+	width: 30px;
+	height: 30px;
+	float: left;
+}
+#recurrenceday-div label{
+	display: inline;
+	float: left;
+}
+.is_recurrence{
+	padding-left: 58px;
+	margin-top: 20px;
+	height: 36px;
+}
+.is_recurrence #is_recurrence{
+	width: 30px;
+	height: 30px;
+	float: left;
+}
+.is_recurrence label{
+	display: inline;
+	float: left;
+	font-size: 22px !important;
+	padding: 0px !important;
 }

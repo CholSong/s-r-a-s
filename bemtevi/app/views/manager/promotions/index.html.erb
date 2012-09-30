@@ -16,7 +16,6 @@
                 <% @image_url = promotion_image.attachment.url(:medium) %>
             <% end %>
         <% end %>
-
         <div class="tpl-list-item <%= promotion.deactivated? ? 'inactive' : 'active' %>" id="tpl-list-item_<%= promotion.id %>">
             <%= image_tag(@image_url, title: promotion.name) if promotion.promotion_images.count > 0 %>
             <div>
@@ -25,7 +24,13 @@
                 <%= button_to t('promos.buttons.activate'), activate_manager_promotion_path(promotion), method: :put, title: t('promos.buttons.activate'), class: 'active-template-btn' %>
                 <%= link_to t('promos.buttons.edit'), '/manager/promotions/new', title: t('promos.buttons.edit'), class: 'edit-template-btn' %>
             </div>
-            <label><%= promotion.starts_at.to_time.to_formatted_s(:db)[0,promotion.starts_at.to_time.to_formatted_s(:db).length-3]  if promotion.starts_at %><br/><%= promotion.expires_at.to_time.to_formatted_s(:db)[0,promotion.expires_at.to_time.to_formatted_s(:db).length-3] if promotion.expires_at %></label>
+            <label>
+                <% if !promotion.is_recurrence %>
+                    <%= promotion.starts_at.to_time.to_formatted_s(:db)[0,promotion.starts_at.to_time.to_formatted_s(:db).length-3]  if promotion.starts_at %><br/><%= promotion.expires_at.to_time.to_formatted_s(:db)[0,promotion.expires_at.to_time.to_formatted_s(:db).length-3] if promotion.expires_at %>
+                <% else %>
+                    <%= promotion.showweekday %>
+                <% end %> 
+            </label>
         </div>
 
         <% end %>
