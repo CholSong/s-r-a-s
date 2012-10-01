@@ -1179,6 +1179,7 @@ pt-BR:
     description: "Descrição Flyer"
     valid_from: "Válido a partir de"
     valid_until: "Válido até"
+    recurrence_setup: "Configurar Recorrência"
   
   promos:
     buttons:

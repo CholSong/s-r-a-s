@@ -66,6 +66,7 @@ en:
     description: "Flyer Description"
     valid_from: "Valid from"
     valid_until: "Valid until"
+    recurrence_setup: "Recurrence Setup"
 
   promos:
     buttons:
