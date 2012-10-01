@@ -31,7 +31,8 @@
     if weekdays != false
       weekdays = weekdays.split(',')
       today = Time.now.wday.to_s
-      !weekdays.include? today
+      is_today = weekdays.include? today
+      !!deactivated_at || !is_today || expires_at < Time.now
     else
       !!deactivated_at || expires_at < Time.now
     end

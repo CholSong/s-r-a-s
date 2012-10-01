@@ -594,7 +594,7 @@ span.handle{
 }
 .overlay_images_conatainer_div fieldset:hover{
   height: auto;
-  max-height: 900px;
+  max-height: 3000px;
 }
 .overlay_images_conatainer_div:hover{
   overflow: auto;
@@ -642,5 +642,8 @@ div.product_overlay_child{
   color: #666 !important;
   cursor: pointer;
   font-weight: bold;
+}
+.product_overlay_images{
+  float: left;
 }
 

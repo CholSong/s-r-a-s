@@ -32,7 +32,6 @@ class Manager::PromotionsController < Manager::ResourceController
   end
   
   private
-
   def set_vendor_from_cookie
     @object.vendor_id = cookies[:vendor_id]
   end

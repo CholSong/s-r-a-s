@@ -22,18 +22,10 @@ function submitPromotionForm() {
             
     var formElement = $("#new_promotion");
     var fields = formElement.serializeArray();
-    var timezoneOffset = new Date().getTimezoneOffset();
-    var offsetHours = Math.floor(timezoneOffset / 60);
-    var offsetMin = timezoneOffset % 60;
     
     jQuery.each(fields, function (i, field) {
-        if (field.name == 'promotion[starts_at]' || field.name == 'promotion[expires_at]') {
-            formData.append(field.name, field.value + "-" + padTo2Digits(offsetHours) + ":" + padTo2Digits(offsetMin));
-        } else {
-            formData.append(field.name, field.value);
-        }
+        formData.append(field.name, field.value);
     });
-
     var canvasSummary = $("#canvas-container-summary").children("canvas")[0];
     var summaryDataURL = canvasSummary.toDataURL();
     var blobSummary = dataURLtoBlob(summaryDataURL);

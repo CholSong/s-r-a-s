@@ -26,6 +26,10 @@
   <% end %>
 <% end %>
 
+<%= f.field_container :time_zone do %>
+    <%= f.label :time_zone, t("time_zone") %><br />
+    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+  <% end %>
 
 <% if @user.respond_to?(:roles) %>
 <%= hook :admin_user_form_roles, locals do %>

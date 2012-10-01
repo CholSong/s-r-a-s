@@ -3,7 +3,7 @@ User.class_eval do
   has_many :addresses
   has_many :vendors
   
-  attr_accessible :email, :password, :password_confirmation, :name, :addresses, :taxonomies, :remember_me, :persistence_token
+  attr_accessible :email, :password, :password_confirmation, :name, :addresses, :taxonomies, :remember_me, :persistence_token, :time_zone
 
   scope :standard_user, lambda { includes(:roles).where("roles.name" => "user") }
   
