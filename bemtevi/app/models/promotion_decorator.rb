@@ -8,7 +8,6 @@
 
   accepts_nested_attributes_for :promotion_images, :image_template_set, :promotion_recurrenceday
   
-  #@weekdays = ['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado']
   @@weekdays = ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira", "sábado"]
   # use deleted? rather than checking the attribute directly. this
   # allows extensions to override deleted? if they want to provide
@@ -60,13 +59,15 @@
   
   def showweekday
     weekdays = is_recurrence
-    weekdays = weekdays.split(',')
-    display_str = ""
-    weekdays.each do |weekday|
-      if display_str == ""
-        display_str += @@weekdays[weekday.to_i]
-      else
-        display_str += ", "+@@weekdays[weekday.to_i]
+    if weekdays != false
+      weekdays = weekdays.split(',')
+      display_str = ""
+      weekdays.each do |weekday|
+        if display_str == ""
+          display_str += @@weekdays[weekday.to_i]
+        else
+          display_str += ", "+@@weekdays[weekday.to_i]
+        end
       end
     end
     display_str
