@@ -339,60 +339,60 @@ var detail_flyer_src="";
 var sumary_back_src="";
 var sumary_flyer_src="";
 function upload_tolocal(obj){
-  var file = obj.files[0];
-  if(!!file.type.match(/image.*/)){
-    var submit_flag =  false;
-    var which_image = "";
-    if(jQuery(obj).parent().get(0).tagName == "FIELDSET"){
+  var submit_flag =  false;
+  var which_image = "";
+  if(jQuery(obj).parent().get(0).tagName == "FIELDSET"){
+    submit_flag = true;
+    which_image = jQuery(obj).parent().attr("id")=='summary_template_fields'?'sumary_back_src':'detail_back_src';
+  }else{
+    if(jQuery("."+jQuery(obj).parent().parent().attr("class")).size()<2){
       submit_flag = true;
-      which_image = jQuery(obj).parent().attr("id")=='summary_template_fields'?'sumary_back_src':'detail_back_src';
-    }else{
-      if(jQuery("."+jQuery(obj).parent().parent().attr("class")).size()<2){
-        submit_flag = true;
-        which_image = jQuery(obj).parent().parent().attr("class")=='summary_product_overlay_images'?'sumary_flyer_src':'detail_flyer_src';
-      }
-    }
-    if(!submit_flag)return;
-    var which_image_src;alert($.browser.mise)
-    if($.browser.mise){
-      which_image_src = jQuery(obj).val();alert(which_image_src)
-      switch(which_image){
-        case 'detail_back_src':
-          detail_back_src = which_image_src;
-          break;
-        case 'detail_flyer_src':
-          detail_flyer_src = which_image_src;
-          break;
-        case 'sumary_back_src':
-          sumary_back_src = which_image_src;
-          break;
-        case 'sumary_flyer_src':
-          sumary_flyer_src = which_image_src;
-          break;
-      }
-    }else{
-      if(window.FileReader){
-        var reader = new FileReader();
-        reader.onloadend = function(e){
-          which_image_src = e.target.result;
-          switch(which_image){
-            case 'detail_back_src':
-              detail_back_src = which_image_src;
-              break;
-            case 'detail_flyer_src':
-              detail_flyer_src = which_image_src;
-              break;
-            case 'sumary_back_src':
-              sumary_back_src = which_image_src;
-              break;
-            case 'sumary_flyer_src':
-              sumary_flyer_src = which_image_src;
-              break;
-          }
-        }
-        reader.readAsDataURL(file);
-      }
+      which_image = jQuery(obj).parent().parent().attr("class")=='summary_product_overlay_images'?'sumary_flyer_src':'detail_flyer_src';
     }
   }
+  if(!submit_flag)return;
+  if($.browser.mise){
+    which_image_src = jQuery(obj).val();
+    switch(which_image){
+      case 'detail_back_src':
+        detail_back_src = which_image_src;
+        break;
+      case 'detail_flyer_src':
+        detail_flyer_src = which_image_src;
+        break;
+      case 'sumary_back_src':
+        sumary_back_src = which_image_src;
+        break;
+      case 'sumary_flyer_src':
+        sumary_flyer_src = which_image_src;
+        break;
+    }
+  }else{
+    var file = obj.files[0];
+      
+    var which_image_src;
+    if(window.FileReader){
+      var reader = new FileReader();
+      reader.onloadend = function(e){
+        which_image_src = e.target.result;
+        switch(which_image){
+          case 'detail_back_src':
+            detail_back_src = which_image_src;
+            break;
+          case 'detail_flyer_src':
+            detail_flyer_src = which_image_src;
+            break;
+          case 'sumary_back_src':
+            sumary_back_src = which_image_src;
+            break;
+          case 'sumary_flyer_src':
+            sumary_flyer_src = which_image_src;
+            break;
+        }
+      }
+      reader.readAsDataURL(file);
+    }
+  }
+  
 }
 
