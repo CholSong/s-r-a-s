@@ -334,10 +334,14 @@ function preview_template(template_type){
    });
   jQuery.fancyboxrun(jQuery("#template-container-" + template_type));
 }
+
+
+
 var detail_back_src="";
 var detail_flyer_src="";
 var sumary_back_src="";
 var sumary_flyer_src="";
+
 function upload_tolocal(obj){
   var submit_flag =  false;
   var which_image = "";
@@ -352,6 +356,7 @@ function upload_tolocal(obj){
   }
   if(!submit_flag)return;
   if($.browser.mise){
+    alert(which_image)
     which_image_src = jQuery(obj).val();
     switch(which_image){
       case 'detail_back_src':
@@ -369,28 +374,39 @@ function upload_tolocal(obj){
     }
   }else{
     var file = obj.files[0];
-      
-    var which_image_src;
-    if(window.FileReader){
-      var reader = new FileReader();
-      reader.onloadend = function(e){
-        which_image_src = e.target.result;
-        switch(which_image){
-          case 'detail_back_src':
-            detail_back_src = which_image_src;
-            break;
-          case 'detail_flyer_src':
-            detail_flyer_src = which_image_src;
-            break;
-          case 'sumary_back_src':
-            sumary_back_src = which_image_src;
-            break;
-          case 'sumary_flyer_src':
-            sumary_flyer_src = which_image_src;
-            break;
+    var formdata = false;
+    if(window.FormData){
+      formdata = new FormData();
+      formdata.append('img-upload',file);
+    }
+    if(formdata){
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST","/upload_temp_image");
+      xhr.setRequestHeader('X-CSRF-Token',AUTH_TOKEN)
+      xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+          if((this.status >= 200 && this.status < 300) || this.status == 304){
+            if(this.responseText!=''){
+              which_image_src = jQuery(this.responseText).find("file_path").text();
+              switch(which_image){
+                case 'detail_back_src':
+                  detail_back_src = which_image_src;
+                  break;
+                case 'detail_flyer_src':
+                  detail_flyer_src = which_image_src;
+                  break;
+                case 'sumary_back_src':
+                  sumary_back_src = which_image_src;
+                  break;
+                case 'sumary_flyer_src':
+                  sumary_flyer_src = which_image_src;
+                  break;
+              }
+            }
+          }
         }
       }
-      reader.readAsDataURL(file);
+      xhr.send(formdata);
     }
   }
   
