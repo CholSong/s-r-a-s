@@ -25,6 +25,10 @@ class Admin::ImageTemplateSetsController < Admin::ResourceController
     super
   end
 
+  def uploadimage
+    name = params[:image_file].original_filename
+    render :text=>name.inspect and return;
+  end
   def update
     #render :text=> params.inspect and return
     super

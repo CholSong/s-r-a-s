@@ -22,7 +22,7 @@
 		resizeTimer	= null,
 		isTouch		= document.createTouch !== undefined,
 		isString	= function(str) {
-			return $.type(str) === "string";
+			//	return $.type(str) === "string";
 		},
 		isPercentage = function(str) {
 			return isString(str) && str.indexOf('%') > 0;

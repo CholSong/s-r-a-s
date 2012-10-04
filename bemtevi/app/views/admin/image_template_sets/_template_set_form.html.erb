@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'bemtevi/fancybox.js' %>
+  <%= stylesheet_link_tag 'bemtevi/fancybox.css' %>
+<% end %>
 <%= render "shared/error_messages", :target => @image_template_set %>
 
 <fieldset id="general_fields">
@@ -29,3 +33,41 @@
     <%= render :partial => "template_form", :locals => { :f => template_form, :template_type => "detail" } %>
   </fieldset>
 <% end %>
+<div id="template-container-detail" class="template-container detail is_hidden">
+  <img src="/images/bemtevi/backgrounds/template-big.png" class="is_hidden">
+  <div id="regions-container-detail" class="regions-container">
+    <img src="" class="template-background-detail">
+    <div class="image-overlay overlay">
+      <div class="image-control ui-draggable" style="position: relative; left: 0px; top: 0px; ">
+        <div class="ui-wrapper" style="overflow: hidden; position: relative; top: 0px; left: 0px; margin: 0px; ">
+          <img src="" style="left: 0px; top: 0px; margin: 0px; resize: none; position: static; zoom: 1; display: block; " class="flyer-image">
+        </div>
+      </div>
+    </div>
+    <div class="text-overlay overlay">
+      <p></p>
+      <textarea></textarea>
+    </div>
+    <div class="text-overlay overlay">
+      <p></p>
+      <textarea></textarea>
+    </div>
+  </div>
+</div>
+<div id="template-container-summary" class="template-container summary is_hidden">
+  <img src="/images/bemtevi/backgrounds/template-small.png" class="is_hidden">
+  <div id="regions-container-summary" class="regions-container">
+    <img src="" class="template-background-summary">
+    <div class="image-overlay overlay">
+      <div class="image-control ui-draggable" style="position: relative; left: 0px; top: 0px; ">
+        <div class="ui-wrapper" style="overflow: hidden; position: relative; top: 0px; left: 0px; margin: 0px; ">
+          <img src="" style="left: 0px; top: 0px; margin: 0px; resize: none; position: static; zoom: 1; display: block; " class="flyer-image">
+        </div>
+      </div>
+      <div class="text-overlay overlay">
+        <p></p>
+        <textarea></textarea>
+      </div>
+    </div>
+  </div>
+</div>
