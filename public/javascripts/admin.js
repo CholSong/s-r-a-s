@@ -355,8 +355,7 @@ function upload_tolocal(obj){
     }
   }
   if(!submit_flag)return;
-  if($.browser.mise){
-    alert(which_image)
+  if($.browser.msie){
     which_image_src = jQuery(obj).val();
     switch(which_image){
       case 'detail_back_src':
