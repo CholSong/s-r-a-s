@@ -303,13 +303,14 @@ function preview_template(template_type){
    if(template_type=='detail'){
     if(detail_flyer_src!='')flyer_image=detail_flyer_src;
   }else{
-    console.log("asdf")
     if(sumary_flyer_src!='')flyer_image=sumary_flyer_src;
   }
-   jQuery("#template-container-" + template_type + " .flyer-image").attr("src",flyer_image).css({
-    'width' : jQuery("input[name$='["+background_image_element_index+"][overlays_attributes][0][width]']").val()+'px',
-    'height' : jQuery("input[name$='["+background_image_element_index+"][overlays_attributes][0][height]']").val()+'px'    
-   });
+  if(flyer_image){
+    jQuery("#template-container-" + template_type + " .flyer-image").attr("src",flyer_image).css({
+      'width' : jQuery("input[name$='["+background_image_element_index+"][overlays_attributes][0][width]']").val()+'px',
+      'height' : jQuery("input[name$='["+background_image_element_index+"][overlays_attributes][0][height]']").val()+'px'    
+     });
+  }
    var text_overlay_index = 2;
    jQuery("#template-container-" + template_type + " .text-overlay").each(function(){
     jQuery(this).css({
@@ -351,11 +352,10 @@ function upload_tolocal(obj){
         which_image = jQuery(obj).parent().parent().attr("class")=='summary_product_overlay_images'?'sumary_flyer_src':'detail_flyer_src';
       }
     }
-    console.log(which_image);
     if(!submit_flag)return;
-    var which_image_src;
+    var which_image_src;alert($.browser.mise)
     if($.browser.mise){
-      which_image_src = jQuery(obj).val();
+      which_image_src = jQuery(obj).val();alert(which_image_src)
       switch(which_image){
         case 'detail_back_src':
           detail_back_src = which_image_src;
