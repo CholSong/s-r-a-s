@@ -1,6 +1,8 @@
 <% content_for :head do %>
+  <%= javascript_include_tag 'bemtevi/admin_image_template.js' %>
   <%= javascript_include_tag 'bemtevi/fancybox.js' %>
   <%= stylesheet_link_tag 'bemtevi/fancybox.css' %>
+  <%= stylesheet_link_tag 'bemtevi/admin_image_template.css' %>
 <% end %>
 <%= render "shared/error_messages", :target => @image_template_set %>
 
