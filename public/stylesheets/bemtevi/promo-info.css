@@ -288,19 +288,28 @@ border-radius: 3px;}
 	float: left;
 	height: 35px;		
 }
-#recurrenceday-div input{
-	width: 30px;
-	height: 30px;
+#recurrenceday-div input, .is_test input{
+	width: 30px !important;
+	height: 30px !important;
 	float: left;
 }
-#recurrenceday-div label{
-	display: inline;
+#recurrenceday-div label, .is_test label{
+	display: inline !important;
 	float: left;
 }
 .is_recurrence{
 	padding-left: 58px;
 	margin-top: 20px;
 	height: 36px;
+	width: 400px;
+	float: left;
+}
+.is_test{
+	padding-left: 58px;
+	margin-top: 20px;
+	height: 36px;
+	width: 350px;
+	float: left;
 }
 .is_recurrence #is_recurrence{
 	width: 30px;

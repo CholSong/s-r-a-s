@@ -67,6 +67,15 @@ en:
     valid_from: "Valid from"
     valid_until: "Valid until"
     recurrence_setup: "Recurrence Setup"
+    is_test: "Test Flyer"
+    recurrence_days:
+      sun: "Sunday"
+      mon: "Monday"
+      tue: "Tuesday"
+      wed: "Wednesday"
+      thu: "Thursday"
+      fri: "Friday"
+      sat: "Saturday"
 
   promos:
     buttons:

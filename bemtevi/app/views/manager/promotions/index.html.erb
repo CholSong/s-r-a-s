@@ -27,7 +27,9 @@
                 <% if !promotion.is_recurrence %>
                     <%= promotion.starts_at.to_time.to_formatted_s(:db)[0,promotion.starts_at.to_time.to_formatted_s(:db).length-3]  if promotion.starts_at %><br/><%= promotion.expires_at.to_time.to_formatted_s(:db)[0,promotion.expires_at.to_time.to_formatted_s(:db).length-3] if promotion.expires_at %>
                 <% else %>
-                    <%= promotion.showweekday %>
+                    <% promotion.showweekday.each do |weekday| %>
+                    <%= t('flyer.recurrence_days.'+weekday)+' ' %>
+                    <% end %>
                 <% end %> 
             </label>
         </div>

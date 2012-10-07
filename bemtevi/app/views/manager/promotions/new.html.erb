@@ -65,11 +65,12 @@
                         <%= f.text_field :expires_at, :id => "datepicker2" %>
                     </div>
                     <div class="is_recurrence"><input type="checkbox" id="is_recurrence"><label for="is_recurrence"><%= t('flyer.recurrence_setup') %></label></div>
+                    <div class="is_test"><%= f.check_box :is_test %><%= f.label t('flyer.is_test'), :for=> "promotion_is_test" %></div>
                     <div id="recurrenceday-div">
                         <% i = 0 %>
                         <% @object.weekdays.each do |weekday| %>
                             <div class="weekday">
-                            <input type="checkbox" id="weekday-chk-<%= i %>" value='<%= i %>' /><label for="weekday-chk-<%= i %>"><%= weekday %></label>
+                            <input type="checkbox" id="weekday-chk-<%= i %>" value='<%= weekday %>' /><label for="weekday-chk-<%= i %>"><%= t('flyer.recurrence_days.'+weekday) %></label>
                             <% i=i+1 %>
                             </div>
                         <% end %>

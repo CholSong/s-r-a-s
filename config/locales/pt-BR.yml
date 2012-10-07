@@ -1180,6 +1180,15 @@ pt-BR:
     valid_from: "Válido a partir de"
     valid_until: "Válido até"
     recurrence_setup: "Configurar Recorrência"
+    is_test: "Teste Flyer"
+    recurrence_days:
+      sun: "Domingo"
+      mon: "Segunda-feira"
+      tue: "Terça-feira"
+      wed: "Quarta-feira"
+      thu: "Quinta-feira"
+      fri: "Sexta-feira"
+      sat: "Sábado"
   
   promos:
     buttons:

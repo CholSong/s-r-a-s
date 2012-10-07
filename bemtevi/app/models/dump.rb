@@ -92,7 +92,8 @@ class Dump
             :vendor_id => promotion.vendor_id,
             :taxon_ids => promotion.taxons.find_all { |taxon| !taxon.deleted? }.map { |taxon| taxon.id },
             :promotion_images => promotion.promotion_images.map { |image| { :id => image.id, :type => image.type, :url => image.url } },
-            :promotion_recurrenceday => promotion.showweekday
+            :promotion_recurrence_days => promotion.showweekday,
+            :is_test => promotion.is_test
           }
         end
       }

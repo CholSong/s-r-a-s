@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929131836) do
+ActiveRecord::Schema.define(:version => 20121007154911) do
 
   create_table "addresses", :force => true do |t|
     t.string   "firstname"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20120929131836) do
 
   create_table "adjustments", :force => true do |t|
     t.integer  "order_id"
-    t.decimal  "amount",          :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "amount",          :precision => 8, :scale => 2
     t.string   "label"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -406,6 +406,7 @@ ActiveRecord::Schema.define(:version => 20120929131836) do
     t.datetime "deleted_at"
     t.integer  "vendor_id"
     t.datetime "deactivated_at"
+    t.boolean  "is_test"
   end
 
   create_table "promotions_taxons", :id => false, :force => true do |t|
@@ -611,6 +612,7 @@ ActiveRecord::Schema.define(:version => 20120929131836) do
     t.datetime "locked_at"
     t.datetime "remember_created_at"
     t.string   "name"
+    t.string   "time_zone"
   end
 
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
@@ -626,7 +628,7 @@ ActiveRecord::Schema.define(:version => 20120929131836) do
     t.datetime "deleted_at"
     t.boolean  "is_master",                                   :default => false
     t.integer  "count_on_hand",                               :default => 0,     :null => false
-    t.decimal  "cost_price",    :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "cost_price",    :precision => 8, :scale => 2
     t.integer  "position"
   end
 
