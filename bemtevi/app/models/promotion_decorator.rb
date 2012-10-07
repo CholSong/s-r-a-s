@@ -1,4 +1,5 @@
 ﻿Promotion.class_eval do
+  attr_accessible :is_test
   has_many :promotion_images, :as => :viewable, :order => :position, :dependent => :destroy
   has_one :image_template_set, :dependent => :destroy
   has_one :promotion_recurrenceday, :dependent => :destroy
