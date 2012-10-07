@@ -2,7 +2,7 @@
   attr_accessible :name, :event_name, :code, :match_policy,
                   :path, :advertise, :description, :usage_limit,
                   :starts_at, :expires_at, :promotion_rules_attributes,
-                  :promotion_actions_attributes, :ist_test, :promotion_images_attributes,
+                  :promotion_actions_attributes, :is_test, :promotion_images_attributes,
                   :image_template_set_attributes, :promotion_recurrenceday_attributes, :taxons_attributes
   has_many :promotion_images, :as => :viewable, :order => :position, :dependent => :destroy
   has_one :image_template_set, :dependent => :destroy
