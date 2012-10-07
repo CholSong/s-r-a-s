@@ -64,7 +64,7 @@
   
   def showweekday
     weekdays = is_recurrence
-    return_val = Array.new()
+    return_val = nil
     if weekdays != false
       return_val = weekdays.split(',')
     end
